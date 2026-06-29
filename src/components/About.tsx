@@ -174,7 +174,7 @@ const About: React.FC = () => {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-6 pt-10">
               {[
-                { number: '100+', label: 'Artworks Created' },
+                { number: '1,000+', label: 'Artworks Created' },
                 { number: '15+', label: 'Exhibitions' },
                 { number: '500+', label: 'Happy Collectors' },
               ].map((stat) => (
