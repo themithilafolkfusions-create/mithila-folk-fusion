@@ -203,6 +203,7 @@ const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
         >
           <a
             href="#gallery"
+            onClick={(e) => { e.preventDefault(); document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' }); }}
             className="group relative px-10 py-4 min-h-[50px] min-w-[220px] bg-madhubani-red text-cream font-playfair tracking-wider text-base uppercase border-2 border-madhubani-yellow/50 hover:bg-madhubani-crimson transition-all duration-300 overflow-hidden"
           >
             <span className="relative z-10">Explore Gallery</span>
@@ -210,6 +211,7 @@ const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
           </a>
           <a
             href="#commission"
+            onClick={(e) => { e.preventDefault(); document.getElementById('commission')?.scrollIntoView({ behavior: 'smooth' }); }}
             className="px-10 py-4 min-h-[50px] min-w-[220px] bg-transparent text-cream font-playfair tracking-wider text-base uppercase border-2 border-cream/40 hover:border-madhubani-yellow hover:text-madhubani-yellow transition-all duration-300"
           >
             Commission Art

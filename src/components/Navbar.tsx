@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 import { Menu, X, Play, Pause } from 'lucide-react';
 
 const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Gallery', href: '#gallery' },
+  { label: 'Home', href: '#home', scrollTo: 'home' },
+  { label: 'About', href: '#about', scrollTo: 'about' },
+  { label: 'Gallery', href: '#gallery', scrollTo: 'gallery' },
   { label: 'Portfolio', href: '/portfolio', isRoute: true },
-  { label: 'The Art', href: '#art-form' },
-  { label: 'Exhibitions', href: '#exhibitions' },
-  { label: 'Commission', href: '#commission' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'The Art', href: '#art-form', scrollTo: 'art-form' },
+  { label: 'Exhibitions', href: '#exhibitions', scrollTo: 'exhibitions' },
+  { label: 'Commission', href: '#commission', scrollTo: 'commission' },
+  { label: 'Contact', href: '#contact', scrollTo: 'contact' },
 ];
 
 interface NavbarProps {
@@ -59,7 +59,7 @@ const Navbar: React.FC<NavbarProps> = ({ isPlaying, togglePlay }) => {
             </button>
 
             {/* Centered Logo - visible only on scroll */}
-            <a href="#home" className={`flex items-center group transition-all duration-500 ${isScrolled ? 'opacity-100' : 'opacity-0'}`}>
+            <a href="#home" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className={`flex items-center group transition-all duration-500 ${isScrolled ? 'opacity-100' : 'opacity-0'}`}>
               <img
                 src="/images/mithila-folk-fusion-logo.png"
                 alt="Mithila Folk Fusions"
@@ -118,7 +118,15 @@ const Navbar: React.FC<NavbarProps> = ({ isPlaying, togglePlay }) => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.1 }}
-                    onClick={() => setIsMobileOpen(false)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsMobileOpen(false);
+                      if (link.scrollTo === 'home') {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      } else {
+                        setTimeout(() => document.getElementById(link.scrollTo!)?.scrollIntoView({ behavior: 'smooth' }), 100);
+                      }
+                    }}
                     className="text-xl font-playfair text-madhubani-black hover:text-madhubani-red transition-colors py-2 border-b border-madhubani-red/10 w-full text-center"
                   >
                     {link.label}

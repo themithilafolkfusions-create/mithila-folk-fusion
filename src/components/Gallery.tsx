@@ -371,7 +371,7 @@ const Gallery: React.FC = () => {
                   </p>
                   <a
                     href="#commission"
-                    onClick={() => setSelectedArt(null)}
+                    onClick={(e) => { e.preventDefault(); setSelectedArt(null); setTimeout(() => document.getElementById('commission')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
                     className="mt-6 inline-block px-6 py-2 bg-madhubani-red text-cream font-playfair text-sm tracking-wider text-center hover:bg-madhubani-crimson transition-colors"
                   >
                     Inquire About This Piece
