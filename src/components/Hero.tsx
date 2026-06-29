@@ -12,14 +12,14 @@ const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
   const heroLogoOpacity = useTransform(scrollY, [0, 200], [1, 0]);
 
   return (
-    <section id="home" className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background video with overlay */}
       <div className="absolute inset-0 overflow-hidden">
         <video
           autoPlay muted loop playsInline
           className="absolute min-w-full min-h-full"
           style={{
-            transform: 'translate(-50%, -50%) rotate(90deg) scale(1.6)',
+            transform: 'translate(-50%, -50%) rotate(90deg) scale(1.5)',
             top: '50%',
             left: '50%',
             position: 'absolute',
@@ -116,13 +116,13 @@ const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
         {/* Scroll-aware Logo with music player integration */}
         <motion.div
           style={{ scale: heroLogoScale, opacity: heroLogoOpacity }}
-          className="flex justify-center mb-12 relative"
+          className="flex justify-center mb-8 md:mb-12 relative"
         >
           <div className="relative">
             <motion.img
               src="/images/mithila-folk-fusion-logo.png"
               alt="Mithila Folk Fusions"
-              className="w-60 h-60 md:w-[312px] md:h-[312px]"
+              className="w-48 h-48 md:w-[312px] md:h-[312px]"
               animate={isPlaying ? { rotate: 360 } : { rotate: 0 }}
               transition={isPlaying ? { repeat: Infinity, duration: 10, ease: 'linear' } : { duration: 0.5 }}
             />
@@ -164,7 +164,7 @@ const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
           transition={{ delay: 0.5, duration: 1 }}
           className="flex flex-col items-center mb-6"
         >
-          <h1 className="font-cinzel text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-cream leading-tight whitespace-nowrap">
+          <h1 className="font-cinzel text-3xl sm:text-5xl md:text-7xl lg:text-8xl text-cream leading-tight whitespace-nowrap">
             Mithila{' '}
             <span className="text-madhubani-yellow">Folk Art</span>
           </h1>
@@ -189,7 +189,7 @@ const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.3, duration: 1 }}
-          className="font-cormorant text-lg md:text-2xl text-cream/80 max-w-2xl mx-auto mb-10 leading-relaxed bg-madhubani-black/60 backdrop-blur-sm rounded-lg px-6 py-4"
+          className="font-cormorant text-base md:text-2xl text-cream/80 max-w-2xl mx-auto mb-6 md:mb-10 leading-relaxed bg-madhubani-black/60 backdrop-blur-sm rounded-lg px-4 py-3 md:px-6 md:py-4"
         >
           Where ancient Mithila traditions dance with contemporary vision — 
           each stroke a story, each color a celebration of Bihar's timeless heritage
@@ -204,7 +204,7 @@ const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
           <a
             href="#gallery"
             onClick={(e) => { e.preventDefault(); document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' }); }}
-            className="group relative px-10 py-4 min-h-[50px] min-w-[220px] bg-madhubani-red text-cream font-playfair tracking-wider text-base uppercase border-2 border-madhubani-yellow/50 hover:bg-madhubani-crimson transition-all duration-300 overflow-hidden"
+            className="group relative px-6 py-3 md:px-10 md:py-4 min-h-[40px] md:min-h-[50px] min-w-[180px] md:min-w-[220px] bg-madhubani-red text-cream font-playfair tracking-wider text-sm md:text-base uppercase border-2 border-madhubani-yellow/50 hover:bg-madhubani-crimson transition-all duration-300 overflow-hidden"
           >
             <span className="relative z-10">Explore Gallery</span>
             <div className="absolute inset-0 bg-gradient-to-r from-madhubani-magenta to-madhubani-red opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -212,7 +212,7 @@ const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
           <a
             href="#commission"
             onClick={(e) => { e.preventDefault(); document.getElementById('commission')?.scrollIntoView({ behavior: 'smooth' }); }}
-            className="px-10 py-4 min-h-[50px] min-w-[220px] bg-transparent text-cream font-playfair tracking-wider text-base uppercase border-2 border-cream/40 hover:border-madhubani-yellow hover:text-madhubani-yellow transition-all duration-300"
+            className="px-6 py-3 md:px-10 md:py-4 min-h-[40px] md:min-h-[50px] min-w-[180px] md:min-w-[220px] bg-transparent text-cream font-playfair tracking-wider text-sm md:text-base uppercase border-2 border-cream/40 hover:border-madhubani-yellow hover:text-madhubani-yellow transition-all duration-300"
           >
             Commission Art
           </a>
@@ -223,7 +223,7 @@ const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.2 }}
-          className="flex justify-center mt-8"
+          className="flex justify-center mt-4 md:mt-8"
         >
           <motion.div
             animate={{ y: [0, 8, 0] }}
