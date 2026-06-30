@@ -91,13 +91,13 @@ const Portfolio: React.FC = () => {
         <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-madhubani-yellow via-madhubani-red to-madhubani-magenta opacity-15" />
         <div className="absolute right-0 top-0 bottom-0 w-1 bg-gradient-to-b from-madhubani-magenta via-madhubani-red to-madhubani-yellow opacity-15" />
 
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative px-4 sm:px-6 lg:px-8">
           {/* Section title */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-20"
+            className="text-center max-w-3xl mx-auto mb-20"
           >
             <span className="text-madhubani-magenta font-cormorant text-lg tracking-[0.4em] uppercase">Full Collection</span>
             <h2 className="font-cinzel text-3xl md:text-5xl text-madhubani-black mt-3 mb-4">
@@ -169,7 +169,7 @@ const Portfolio: React.FC = () => {
 
                   {/* Text content */}
                   <div className={`w-full md:w-1/3 ${isEven ? 'md:pl-4' : 'md:pr-4'}`}>
-                    <div className="space-y-6">
+                    <div className="space-y-6 max-w-lg">
                       {/* Category */}
                       <span className="inline-block font-playfair text-xs tracking-[0.3em] uppercase text-madhubani-magenta border border-madhubani-magenta/30 px-3 py-1">
                         {work.category}
