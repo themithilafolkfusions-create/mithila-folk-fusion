@@ -59,6 +59,11 @@ const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
           </defs>
         </svg>
 
+        {/* Madhubani border at the bottom of the hero */}
+        <div className="absolute bottom-0 left-0 w-full">
+          <MadhubaniBorderTop />
+        </div>
+
         {/* Corner lotuses */}
         {/* Top-left */}
         <motion.svg
@@ -269,9 +274,6 @@ const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
         </motion.div>
       </div>
 
-      <div className="relative z-10 w-full">
-        <MadhubaniBorderTop />
-      </div>
     </section>
   );
 };
