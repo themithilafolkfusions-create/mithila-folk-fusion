@@ -6,12 +6,15 @@ interface HeroProps {
   togglePlay: () => void;
 }
 
+const heroVideos = ['/videos/hero-1.mp4', '/videos/hero-2.mp4', '/videos/hero-3.mp4'];
+
 const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
   const { scrollY } = useScroll();
   const heroLogoScale = useTransform(scrollY, [0, 300], [1, 0.3]);
   const heroLogoOpacity = useTransform(scrollY, [0, 200], [1, 0]);
 
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [currentVideo, setCurrentVideo] = useState(0);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -29,11 +32,13 @@ const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
       {/* Background video with overlay */}
       <div className="absolute inset-0 overflow-hidden">
         <video
+          key={currentVideo}
           autoPlay muted loop playsInline
           className="absolute w-full h-full"
           style={{ objectFit: 'cover' }}
+          onEnded={() => setCurrentVideo((prev) => (prev + 1) % heroVideos.length)}
         >
-          <source src="/videos/hero.mp4" type="video/mp4" />
+          <source src={heroVideos[currentVideo]} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-b from-madhubani-black/70 via-madhubani-black/50 to-madhubani-black/80" />
       </div>

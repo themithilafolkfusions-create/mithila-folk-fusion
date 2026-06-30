@@ -7,55 +7,55 @@ import { SectionDivider } from './MadhubaniBorder';
 const artworks = [
   {
     id: 1,
-    src: '/images/artwork1.jpg',
-    title: 'The Royal Peacock',
-    category: 'Nature & Birds',
-    description: 'An ornate peacock rendered in traditional Madhubani style with intricate geometric tail feathers',
-    medium: 'Pen & Ink on Handmade Paper',
+    src: '/images/resonance.jpeg',
+    title: 'Resonance',
+    category: 'Environment & Identity',
+    description: 'A powerful visual dialogue between two contrasting realities of the Earth through a single female face, symbolically connected to the planet itself. One half represents a polluted world; the other reveals a thriving, pollution-free world with lush forests and lotus flowers.',
+    medium: 'Mithila Folk Art',
   },
   {
     id: 2,
-    src: '/images/artwork2.jpg',
-    title: 'Divine Goddess',
-    category: 'Mythology',
-    description: 'A powerful depiction of the goddess seated on a lotus, surrounded by sacred symbols',
-    medium: 'Mixed Media on Canvas',
+    src: '/images/bodhi-udaya.jpeg',
+    title: 'Bodhi Udaya',
+    category: 'Spirituality',
+    description: 'A contemplative interpretation of Lord Buddha\'s enlightenment beneath the sacred Bodhi tree, expressed through traditional Mithila folk art with intricate Kachni, Bharni, and Godna motifs and mandala-inspired arches.',
+    medium: 'Mithila Folk Art',
   },
   {
     id: 3,
-    src: '/images/artwork3.jpg',
-    title: 'Tree of Life',
-    category: 'Sacred Motifs',
-    description: 'The cosmic tree connecting earth and heaven, flanked by elephants and adorned with birds',
-    medium: 'Natural Dyes on Handmade Paper',
+    src: '/images/mythocircle.jpeg',
+    title: 'Mythocircle',
+    category: 'Mythology & Folklore',
+    description: 'A Godna-inspired artwork bringing together mythology, nature, and symbolic geometry. A turtle with concentric circular patterns carries the figure of Raja Sahlesh — a vessel of Mithila\'s oral history and heroic folklore.',
+    medium: 'Godna Art',
   },
   {
     id: 4,
-    src: '/images/artwork4.jpg',
-    title: 'The Kite Runner',
-    category: 'Cultural Fusion',
-    description: 'A woman in traditional dress flying a kite, celebrating the joy and freedom of folk life',
-    medium: 'Pen & Watercolor on Paper',
+    src: '/images/echoes-beneath-branches.jpeg',
+    title: 'Echoes Beneath the Branches',
+    category: 'Nature & Community',
+    description: 'Created in black and white, this painting explores home as a shared and living experience. A majestic tree transformed into a sanctuary of birdhouses, with a tranquil pond, swimming ducks, and blooming lotuses.',
+    medium: 'Mithila Folk Art — Black & White',
   },
   {
     id: 5,
-    src: '/images/artwork5.jpg',
-    title: 'Lakshmi - The Benevolent',
-    category: 'Mythology',
-    description: 'Goddess Lakshmi in contemplative meditation, rendered in dramatic black and white linework',
-    medium: 'Pen & Ink on Handmade Paper',
+    src: '/images/one-earth-many-voices.jpeg',
+    title: 'One Earth, Many Voices',
+    category: 'Climate & Culture',
+    description: 'A Mithila-inspired mandala representing Earth as the shared home of humanity. International flags reflect that climate change knows no borders. Traditional motifs represent biodiversity and the balance between humans and nature.',
+    medium: 'Mithila Folk Art',
   },
   {
     id: 6,
-    src: '/images/artwork6.jpg',
-    title: 'Matsya Mandala',
-    category: 'Sacred Motifs',
-    description: 'Twin fish swimming in eternal harmony, a symbol of fertility and prosperity in Mithila art',
-    medium: 'Pen & Ink with Watercolor',
+    src: '/images/echoes-of-exile.jpeg',
+    title: 'Echoes of Exile',
+    category: 'Mythology & Heritage',
+    description: 'Based on the Ramayana — Lord Rama\'s 14-year exile with Sita and Lakshman. Colorful motifs of flowers and birds set the enchanting backdrop of the forest, defining the significance of beautiful life no matter the circumstances.',
+    medium: 'Mithila Folk Art',
   },
 ];
 
-const categories = ['All', 'Nature & Birds', 'Mythology', 'Sacred Motifs', 'Cultural Fusion'];
+const categories = ['All', 'Environment & Identity', 'Spirituality', 'Mythology & Folklore', 'Nature & Community', 'Climate & Culture', 'Mythology & Heritage'];
 
 const CornerOrnament: React.FC<{ className: string }> = ({ className }) => (
   <svg className={`absolute z-10 pointer-events-none ${className}`} width="28" height="28" viewBox="0 0 28 28">
@@ -321,6 +321,54 @@ const Gallery: React.FC = () => {
               <path d="M6 3l5 5-5 5" />
             </svg>
           </Link>
+        </motion.div>
+
+        {/* Sold Out Paintings */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="mt-20"
+        >
+          <div className="text-center mb-10">
+            <span className="text-madhubani-teal font-cormorant text-lg tracking-[0.4em] uppercase">Collection</span>
+            <h3 className="font-cinzel text-2xl md:text-3xl text-madhubani-black mt-3 mb-2">
+              Sold <span className="text-madhubani-red">Out</span>
+            </h3>
+            <p className="font-cormorant text-madhubani-black/50">
+              These pieces have found their forever homes
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">
+            {[
+              { src: '/images/sold-out/sold-out-1.jpeg', title: 'Sold' },
+              { src: '/images/sold-out/sold-out-2.jpeg', title: 'Sold' },
+              { src: '/images/sold-out/sold-out-3.jpeg', title: 'Sold' },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.15 }}
+                className="relative group"
+              >
+                <div className="relative overflow-hidden border border-madhubani-red/10">
+                  <img
+                    src={item.src}
+                    alt="Sold painting"
+                    className="w-full h-48 md:h-64 object-cover opacity-60 grayscale transition-all duration-500 group-hover:opacity-80 group-hover:grayscale-0"
+                  />
+                  <div className="absolute inset-0 bg-madhubani-black/40 flex items-center justify-center">
+                    <span className="font-cinzel text-cream text-sm md:text-base tracking-[0.3em] uppercase border border-cream/40 px-4 py-2 bg-madhubani-black/30 backdrop-blur-sm">
+                      {item.title}
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
       </div>
 

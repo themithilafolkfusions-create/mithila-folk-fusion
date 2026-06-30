@@ -56,6 +56,9 @@ const About: React.FC = () => {
             About <span className="text-madhubani-red">Shivangi</span>
           </h2>
           <SectionDivider variant="lotus" />
+          <p className="font-playfair text-lg md:text-xl text-madhubani-red italic mt-4 tracking-wide">
+            "Preserving Heritage. Inspiring Tomorrow."
+          </p>
         </motion.div>
 
         <div className="max-w-5xl mx-auto space-y-16">
@@ -152,23 +155,23 @@ const About: React.FC = () => {
           >
             <p className="font-cormorant text-lg md:text-xl text-madhubani-black/80 leading-relaxed">
               <span className="font-playfair text-2xl md:text-3xl text-madhubani-red font-semibold italic">Shivangi Singh</span> 
-              {' '}is a passionate Mithila folk artist who breathes new life into the ancient art form of Madhubani painting. 
-              Through her brand <strong className="text-madhubani-teal">Mithilafolkfusions</strong>, she creates a beautiful 
-              bridge between centuries-old traditions and contemporary artistic expression.
+              {' '}is an Indian American contemporary Mithila (Madhubani) folk artist based in New Jersey, working under the name <strong className="text-madhubani-teal">MithilaFolkFusions</strong>. 
+              Originally from the Mithilanchal region of India and raised in Jharkhand, she brings a strong cultural foundation to her practice, blending traditional storytelling with contemporary themes that speak to global audiences.
             </p>
 
             <p className="font-cormorant text-lg text-madhubani-black/70 leading-relaxed">
-              Born with an innate connection to the rich cultural heritage of Bihar's Mithila region, 
-              Shivangi's artistry captures the essence of this 2,500-year-old tradition while infusing it 
-              with modern sensibilities. Her work features the characteristic bold outlines, intricate patterns, 
-              and vibrant colors that define Madhubani art.
+              Her work is rooted in classical Mithila styles such as Kachni, Bharni, and Godna, while also expanding into experimental compositions on handmade paper using fine nib work and acrylics. 
+              Through her art, she explores identity, migration, women's narratives, ecology, and climate resilience — transforming folk visual language into a powerful medium for cultural dialogue and social reflection.
             </p>
 
             <p className="font-cormorant text-lg text-madhubani-black/70 leading-relaxed">
-              From majestic peacocks and sacred lotus flowers to powerful goddess figures and the iconic 
-              Tree of Life, each piece tells a story rooted in mythology, nature, and the feminine divine. 
-              Her unique fusion approach has earned recognition at prestigious venues including the 
-              <strong className="text-madhubani-red"> Consulate General of India in New York</strong>.
+              Shivangi's work has been exhibited on prominent national and international platforms including the 
+              <strong className="text-madhubani-red"> United Nations Headquarters</strong>, 
+              <strong className="text-madhubani-red"> Gracie Mansion</strong>, 
+              <strong className="text-madhubani-red"> Times Square</strong>, 
+              <strong className="text-madhubani-red"> FDNY Headquarters</strong>, and the 
+              <strong className="text-madhubani-red"> EU Headquarters in Brussels (2026)</strong>. 
+              She has been recognized as a Women Entrepreneur in the Arts by the Greater New York Chamber of Commerce and listed among the Top 35 Indian American Art Influencers by Feedspot (2025).
             </p>
 
             {/* Stats */}
