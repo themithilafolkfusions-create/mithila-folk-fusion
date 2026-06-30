@@ -13,11 +13,11 @@ export const MadhubaniBorderTop: React.FC = () => (
         <path d="M0,15 Q15,0 30,15" fill="none" stroke="#006B6B" strokeWidth="1.5"/>
       </pattern>
     </defs>
-    <rect y="0" width="100%" height="4" fill="#1A1A1A"/>
+    <rect y="0" width="100%" height="4" fill="#8B1A1A"/>
     <rect y="5" width="100%" height="15" fill="url(#zigzag-top)"/>
     <rect y="22" width="100%" height="15" fill="url(#dots-top)"/>
     <rect y="39" width="100%" height="15" fill="url(#fish-scale)"/>
-    <rect y="56" width="100%" height="4" fill="#1A1A1A"/>
+    <rect y="56" width="100%" height="4" fill="#8B1A1A"/>
   </svg>
 );
 
