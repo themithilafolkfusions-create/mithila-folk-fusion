@@ -74,7 +74,7 @@ const About: React.FC = () => {
               transition={{ duration: 0.8 }}
               className="md:col-span-5"
             >
-              <div className="relative w-full">
+              <div className="relative w-full max-w-[90%] mx-auto">
                 <div className="absolute -inset-6 border-2 border-madhubani-red/30" />
                 <div className="absolute -inset-3 border border-madhubani-yellow/40" />
                 
@@ -100,32 +100,34 @@ const About: React.FC = () => {
                 </svg>
 
                 <div className="w-full bg-madhubani-black overflow-hidden" style={{ aspectRatio: '4/5' }}>
-                  {slides.map((slide, i) => (
-                    <div
-                      key={i}
-                      className="absolute inset-0 transition-opacity duration-700"
-                      style={{ opacity: i === current ? 1 : 0 }}
-                    >
-                      {slide.type === 'image' ? (
-                        <CameraShy mode="blur" blur="20px" sensitivity="balanced">
-                        <img
-                          src={slide.src}
-                          alt="Shivangi Singh"
-                          className="w-full h-full object-cover"
-                        />
-                        </CameraShy>
-                      ) : (
-                        <video
-                          src={slide.src}
-                          className="w-full h-full object-cover"
-                          autoPlay
-                          muted
-                          loop
-                          playsInline
-                        />
-                      )}
-                    </div>
-                  ))}
+                  <div className="relative w-full h-full p-5">
+                    {slides.map((slide, i) => (
+                      <div
+                        key={i}
+                        className="absolute inset-0 transition-opacity duration-700"
+                        style={{ opacity: i === current ? 1 : 0 }}
+                      >
+                        {slide.type === 'image' ? (
+                          <CameraShy mode="blur" blur="20px" sensitivity="balanced">
+                          <img
+                            src={slide.src}
+                            alt="Shivangi Singh"
+                            className="w-full h-full object-cover"
+                          />
+                          </CameraShy>
+                        ) : (
+                          <video
+                            src={slide.src}
+                            className="w-full h-full object-cover"
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                          />
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 </div>
                 
                 <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-madhubani-black/40 to-transparent" />
