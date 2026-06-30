@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { X, ZoomIn } from 'lucide-react';
+import { CameraShy } from 'camerashy';
 import { SectionDivider } from './MadhubaniBorder';
 
 const artworks = [
@@ -266,6 +267,7 @@ const Gallery: React.FC = () => {
 
                     {/* Inner image frame */}
                     <div className="relative overflow-hidden border border-madhubani-red/10 m-2 mb-6">
+                      <CameraShy mode="blur" blur="20px" sensitivity="balanced">
                       <img
                         src={artwork.src}
                         alt={artwork.title}
@@ -273,6 +275,7 @@ const Gallery: React.FC = () => {
                         onDragStart={(e) => e.preventDefault()}
                         className="w-full h-80 md:h-96 object-cover transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-105"
                       />
+                      </CameraShy>
 
                       {/* Hover overlay */}
                       <div className="absolute inset-0 bg-madhubani-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-center justify-center">
@@ -357,6 +360,7 @@ const Gallery: React.FC = () => {
                 className="relative group"
               >
                 <div className="relative overflow-hidden border border-madhubani-red/10">
+                  <CameraShy mode="blur" blur="20px" sensitivity="balanced">
                   <img
                     src={item.src}
                     alt="Sold painting"
@@ -364,6 +368,7 @@ const Gallery: React.FC = () => {
                     onDragStart={(e) => e.preventDefault()}
                     className="w-full h-48 md:h-64 object-cover opacity-60 grayscale transition-all duration-500 group-hover:opacity-80 group-hover:grayscale-0"
                   />
+                  </CameraShy>
                   <div className="absolute inset-0 bg-madhubani-black/40 flex items-center justify-center">
                     <span className="font-cinzel text-cream text-sm md:text-base tracking-[0.3em] uppercase border border-cream/40 px-4 py-2 bg-madhubani-black/30 backdrop-blur-sm">
                       {item.title}
@@ -402,6 +407,7 @@ const Gallery: React.FC = () => {
               </button>
 
               <div className="grid md:grid-cols-2">
+                <CameraShy mode="blur" blur="20px" sensitivity="balanced">
                 <img
                   src={selectedArt.src}
                   alt={selectedArt.title}
@@ -409,6 +415,7 @@ const Gallery: React.FC = () => {
                   onDragStart={(e) => e.preventDefault()}
                   className="w-full h-64 md:h-full object-cover"
                 />
+                </CameraShy>
                 <div className="p-6 md:p-8 flex flex-col justify-center">
                   <span className="text-madhubani-magenta font-cormorant text-sm tracking-[0.3em] uppercase">
                     {selectedArt.category}

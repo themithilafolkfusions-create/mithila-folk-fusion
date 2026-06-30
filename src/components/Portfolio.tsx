@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
+import { CameraShy } from 'camerashy';
 import { SectionDivider } from './MadhubaniBorder';
 import Footer from './Footer';
 
@@ -151,6 +152,7 @@ const Portfolio: React.FC = () => {
                         <path d="M5,12 Q5,5 12,5" fill="none" stroke="#C41E7F" strokeWidth="1"/>
                       </svg>
 
+                      <CameraShy mode="blur" blur="20px" sensitivity="balanced">
                       <img
                         src={work.src}
                         alt={work.title}
@@ -158,6 +160,7 @@ const Portfolio: React.FC = () => {
                         onDragStart={(e) => e.preventDefault()}
                         className="w-full h-[28rem] md:h-[36rem] object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                       />
+                      </CameraShy>
 
                       {/* Subtle overlay on hover */}
                       <div className="absolute inset-0 bg-gradient-to-t from-madhubani-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

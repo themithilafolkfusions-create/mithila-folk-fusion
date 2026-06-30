@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { CameraShy } from 'camerashy';
 import { SectionDivider } from './MadhubaniBorder';
 
 const slides = [
@@ -103,11 +104,13 @@ const About: React.FC = () => {
                     style={{ opacity: i === current ? 1 : 0 }}
                   >
                     {slide.type === 'image' ? (
+                      <CameraShy mode="blur" blur="20px" sensitivity="balanced">
                       <img
                         src={slide.src}
                         alt="Shivangi Singh"
                         className="w-full h-full object-cover"
                       />
+                      </CameraShy>
                     ) : (
                       <video
                         src={slide.src}
