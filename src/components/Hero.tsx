@@ -60,7 +60,7 @@ const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
         </svg>
 
         {/* Madhubani border at the bottom of the hero */}
-        <div className="absolute bottom-20 left-0 w-full">
+        <div className="absolute bottom-0 left-0 w-full">
           <MadhubaniBorderTop />
         </div>
 
@@ -109,7 +109,7 @@ const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
         <motion.svg
           animate={{ y: [0, 6, 0], opacity: [0.3, 0.7, 0.3] }}
           transition={{ y: { duration: 11, repeat: Infinity, ease: 'easeInOut', delay: 4 }, opacity: { duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 1.6 } }}
-          className="absolute bottom-36 left-4 md:left-10"
+          className="absolute bottom-16 left-4 md:left-10"
           style={{ rotate: mousePos.x * 15, filter: 'url(#lotus-glow)', transition: 'rotate 0.3s ease-out' }}
           width="80" height="80" viewBox="0 0 120 120"
         >
@@ -129,7 +129,7 @@ const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
         <motion.svg
           animate={{ y: [0, 6, 0], opacity: [0.3, 0.7, 0.3] }}
           transition={{ y: { duration: 13, repeat: Infinity, ease: 'easeInOut', delay: 6 }, opacity: { duration: 3.2, repeat: Infinity, ease: 'easeInOut', delay: 2.4 } }}
-          className="absolute bottom-36 right-4 md:right-10"
+          className="absolute bottom-16 right-4 md:right-10"
           style={{ rotate: -mousePos.x * 15, filter: 'url(#lotus-glow)', transition: 'rotate 0.3s ease-out' }}
           width="80" height="80" viewBox="0 0 120 120"
         >
