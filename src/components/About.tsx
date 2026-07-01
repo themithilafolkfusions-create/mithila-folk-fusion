@@ -10,6 +10,16 @@ const slides = [
   { type: 'image', src: '/images/un-outdoor.jpg' },
   { type: 'image', src: '/images/profile-office.jpg' },
   { type: 'image', src: '/images/profile-exhibition.png' },
+  { type: 'image', src: '/images/shivangi-1.jpg' },
+  { type: 'image', src: '/images/shivangi-2.png' },
+  { type: 'image', src: '/images/shivangi-3.png' },
+  { type: 'image', src: '/images/shivangi-4.png' },
+  { type: 'image', src: '/images/shivangi-5.png' },
+  { type: 'image', src: '/images/shivangi-6.jpeg' },
+  { type: 'image', src: '/images/shivangi-7.jpeg' },
+  { type: 'image', src: '/images/shivangi-8.jpeg' },
+  { type: 'image', src: '/images/shivangi-9.jpeg' },
+  { type: 'image', src: '/images/shivangi-10.png' },
   { type: 'video', src: '/images/profile-video.mp4' },
 ];
 
@@ -35,6 +45,9 @@ const About: React.FC = () => {
     setCurrent(index);
     startTimer();
   };
+
+  const prev = () => goTo(current === 0 ? slides.length - 1 : current - 1);
+  const next = () => goTo(current === slides.length - 1 ? 0 : current + 1);
   return (
     <section id="about" className="relative py-20 md:py-32 bg-cream overflow-hidden">
       {/* Background pattern */}
@@ -95,6 +108,27 @@ const About: React.FC = () => {
                   <circle cx="6" cy="6" r="4" fill="#E8A317"/>
                   <path d="M8,20 Q8,8 20,8" fill="none" stroke="#C41E7F" strokeWidth="1.5"/>
                 </svg>
+
+                {/* Nav arrow left */}
+                <button
+                  onClick={prev}
+                  className="absolute left-1 md:left-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center bg-cream/20 backdrop-blur-sm text-cream/70 hover:bg-cream/40 hover:text-cream transition-all rounded-full"
+                  aria-label="Previous slide"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M15 18l-6-6 6-6" />
+                  </svg>
+                </button>
+                {/* Nav arrow right */}
+                <button
+                  onClick={next}
+                  className="absolute right-1 md:right-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center bg-cream/20 backdrop-blur-sm text-cream/70 hover:bg-cream/40 hover:text-cream transition-all rounded-full"
+                  aria-label="Next slide"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M9 18l6-6-6-6" />
+                  </svg>
+                </button>
 
                 <div className="w-full bg-madhubani-black overflow-hidden" style={{ aspectRatio: '4/5' }}>
                   <div className="relative w-full h-full p-5">

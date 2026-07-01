@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { SectionDivider } from './MadhubaniBorder';
 
@@ -163,52 +164,47 @@ const ArtForm: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <span className="text-madhubani-yellow font-cormorant text-lg tracking-[0.4em] uppercase">Heritage</span>
           <h2 className="font-cinzel text-3xl md:text-5xl text-cream mt-3 mb-4">
             The Art of <span className="text-madhubani-yellow">Mithila</span>
           </h2>
           <SectionDivider variant="fish" />
+
+          {/* Intro summary */}
           <p className="font-cormorant text-lg text-cream/60 max-w-3xl mx-auto mt-4 leading-relaxed">
-Mithila painting begins with a line. Bold, unbroken, alive. For 2,500 years, 
-the women of Bihar have drawn these lines on mud walls, on floors, on paper. 
-            filling every inch with fish, lotus, peacock, sun. There is no empty space in Madhubani, 
-            only story after story waiting to be read.
+            Mithila painting is an ancient folk art form originating in the Mithila region of Bihar, India, 
+            and extending into Nepal's Tarai region including Janakpur. Traditionally created by women on 
+            mud walls using natural pigments, this 2,500 year old tradition is a living language of storytelling 
+            through intricate linework, sacred motifs, and vibrant colors.
           </p>
         </motion.div>
 
-        {/* Key characteristics */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"
-        >
+        {/* Quick highlights */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-12">
           {[
-            { title: 'Bold Outlines', desc: 'Distinctive black outlines define every form, creating dramatic contrast and visual clarity' },
-            { title: 'Natural Pigments', desc: 'Traditional colors derived from turmeric, indigo, soot, and flower extracts' },
-            { title: 'No Empty Space', desc: 'Every inch is filled with intricate patterns, a hallmark of the "horror vacui" aesthetic' },
-            { title: 'Sacred Geometry', desc: 'Mathematical precision in mandalas and borders reflecting cosmic harmony' },
-            { title: 'Storytelling', desc: 'Each painting narrates tales from mythology, nature, and daily life' },
-            { title: 'Double Line Technique', desc: 'Borders drawn with parallel lines filled with cross hatching and dots' },
+            { label: '2,500+ Years', sub: 'Of continuous tradition' },
+            { label: '5 Classical Styles', sub: 'Kachni, Bharni, Godna, Tantrik, Kohbar' },
+            { label: 'Women Led', sub: 'Passed mother to daughter' },
+            { label: 'Natural Colors', sub: 'Turmeric, indigo, soot, clay' },
+            { label: 'India & Nepal', sub: 'Shared Mithila heritage' },
           ].map((item, i) => (
             <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: 20 }}
+              key={item.label}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="border border-madhubani-yellow/20 p-6 bg-madhubani-black/50 backdrop-blur-sm hover:border-madhubani-yellow/50 transition-all duration-300 group text-center"
+              transition={{ delay: i * 0.08 }}
+              className="text-center p-4 border border-madhubani-yellow/15 bg-madhubani-black/40"
             >
-              <div className="w-8 h-0.5 bg-madhubani-yellow mb-4 mx-auto group-hover:w-16 transition-all duration-300" />
-              <h3 className="font-cinzel text-lg text-madhubani-yellow mb-2">{item.title}</h3>
-              <p className="font-cormorant text-cream/60 leading-relaxed">{item.desc}</p>
+              <div className="font-cinzel text-sm md:text-base text-madhubani-yellow mb-1">{item.label}</div>
+              <div className="font-cormorant text-xs text-cream/40">{item.sub}</div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Sacred Motifs */}
+        {/* Sacred Motifs preview */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -229,7 +225,7 @@ the women of Bihar have drawn these lines on mud walls, on floors, on paper.
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="group text-center p-6 border border-cream/10 hover:border-madhubani-yellow/40 transition-all duration-300 cursor-pointer"
+              className="group text-center p-6 border border-cream/10 hover:border-madhubani-yellow/40 transition-all duration-300"
             >
               <div className="flex justify-center mb-3 group-hover:scale-110 transition-transform duration-300">
                 {motif.svg}
@@ -241,6 +237,24 @@ the women of Bihar have drawn these lines on mud walls, on floors, on paper.
             </motion.div>
           ))}
         </div>
+
+        {/* Link to full page */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-center mt-12"
+        >
+          <Link
+            to="/art-of-mithila"
+            className="inline-flex items-center gap-2 font-playfair text-sm tracking-wider text-madhubani-yellow border-b border-madhubani-yellow/40 pb-1 hover:border-madhubani-yellow transition-colors"
+          >
+            Learn more about the art of Mithila
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M6 3l5 5-5 5" />
+            </svg>
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

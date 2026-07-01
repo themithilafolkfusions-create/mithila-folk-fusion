@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { MadhubaniBorderBottom } from './MadhubaniBorder';
 
 const Footer: React.FC = () => {
@@ -32,17 +33,28 @@ const Footer: React.FC = () => {
                 { label: 'About', target: 'about' },
                 { label: 'Gallery', target: 'gallery' },
                 { label: 'Art Form', target: 'art-form' },
+                { label: 'Art of Mithila', target: '/art-of-mithila', isRoute: true },
                 { label: 'Exhibitions', target: 'exhibitions' },
                 { label: 'Commission', target: 'commission' },
                 { label: 'Contact', target: 'contact' },
               ].map((link) => (
-                <button
-                  key={link.label}
-                  onClick={() => document.getElementById(link.target)?.scrollIntoView({ behavior: 'smooth' })}
-                  className="font-cormorant text-cream/50 hover:text-madhubani-yellow transition-colors py-1 text-left"
-                >
-                  {link.label}
-                </button>
+                link.isRoute ? (
+                  <Link
+                    key={link.label}
+                    to={link.target}
+                    className="font-cormorant text-cream/50 hover:text-madhubani-yellow transition-colors py-1 text-left"
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <button
+                    key={link.label}
+                    onClick={() => document.getElementById(link.target)?.scrollIntoView({ behavior: 'smooth' })}
+                    className="font-cormorant text-cream/50 hover:text-madhubani-yellow transition-colors py-1 text-left"
+                  >
+                    {link.label}
+                  </button>
+                )
               ))}
             </div>
           </div>
