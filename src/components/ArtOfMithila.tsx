@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
+import { CameraShy } from 'camerashy';
 import { SectionDivider } from './MadhubaniBorder';
 import Footer from './Footer';
 
@@ -206,7 +207,9 @@ const ArtOfMithila: React.FC = () => {
                 className="relative"
               >
                 <div className="relative border-2 border-madhubani-red/20 p-2">
-                  <img src="/images/echoes-of-exile.jpeg" alt="Mithila painting depicting Ramayana" className="w-full h-auto" />
+                  <CameraShy mode="blur" blur="20px" sensitivity="balanced">
+                    <img src="/images/echoes-of-exile.jpeg" alt="Mithila painting depicting Ramayana" className="w-full h-auto select-none" draggable="false" onDragStart={(e) => e.preventDefault()} onContextMenu={(e) => e.preventDefault()} />
+                  </CameraShy>
                 </div>
                 <div className="absolute -bottom-4 -right-4 w-24 h-24 border-2 border-madhubani-yellow/30 -z-10" />
                 <p className="font-playfair text-xs text-madhubani-black/40 mt-3 text-center italic">
@@ -241,7 +244,9 @@ const ArtOfMithila: React.FC = () => {
                 className="order-2 md:order-1"
               >
                 <div className="relative border-2 border-madhubani-yellow/20 p-2">
-                  <img src="/images/one-earth-many-voices.jpeg" alt="Mithila region spans India and Nepal" className="w-full h-auto" />
+                  <CameraShy mode="blur" blur="20px" sensitivity="balanced">
+                    <img src="/images/one-earth-many-voices.jpeg" alt="Mithila region spans India and Nepal" className="w-full h-auto select-none" draggable="false" onDragStart={(e) => e.preventDefault()} onContextMenu={(e) => e.preventDefault()} />
+                  </CameraShy>
                 </div>
                 <p className="font-playfair text-xs text-cream/40 mt-3 text-center italic">
                   One Earth, Many Voices &mdash; Unity across borders
@@ -326,7 +331,9 @@ const ArtOfMithila: React.FC = () => {
                 className="relative"
               >
                 <div className="relative border-2 border-madhubani-red/20 p-2">
-                  <img src="/images/resonance.jpeg" alt="Mithila painting with natural pigments" className="w-full h-auto" />
+                  <CameraShy mode="blur" blur="20px" sensitivity="balanced">
+                    <img src="/images/resonance.jpeg" alt="Mithila painting with natural pigments" className="w-full h-auto select-none" draggable="false" onDragStart={(e) => e.preventDefault()} onContextMenu={(e) => e.preventDefault()} />
+                  </CameraShy>
                 </div>
                 <div className="absolute -bottom-4 -left-4 w-24 h-24 border-2 border-madhubani-teal/30 -z-10" />
                 <p className="font-playfair text-xs text-madhubani-black/40 mt-3 text-center italic">
@@ -565,10 +572,14 @@ const ArtOfMithila: React.FC = () => {
                 className="space-y-4"
               >
                 <div className="relative border-2 border-madhubani-red/20 p-2">
-                  <img src="/images/eu-podium.jpg" alt="Mithila art at European Union" className="w-full h-auto" />
+                  <CameraShy mode="blur" blur="20px" sensitivity="balanced">
+                    <img src="/images/eu-podium.jpg" alt="Mithila art at European Union" className="w-full h-auto select-none" draggable="false" onDragStart={(e) => e.preventDefault()} onContextMenu={(e) => e.preventDefault()} />
+                  </CameraShy>
                 </div>
                 <div className="relative border-2 border-madhubani-yellow/20 p-2">
-                  <img src="/images/un-presenting.jpg" alt="Mithila art at the United Nations" className="w-full h-auto" />
+                  <CameraShy mode="blur" blur="20px" sensitivity="balanced">
+                    <img src="/images/un-presenting.jpg" alt="Mithila art at the United Nations" className="w-full h-auto select-none" draggable="false" onDragStart={(e) => e.preventDefault()} onContextMenu={(e) => e.preventDefault()} />
+                  </CameraShy>
                 </div>
               </motion.div>
             </div>
