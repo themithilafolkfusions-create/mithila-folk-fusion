@@ -66,13 +66,22 @@ const ExhibitionsGallery: React.FC = () => {
                 <CornerOrnament className="bottom-1 right-1 scale-[-1]" />
 
                 <div className="relative overflow-hidden border border-madhubani-red/10">
+                  {/* Blurred fill background */}
+                  <img
+                    src={img.src}
+                    alt=""
+                    aria-hidden="true"
+                    className="absolute inset-0 w-full h-full object-cover blur-xl scale-110 opacity-70"
+                    draggable="false"
+                    onDragStart={(e) => e.preventDefault()}
+                  />
                   <CameraShy mode="blur" blur="20px" sensitivity="balanced">
                     <img
                       src={img.src}
                       alt={img.caption}
                       draggable="false"
                       onDragStart={(e) => e.preventDefault()}
-                      className="w-full h-56 md:h-72 object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="relative w-full h-56 md:h-72 object-contain z-10 mx-auto transition-transform duration-500 group-hover:scale-105"
                     />
                   </CameraShy>
                 </div>
