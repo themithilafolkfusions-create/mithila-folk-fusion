@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { CameraShy } from 'camerashy';
 import { SectionDivider } from './MadhubaniBorder';
 import Footer from './Footer';
+import PortfolioLightbox from './PortfolioLightbox';
 
 const portfolioWorks = [
   {
@@ -64,7 +65,10 @@ const portfolioWorks = [
 ];
 
 const Portfolio: React.FC = () => {
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
   return (
+    <>
     <div className="min-h-screen bg-cream">
       {/* Simple header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-cream/95 backdrop-blur-md border-b border-madhubani-red/10">
@@ -125,7 +129,7 @@ const Portfolio: React.FC = () => {
                 >
                   {/* Image */}
                   <div className="w-full md:w-2/3">
-                    <div className="relative group">
+                    <div className="relative group mx-auto cursor-pointer" onClick={() => setSelectedIndex(index)}>
                       {/* Decorative frame */}
                       <div className="absolute -inset-4 border border-madhubani-red/15 pointer-events-none" />
                       <div className="absolute -inset-2 border border-madhubani-yellow/20 pointer-events-none" />
@@ -158,7 +162,7 @@ const Portfolio: React.FC = () => {
                         alt={work.title}
                         draggable="false"
                         onDragStart={(e) => e.preventDefault()}
-                        className="w-full h-auto max-h-[100dvh] object-contain transition-transform duration-700 group-hover:scale-[1.02]"
+                        className="block mx-auto h-auto max-h-[100dvh] w-auto transition-transform duration-700 group-hover:scale-[1.02]"
                       />
                       </CameraShy>
 
@@ -222,6 +226,13 @@ const Portfolio: React.FC = () => {
 
       <Footer />
     </div>
+
+    <PortfolioLightbox
+      works={portfolioWorks}
+      selectedIndex={selectedIndex}
+      onClose={() => setSelectedIndex(null)}
+    />
+    </>
   );
 };
 
