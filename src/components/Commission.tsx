@@ -25,7 +25,7 @@ const services = [
   {
     icon: <Brush className="w-8 h-8" />,
     title: 'Workshops',
-    description: 'Two hour to full day sessions covering Kachni, Bharni, and Godna techniques. All materials provided. Suitable for schools, museums, and corporate teams.',
+    description: 'Two hour to full day sessions covering Kachni, Bharni, and Godna techniques. All materials provided. Suitable for schools, colleges, museums, and corporate teams.',
     color: 'madhubani-green',
   },
   {
