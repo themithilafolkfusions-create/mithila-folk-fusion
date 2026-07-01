@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { CameraShy } from 'camerashy';
 import { SectionDivider } from './MadhubaniBorder';
+import ExhibitionsLightbox from './ExhibitionsLightbox';
 
 const galleryImages = [
   { src: '/images/eu-podium.jpg', caption: 'Shivangi Singh speaking at EU External Action Service, Brussels. Mithila folk art cultural diplomacy' },
@@ -24,6 +25,7 @@ const CornerOrnament: React.FC<{ className: string }> = ({ className }) => (
 );
 
 const ExhibitionsGallery: React.FC = () => {
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const { t } = useTranslation();
   return (
     <section className="relative py-28 md:py-44 bg-gradient-to-b from-cream-dark to-cream overflow-hidden">
@@ -58,7 +60,8 @@ const ExhibitionsGallery: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.08 }}
-              className="group relative"
+              className="group relative cursor-pointer"
+              onClick={() => setLightboxIndex(index)}
             >
               <div className="relative border border-madhubani-red/20 bg-cream-light p-3 md:p-4 transition-all duration-500 group-hover:shadow-lg group-hover:shadow-madhubani-red/10">
                 <CornerOrnament className="top-1 left-1" />
@@ -106,6 +109,12 @@ const ExhibitionsGallery: React.FC = () => {
           ))}
         </div>
       </div>
+
+      <ExhibitionsLightbox
+        images={galleryImages}
+        selectedIndex={lightboxIndex}
+        onClose={() => setLightboxIndex(null)}
+      />
     </section>
   );
 };
