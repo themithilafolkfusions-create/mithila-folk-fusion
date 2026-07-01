@@ -90,7 +90,7 @@ const Navbar: React.FC<NavbarProps> = ({ isPlaying, togglePlay }) => {
             {/* Language Toggle + Menu - right side */}
             <div className="absolute right-0 flex items-center gap-2">
               {/* Language buttons */}
-              <div className={`flex gap-1 ${isScrolled ? '' : 'hidden md:flex'}`}>
+              <div className="hidden md:flex gap-1">
                 {LANGUAGES.map((lang) => (
                   <button
                     key={lang.code}
