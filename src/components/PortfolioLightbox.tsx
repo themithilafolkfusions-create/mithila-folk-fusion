@@ -1,5 +1,6 @@
 import React, { useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { CameraShy } from 'camerashy';
 
@@ -107,7 +108,7 @@ const PortfolioLightbox: React.FC<Props> = ({ works, selectedIndex, onClose }) =
         </div>
 
         {/* Description panel */}
-        <div className="w-full md:w-[480px] shrink-0 bg-cream/5 backdrop-blur-sm border-t md:border-t-0 md:border-l border-cream/10 p-8 md:p-10 flex flex-col justify-center overflow-y-auto max-h-[40vh] md:max-h-screen">
+        <div className="w-full md:w-[480px] shrink-0 bg-cream/5 backdrop-blur-sm border-t md:border-t-0 md:border-l border-cream/10 p-8 md:p-10 flex flex-col justify-start overflow-y-auto max-h-none md:max-h-screen">
           <span className="font-playfair text-xs md:text-sm tracking-[0.3em] uppercase text-madhubani-magenta border border-madhubani-magenta/30 px-4 py-1.5 inline-block w-fit mb-5">
             {work.category}
           </span>
@@ -134,6 +135,14 @@ const PortfolioLightbox: React.FC<Props> = ({ works, selectedIndex, onClose }) =
               <span className="text-madhubani-teal">Dimensions:</span> {work.dimensions}
             </p>
           </div>
+
+          <Link
+            to="/#commission"
+            onClick={onClose}
+            className="inline-block mt-6 px-6 py-3 border border-madhubani-red text-madhubani-red font-playfair text-sm tracking-wider hover:bg-madhubani-red hover:text-cream transition-all duration-300 text-center"
+          >
+            Inquire About This Piece
+          </Link>
         </div>
 
         {/* Navigation arrows */}
