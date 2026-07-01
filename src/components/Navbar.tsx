@@ -2,17 +2,25 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Menu, X, Play, Pause } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+
+const LANGUAGES = [
+  { code: 'en', label: 'EN' },
+  { code: 'nl', label: 'NL' },
+  { code: 'hi', label: 'HI' },
+  { code: 'de', label: 'DE' },
+];
 
 const navLinks = [
-  { label: 'Home', href: '#home', scrollTo: 'home' },
-  { label: 'About', href: '#about', scrollTo: 'about' },
-  { label: 'Gallery', href: '#gallery', scrollTo: 'gallery' },
-  { label: 'Portfolio', href: '/portfolio', isRoute: true },
-  { label: 'Art of Mithila', href: '/art-of-mithila', isRoute: true },
-  { label: 'Art Form', href: '#art-form', scrollTo: 'art-form' },
-  { label: 'Exhibitions', href: '#exhibitions', scrollTo: 'exhibitions' },
-  { label: 'Commission', href: '#commission', scrollTo: 'commission' },
-  { label: 'Contact', href: '#contact', scrollTo: 'contact' },
+  { label: 'home', href: '#home', scrollTo: 'home' },
+  { label: 'about', href: '#about', scrollTo: 'about' },
+  { label: 'gallery', href: '#gallery', scrollTo: 'gallery' },
+  { label: 'portfolio', href: '/portfolio', isRoute: true },
+  { label: 'artOfMithila', href: '/art-of-mithila', isRoute: true },
+  { label: 'artForm', href: '#art-form', scrollTo: 'art-form' },
+  { label: 'exhibitions', href: '#exhibitions', scrollTo: 'exhibitions' },
+  { label: 'commission', href: '#commission', scrollTo: 'commission' },
+  { label: 'contact', href: '#contact', scrollTo: 'contact' },
 ];
 
 interface NavbarProps {
@@ -25,6 +33,7 @@ const Navbar: React.FC<NavbarProps> = ({ isPlaying, togglePlay }) => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [visible, setVisible] = useState(true);
   const prevScrollY = useRef(0);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,7 +62,6 @@ const Navbar: React.FC<NavbarProps> = ({ isPlaying, togglePlay }) => {
             : 'bg-transparent'
         }`}
       >
-        {/* Decorative top border */}
         <div className="h-1 w-full bg-gradient-to-r from-madhubani-red via-madhubani-magenta to-madhubani-teal" />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -64,10 +72,10 @@ const Navbar: React.FC<NavbarProps> = ({ isPlaying, togglePlay }) => {
               className={`absolute left-0 flex flex-col items-center gap-0.5 transition-colors ${
                 isScrolled ? 'text-madhubani-red hover:text-madhubani-crimson' : 'text-cream hover:text-madhubani-yellow'
               }`}
-              aria-label={isPlaying ? 'Pause background music' : 'Play background music'}
+              aria-label={isPlaying ? t('navbar.ariaPause') : t('navbar.ariaPlay')}
             >
               {isPlaying ? <Pause size={22} /> : <Play size={22} />}
-              <span className="text-[9px] tracking-wider font-medium leading-none">Play Gramophone</span>
+              <span className="text-[9px] tracking-wider font-medium leading-none">{t('navbar.playLabel')}</span>
             </button>
 
             {/* Centered Logo - visible only on scroll */}
@@ -79,13 +87,35 @@ const Navbar: React.FC<NavbarProps> = ({ isPlaying, togglePlay }) => {
               />
             </a>
 
-            {/* Menu button - right side */}
-            <button
-              onClick={() => setIsMobileOpen(!isMobileOpen)}
-              className={`absolute right-0 p-2 ${isScrolled ? 'text-madhubani-red' : 'text-cream'}`}
-            >
-              {isMobileOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+            {/* Language Toggle + Menu - right side */}
+            <div className="absolute right-0 flex items-center gap-2">
+              {/* Language buttons */}
+              <div className={`flex gap-1 ${isScrolled ? '' : 'hidden md:flex'}`}>
+                {LANGUAGES.map((lang) => (
+                  <button
+                    key={lang.code}
+                    onClick={() => i18n.changeLanguage(lang.code)}
+                    className={`text-[10px] font-bold tracking-wider px-1.5 py-0.5 border transition-all ${
+                      i18n.language === lang.code
+                        ? isScrolled
+                          ? 'border-madhubani-red bg-madhubani-red text-cream'
+                          : 'border-cream bg-cream text-madhubani-black'
+                        : isScrolled
+                          ? 'border-madhubani-red/30 text-madhubani-red/60 hover:border-madhubani-red hover:text-madhubani-red'
+                          : 'border-cream/30 text-cream/60 hover:border-cream hover:text-cream'
+                    }`}
+                  >
+                    {lang.label}
+                  </button>
+                ))}
+              </div>
+              <button
+                onClick={() => setIsMobileOpen(!isMobileOpen)}
+                className={`p-2 ${isScrolled ? 'text-madhubani-red' : 'text-cream'}`}
+              >
+                {isMobileOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
           </div>
         </div>
       </motion.nav>
@@ -100,12 +130,28 @@ const Navbar: React.FC<NavbarProps> = ({ isPlaying, togglePlay }) => {
             className="fixed inset-0 z-40 bg-cream/98 backdrop-blur-lg pt-24"
           >
             <div className="flex flex-col items-center gap-4 px-8">
-              {/* Decorative element */}
               <svg width="60" height="60" viewBox="0 0 60 60" className="mb-4">
                 <circle cx="30" cy="30" r="28" fill="none" stroke="#8B1A1A" strokeWidth="1.5" strokeDasharray="4,4"/>
                 <circle cx="30" cy="30" r="20" fill="none" stroke="#C41E7F" strokeWidth="1"/>
                 <circle cx="30" cy="30" r="5" fill="#E8A317"/>
               </svg>
+
+              {/* Language toggle in mobile */}
+              <div className="flex gap-2 mb-2">
+                {LANGUAGES.map((lang) => (
+                  <button
+                    key={lang.code}
+                    onClick={() => { i18n.changeLanguage(lang.code); setIsMobileOpen(false); }}
+                    className={`text-sm font-bold tracking-wider px-3 py-1 border transition-all ${
+                      i18n.language === lang.code
+                        ? 'border-madhubani-red bg-madhubani-red text-cream'
+                        : 'border-madhubani-red/30 text-madhubani-black/60 hover:border-madhubani-red hover:text-madhubani-red'
+                    }`}
+                  >
+                    {lang.label}
+                  </button>
+                ))}
+              </div>
               
               {navLinks.map((link, i) => (
                 link.isRoute ? (
@@ -120,7 +166,7 @@ const Navbar: React.FC<NavbarProps> = ({ isPlaying, togglePlay }) => {
                       onClick={() => setIsMobileOpen(false)}
                       className="text-xl font-playfair text-madhubani-black hover:text-madhubani-red transition-colors py-2 border-b border-madhubani-red/10 w-full text-center block"
                     >
-                      {link.label}
+                      {t(`navbar.${link.label}`)}
                     </Link>
                   </motion.div>
                 ) : (
@@ -141,7 +187,7 @@ const Navbar: React.FC<NavbarProps> = ({ isPlaying, togglePlay }) => {
                     }}
                     className="text-xl font-playfair text-madhubani-black hover:text-madhubani-red transition-colors py-2 border-b border-madhubani-red/10 w-full text-center"
                   >
-                    {link.label}
+                    {t(`navbar.${link.label}`)}
                   </motion.a>
                 )
               ))}

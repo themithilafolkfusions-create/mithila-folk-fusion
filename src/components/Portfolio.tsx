@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { CameraShy } from 'camerashy';
 import { SectionDivider } from './MadhubaniBorder';
 import Footer from './Footer';
@@ -74,6 +75,7 @@ const CornerOrnament: React.FC<{ className: string }> = ({ className }) => (
 
 const Portfolio: React.FC = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const { t } = useTranslation();
 
   return (
     <>
@@ -85,7 +87,7 @@ const Portfolio: React.FC = () => {
             className="inline-flex items-center gap-2 font-playfair text-sm tracking-wider text-madhubani-red hover:text-madhubani-crimson transition-colors group"
           >
             <ArrowLeft size={18} className="transition-transform group-hover:-translate-x-1" />
-            Back to Home
+            {t('portfolio.backToHome')}
           </Link>
         </div>
 
@@ -96,13 +98,13 @@ const Portfolio: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className="text-madhubani-teal font-cormorant text-lg tracking-[0.4em] uppercase">Portfolio</span>
+            <span className="text-madhubani-teal font-cormorant text-lg tracking-[0.4em] uppercase">{t('portfolio.sectionLabel')}</span>
             <h1 className="font-cinzel text-3xl md:text-5xl text-madhubani-black mt-3 mb-4">
-              Full <span className="text-madhubani-red">Collection</span>
+              {t('portfolio.headingPrefix')} <span className="text-madhubani-red">{t('portfolio.headingHighlight')}</span>
             </h1>
             <SectionDivider variant="peacock" />
             <p className="font-cormorant text-lg text-madhubani-black/60 max-w-2xl mx-auto mt-4">
-              Six original Mithila paintings spanning mythology, climate, and identity. Each one hand painted on handmade paper with fine nib precision and natural pigments
+              {t('portfolio.description')}
             </p>
           </motion.div>
         </div>
@@ -156,19 +158,19 @@ const Portfolio: React.FC = () => {
                   {/* Artwork info */}
                   <div className="max-w-3xl mx-auto text-center">
                     <h2 className="font-cinzel text-2xl md:text-3xl text-madhubani-black group-hover:text-madhubani-red transition-colors mb-2">
-                      {work.title}
+                      {t(`portfolio.art${work.id}Title`)}
                     </h2>
                     <p className="font-playfair text-sm tracking-[0.3em] uppercase text-madhubani-teal mb-4">
                       {work.category}
                     </p>
                     <div className="font-cormorant text-lg text-madhubani-black/60 leading-relaxed space-y-4 text-left max-w-3xl mx-auto">
-                      {work.description.split('\n\n').map((p, i) => (
+                      {t(`portfolio.art${work.id}Long`).split('\n\n').map((p, i) => (
                         <p key={i}>{p}</p>
                       ))}
                     </div>
                     <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-sm">
                       <span className="font-playfair text-madhubani-black/40">
-                        Medium: {work.medium}
+                        {t('portfolio.medium')} {work.medium}
                       </span>
                     </div>
                   </div>
@@ -176,7 +178,7 @@ const Portfolio: React.FC = () => {
                   {/* Click hint */}
                   <div className="text-center mt-6">
                     <span className="font-playfair text-xs tracking-widest text-madhubani-red/40 group-hover:text-madhubani-red/70 transition-colors">
-                      Click to view full screen
+                      {t('portfolio.clickHint')}
                     </span>
                   </div>
                 </div>

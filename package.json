@@ -12,9 +12,11 @@
     "camerashy": "^0.1.0",
     "clsx": "2.1.1",
     "framer-motion": "^12.42.0",
+    "i18next": "^26.3.4",
     "lucide-react": "^1.21.0",
     "react": "19.2.6",
     "react-dom": "19.2.6",
+    "react-i18next": "^17.0.8",
     "react-router-dom": "^7.18.0",
     "tailwind-merge": "3.4.0"
   },

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { SectionDivider } from './MadhubaniBorder';
@@ -11,6 +12,7 @@ const Contact: React.FC = () => {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const { t } = useTranslation();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,9 +35,9 @@ const Contact: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <span className="text-madhubani-teal font-cormorant text-lg tracking-[0.4em] uppercase">Get in Touch</span>
+          <span className="text-madhubani-teal font-cormorant text-lg tracking-[0.4em] uppercase">{t('contact.sectionLabel')}</span>
           <h2 className="font-cinzel text-3xl md:text-5xl text-madhubani-black mt-3 mb-4">
-            Let's <span className="text-madhubani-red">Connect</span>
+            {t('contact.headingPrefix')} <span className="text-madhubani-red">{t('contact.headingHighlight')}</span>
           </h2>
           <SectionDivider variant="lotus" />
         </motion.div>
@@ -50,19 +52,18 @@ const Contact: React.FC = () => {
           >
             <div>
               <h3 className="font-cinzel text-2xl text-madhubani-black mb-4">
-                Begin Your <span className="text-madhubani-magenta">Art Journey</span>
+                {t('contact.title')} <span className="text-madhubani-magenta">{t('contact.titleHighlight')}</span>
               </h3>
               <p className="font-cormorant text-lg text-madhubani-black/60 leading-relaxed">
-                Whether you're looking to commission a custom Madhubani painting, inquire about available works, 
-                or explore workshop opportunities. I'd love to hear from you. Every conversation begins a new artistic story.
+                {t('contact.description')}
               </p>
             </div>
 
             <div className="space-y-5">
               {[
-                { icon: <Mail size={20} />, label: 'Email', value: 'shivangi@mithilafolkfusions.com', borderCls: 'border-madhubani-red/30', textCls: 'text-madhubani-red', hoverBgCls: 'group-hover:bg-madhubani-red' },
-                { icon: <Phone size={20} />, label: 'Phone', value: 'Available on request', borderCls: 'border-madhubani-teal/30', textCls: 'text-madhubani-teal', hoverBgCls: 'group-hover:bg-madhubani-teal' },
-                { icon: <MapPin size={20} />, label: 'Location', value: 'New York / New Jersey, USA', borderCls: 'border-madhubani-magenta/30', textCls: 'text-madhubani-magenta', hoverBgCls: 'group-hover:bg-madhubani-magenta' },
+                { icon: <Mail size={20} />, label: t('contact.emailLabel'), value: t('contact.emailValue'), borderCls: 'border-madhubani-red/30', textCls: 'text-madhubani-red', hoverBgCls: 'group-hover:bg-madhubani-red' },
+                { icon: <Phone size={20} />, label: t('contact.phoneLabel'), value: t('contact.phoneValue'), borderCls: 'border-madhubani-teal/30', textCls: 'text-madhubani-teal', hoverBgCls: 'group-hover:bg-madhubani-teal' },
+                { icon: <MapPin size={20} />, label: t('contact.locationLabel'), value: t('contact.locationValue'), borderCls: 'border-madhubani-magenta/30', textCls: 'text-madhubani-magenta', hoverBgCls: 'group-hover:bg-madhubani-magenta' },
               ].map((item) => (
                 <div key={item.label} className="flex items-center gap-4 group max-w-md mx-auto">
                   <div className={`w-12 h-12 border ${item.borderCls} flex items-center justify-center ${item.textCls} ${item.hoverBgCls} group-hover:text-cream transition-all duration-300 shrink-0`}>
@@ -78,7 +79,7 @@ const Contact: React.FC = () => {
 
             {/* Social Links */}
             <div>
-              <p className="font-playfair text-sm text-madhubani-black/50 uppercase tracking-wider mb-3">Follow the Art</p>
+              <p className="font-playfair text-sm text-madhubani-black/50 uppercase tracking-wider mb-3">{t('contact.followLabel')}</p>
               <div className="flex gap-3 justify-center">
                 {[
                   { icon: <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>, label: 'Instagram', url: 'https://www.instagram.com/mithilafolkfusions' },
@@ -117,7 +118,7 @@ const Contact: React.FC = () => {
               <div className="space-y-5">
                 <div>
                   <label className="font-playfair text-sm text-madhubani-black/60 uppercase tracking-wider block mb-2">
-                    Your Name
+                    {t('contact.formName')}
                   </label>
                   <input
                     type="text"
@@ -125,13 +126,13 @@ const Contact: React.FC = () => {
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
                     className="w-full px-4 py-4 bg-cream-light border border-madhubani-red/20 font-cormorant text-lg text-madhubani-black focus:outline-none focus:border-madhubani-red transition-colors"
-                    placeholder="Enter your name"
+                    placeholder={t('contact.formNamePlaceholder')}
                   />
                 </div>
 
                 <div>
                   <label className="font-playfair text-sm text-madhubani-black/60 uppercase tracking-wider block mb-2">
-                    Email Address
+                    {t('contact.formEmail')}
                   </label>
                   <input
                     type="email"
@@ -139,13 +140,13 @@ const Contact: React.FC = () => {
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     required
                     className="w-full px-4 py-4 bg-cream-light border border-madhubani-red/20 font-cormorant text-lg text-madhubani-black focus:outline-none focus:border-madhubani-red transition-colors"
-                    placeholder="your@email.com"
+                    placeholder={t('contact.formEmailPlaceholder')}
                   />
                 </div>
 
                 <div>
                   <label className="font-playfair text-sm text-madhubani-black/60 uppercase tracking-wider block mb-2">
-                    Subject
+                    {t('contact.formSubject')}
                   </label>
                   <select
                     value={formData.subject}
@@ -153,19 +154,19 @@ const Contact: React.FC = () => {
                     required
                     className="w-full px-4 py-4 bg-cream-light border border-madhubani-red/20 font-cormorant text-lg text-madhubani-black focus:outline-none focus:border-madhubani-red transition-colors"
                   >
-                    <option value="">Select a subject</option>
-                    <option value="commission">Custom Commission</option>
-                    <option value="purchase">Purchase Inquiry</option>
-                    <option value="workshop">Workshop Interest</option>
-                    <option value="exhibition">Exhibition / Event</option>
-                    <option value="collaboration">Collaboration</option>
-                    <option value="other">Other</option>
+                    <option value="">{t('contact.formSubjectPlaceholder')}</option>
+                    <option value="commission">{t('contact.subCommission')}</option>
+                    <option value="purchase">{t('contact.subPurchase')}</option>
+                    <option value="workshop">{t('contact.subWorkshop')}</option>
+                    <option value="exhibition">{t('contact.subExhibition')}</option>
+                    <option value="collaboration">{t('contact.subCollaboration')}</option>
+                    <option value="other">{t('contact.subOther')}</option>
                   </select>
                 </div>
 
                 <div>
                   <label className="font-playfair text-sm text-madhubani-black/60 uppercase tracking-wider block mb-2">
-                    Your Message
+                    {t('contact.formMessage')}
                   </label>
                   <textarea
                     value={formData.message}
@@ -173,7 +174,7 @@ const Contact: React.FC = () => {
                     required
                     rows={5}
                     className="w-full px-4 py-4 bg-cream-light border border-madhubani-red/20 font-cormorant text-lg text-madhubani-black focus:outline-none focus:border-madhubani-red transition-colors resize-none"
-                    placeholder="Tell me about your vision..."
+                    placeholder={t('contact.formMessagePlaceholder')}
                   />
                 </div>
 
@@ -181,7 +182,7 @@ const Contact: React.FC = () => {
                   type="submit"
                   className="w-full py-4 bg-madhubani-red text-cream font-playfair tracking-wider text-sm uppercase hover:bg-madhubani-crimson transition-colors flex items-center justify-center gap-2 group"
                 >
-                  <span>{submitted ? 'Message Sent!' : 'Send Message'}</span>
+                  <span>{submitted ? t('contact.formSubmitted') : t('contact.formSubmit')}</span>
                   <Send size={16} className="group-hover:translate-x-1 transition-transform" />
                 </button>
 
@@ -191,7 +192,7 @@ const Contact: React.FC = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="text-center font-cormorant text-madhubani-teal text-lg"
                   >
-                    ✿ Thank you! I'll respond within 24 hours. ✿
+                    {t('contact.formThankYou')}
                   </motion.p>
                 )}
               </div>

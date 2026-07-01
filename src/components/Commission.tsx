@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { Palette, Frame, Gift, Brush, Heart, Star } from 'lucide-react';
 
 
@@ -43,6 +44,7 @@ const services = [
 ];
 
 const Commission: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <section id="commission" className="relative py-28 md:py-44 overflow-hidden">
       {/* Background gradient */}
@@ -74,9 +76,9 @@ const Commission: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <span className="text-madhubani-yellow font-cormorant text-lg tracking-[0.4em] uppercase">Commissions</span>
+          <span className="text-madhubani-yellow font-cormorant text-lg tracking-[0.4em] uppercase">{t('commission.sectionLabel')}</span>
           <h2 className="font-cinzel text-3xl md:text-5xl text-cream mt-3 mb-4">
-            Commission <span className="text-madhubani-yellow">Your Art</span>
+            {t('commission.headingPrefix')} <span className="text-madhubani-yellow">{t('commission.headingHighlight')}</span>
           </h2>
           <div className="flex justify-center">
             <svg width="200" height="40" viewBox="0 0 200 40">
@@ -87,8 +89,7 @@ const Commission: React.FC = () => {
             </svg>
           </div>
           <p className="font-cormorant text-lg text-cream/70 max-w-2xl mx-auto mt-4">
-            A commissioned Mithila piece begins with a conversation. Your vision, translated 
-            into line and pigment, on handmade paper that carries a 2,500 year old tradition
+            {t('commission.description')}
           </p>
         </motion.div>
 
@@ -106,8 +107,8 @@ const Commission: React.FC = () => {
               <div className="text-madhubani-yellow mb-4 group-hover:scale-110 transition-transform duration-300 inline-block">
                 {service.icon}
               </div>
-              <h3 className="font-cinzel text-lg text-cream mb-2">{service.title}</h3>
-              <p className="font-cormorant text-cream/60 leading-relaxed">{service.description}</p>
+              <h3 className="font-cinzel text-lg text-cream mb-2">{t('commission.srv' + (i + 1) + 'Title')}</h3>
+              <p className="font-cormorant text-cream/60 leading-relaxed">{t('commission.srv' + (i + 1) + 'Desc')}</p>
             </motion.div>
           ))}
         </div>
@@ -120,7 +121,7 @@ const Commission: React.FC = () => {
           className="max-w-4xl mx-auto"
         >
           <h3 className="font-cinzel text-2xl text-center text-cream mb-12">
-            The <span className="text-madhubani-yellow">Process</span>
+            {t('commission.processTitle')} <span className="text-madhubani-yellow">{t('commission.processHighlight')}</span>
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
@@ -143,8 +144,8 @@ const Commission: React.FC = () => {
                 {i < 3 && (
                   <div className="hidden md:block absolute top-8 left-[60%] w-[80%] border-t border-dashed border-cream/20" />
                 )}
-                <h4 className="font-cinzel text-sm text-cream mb-1">{item.title}</h4>
-                <p className="font-cormorant text-xs text-cream/50">{item.desc}</p>
+                <h4 className="font-cinzel text-sm text-cream mb-1">{t('commission.step' + (i + 1) + 'Title')}</h4>
+                <p className="font-cormorant text-xs text-cream/50">{t('commission.step' + (i + 1) + 'Desc')}</p>
               </motion.div>
             ))}
           </div>

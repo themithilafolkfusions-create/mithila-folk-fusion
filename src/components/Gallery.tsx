@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { X, ZoomIn } from 'lucide-react';
@@ -75,6 +76,8 @@ const Gallery: React.FC = () => {
   const [scrollLeftPos, setScrollLeftPos] = useState(0);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const { t } = useTranslation();
 
   const filtered = selectedCategory === 'All'
     ? artworks
@@ -162,13 +165,13 @@ const Gallery: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <span className="text-madhubani-teal font-cormorant text-lg tracking-[0.4em] uppercase">Portfolio</span>
+          <span className="text-madhubani-teal font-cormorant text-lg tracking-[0.4em] uppercase">{t('gallery.sectionLabel')}</span>
           <h2 className="font-cinzel text-3xl md:text-5xl text-madhubani-black mt-3 mb-4">
-            Art <span className="text-madhubani-red">Gallery</span>
+            {t('gallery.headingPrefix')} <span className="text-madhubani-red">{t('gallery.headingHighlight')}</span>
           </h2>
           <SectionDivider variant="peacock" />
           <p className="font-cormorant text-lg text-madhubani-black/60 max-w-2xl mx-auto mt-4">
-            Six works spanning mythology, climate, and identity. Each one hand painted on handmade paper with fine nib precision and natural pigments
+            {t('gallery.description')}
           </p>
         </motion.div>
 
@@ -189,7 +192,7 @@ const Gallery: React.FC = () => {
                   : 'bg-transparent text-madhubani-black/70 border-madhubani-red/30 hover:border-madhubani-red hover:text-madhubani-red'
               }`}
             >
-              {cat}
+              {cat === 'All' ? t('gallery.filterAll') : cat}
             </button>
           ))}
         </motion.div>
@@ -201,7 +204,7 @@ const Gallery: React.FC = () => {
             <button
               onClick={() => scrollByCards(-1)}
               className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 z-20 w-14 h-14 bg-cream/90 backdrop-blur-sm border-2 border-madhubani-red/30 text-madhubani-red flex items-center justify-center hover:bg-madhubani-red hover:text-cream transition-all duration-300 shadow-lg"
-              aria-label="Scroll left"
+              aria-label={t('gallery.ariaScrollLeft')}
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M15 18l-6-6 6-6" />
@@ -214,7 +217,7 @@ const Gallery: React.FC = () => {
             <button
               onClick={() => scrollByCards(1)}
               className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 z-20 w-14 h-14 bg-cream/90 backdrop-blur-sm border-2 border-madhubani-red/30 text-madhubani-red flex items-center justify-center hover:bg-madhubani-red hover:text-cream transition-all duration-300 shadow-lg"
-              aria-label="Scroll right"
+              aria-label={t('gallery.ariaScrollRight')}
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M9 18l6-6-6-6" />
@@ -297,9 +300,9 @@ const Gallery: React.FC = () => {
                     {/* Card info */}
                     <div className="text-center space-y-2 px-2">
                       <h3 className="font-cinzel text-lg md:text-xl text-madhubani-black group-hover:text-madhubani-red transition-colors">
-                        {artwork.title}
+                        {t(`gallery.art${artwork.id}Title`)}
                       </h3>
-                      <p className="font-cormorant text-sm text-madhubani-teal">{artwork.medium}</p>
+                      <p className="font-cormorant text-sm text-madhubani-teal">{t(`gallery.art${artwork.id}Medium`)}</p>
                       <p className="font-playfair text-xs text-madhubani-black/40 tracking-widest uppercase">{artwork.category}</p>
                     </div>
                   </div>
@@ -320,7 +323,7 @@ const Gallery: React.FC = () => {
             to="/portfolio"
             className="inline-flex items-center gap-2 font-playfair text-sm tracking-wider text-madhubani-red border-b border-madhubani-red/40 pb-1 hover:border-madhubani-red transition-colors"
           >
-            View Full Portfolio
+            {t('gallery.viewFullPortfolio')}
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
               <path d="M6 3l5 5-5 5" />
             </svg>
@@ -336,12 +339,12 @@ const Gallery: React.FC = () => {
           className="mt-20"
         >
           <div className="text-center mb-10">
-            <span className="text-madhubani-teal font-cormorant text-lg tracking-[0.4em] uppercase">Collection</span>
+            <span className="text-madhubani-teal font-cormorant text-lg tracking-[0.4em] uppercase">{t('gallery.soldSection')}</span>
             <h3 className="font-cinzel text-2xl md:text-3xl text-madhubani-black mt-3 mb-2">
-              Sold <span className="text-madhubani-red">Out</span>
+              {t('gallery.soldHeadingPrefix')} <span className="text-madhubani-red">{t('gallery.soldHeadingHighlight')}</span>
             </h3>
             <p className="font-cormorant text-madhubani-black/50">
-              These pieces have found their forever homes
+              {t('gallery.soldDescription')}
             </p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">
@@ -363,7 +366,7 @@ const Gallery: React.FC = () => {
                   <CameraShy mode="blur" blur="20px" sensitivity="balanced">
                   <img
                     src={item.src}
-                    alt="Sold painting"
+                    alt={t('gallery.soldAlt')}
                     draggable="false"
                     onDragStart={(e) => e.preventDefault()}
                     className="w-full h-48 md:h-64 object-cover opacity-60 grayscale transition-all duration-500 group-hover:opacity-80 group-hover:grayscale-0"
@@ -371,7 +374,7 @@ const Gallery: React.FC = () => {
                   </CameraShy>
                   <div className="absolute inset-0 bg-madhubani-black/40 flex items-center justify-center">
                     <span className="font-cinzel text-cream text-sm md:text-base tracking-[0.3em] uppercase border border-cream/40 px-4 py-2 bg-madhubani-black/30 backdrop-blur-sm">
-                      {item.title}
+                      {t('gallery.soldLabel')}
                     </span>
                   </div>
                 </div>
@@ -421,21 +424,21 @@ const Gallery: React.FC = () => {
                     {selectedArt.category}
                   </span>
                   <h3 className="font-cinzel text-2xl md:text-3xl text-madhubani-black mt-2 mb-4">
-                    {selectedArt.title}
+                    {t(`gallery.art${selectedArt.id}Title`)}
                   </h3>
                   <div className="w-20 h-0.5 bg-madhubani-red mb-4" />
                   <p className="font-cormorant text-lg text-madhubani-black/70 leading-relaxed mb-4">
-                    {selectedArt.description}
+                    {t(`gallery.art${selectedArt.id}Desc`)}
                   </p>
                   <p className="font-playfair text-sm text-madhubani-teal">
-                    Medium: {selectedArt.medium}
+                    {t('gallery.medium')} {selectedArt.medium}
                   </p>
                   <a
                     href="#commission"
                     onClick={(e) => { e.preventDefault(); setSelectedArt(null); setTimeout(() => document.getElementById('commission')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
                     className="mt-6 inline-block px-6 py-2 bg-madhubani-red text-cream font-playfair text-sm tracking-wider text-center hover:bg-madhubani-crimson transition-colors"
                   >
-                    Inquire About This Piece
+                    {t('gallery.inquireAbout')}
                   </a>
                 </div>
               </div>

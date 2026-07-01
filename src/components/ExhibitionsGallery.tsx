@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { CameraShy } from 'camerashy';
 import { SectionDivider } from './MadhubaniBorder';
@@ -23,6 +24,7 @@ const CornerOrnament: React.FC<{ className: string }> = ({ className }) => (
 );
 
 const ExhibitionsGallery: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <section className="relative py-28 md:py-44 bg-gradient-to-b from-cream-dark to-cream overflow-hidden">
       <div className="absolute inset-0 rangoli-bg opacity-30 pointer-events-none" />
@@ -38,13 +40,13 @@ const ExhibitionsGallery: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <span className="text-madhubani-teal font-cormorant text-lg tracking-[0.4em] uppercase">Exhibition Archives</span>
+            <span className="text-madhubani-teal font-cormorant text-lg tracking-[0.4em] uppercase">{t('exhibitionsGallery.sectionLabel')}</span>
           <h2 className="font-cinzel text-3xl md:text-5xl text-madhubani-black mt-3 mb-4">
-            Behind the <span className="text-madhubani-red">Scenes</span>
+            {t('exhibitionsGallery.headingPrefix')} <span className="text-madhubani-red">{t('exhibitionsGallery.headingHighlight')}</span>
           </h2>
           <SectionDivider variant="peacock" />
           <p className="font-cormorant text-lg text-madhubani-black/60 max-w-2xl mx-auto mt-4">
-            Moments from international exhibitions and cultural diplomacy
+            {t('exhibitionsGallery.description')}
           </p>
         </motion.div>
 
@@ -78,7 +80,7 @@ const ExhibitionsGallery: React.FC = () => {
                     <CameraShy mode="blur" blur="20px" sensitivity="balanced">
                       <img
                         src={img.src}
-                        alt={img.caption}
+                        alt={t('exhibitionsGallery.cap' + (index + 1))}
                         draggable="false"
                         onDragStart={(e) => e.preventDefault()}
                         className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-105"
@@ -97,7 +99,7 @@ const ExhibitionsGallery: React.FC = () => {
                 </div>
 
                 <p className="font-cormorant text-sm md:text-base text-madhubani-black/70 text-center px-1 leading-relaxed">
-                  {img.caption}
+                  {t('exhibitionsGallery.cap' + (index + 1))}
                 </p>
               </div>
             </motion.div>

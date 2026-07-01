@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { MadhubaniBorderTop } from './MadhubaniBorder';
+import { useTranslation } from 'react-i18next';
 
 interface HeroProps {
   isPlaying: boolean;
@@ -10,6 +11,7 @@ interface HeroProps {
 const heroVideos = ['/videos/hero-1.mp4', '/videos/hero-2.mp4', '/videos/hero-3.mp4'];
 
 const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
+  const { t } = useTranslation();
   const { scrollY } = useScroll();
   const heroLogoScale = useTransform(scrollY, [0, 300], [1, 0.3]);
   const heroLogoOpacity = useTransform(scrollY, [0, 200], [1, 0]);
@@ -202,8 +204,8 @@ const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
             className="flex flex-col items-center mb-3"
           >
             <h1 className="font-cinzel text-[clamp(1.25rem,5vw,2.5rem)] sm:text-4xl md:text-6xl lg:text-7xl text-cream leading-tight whitespace-nowrap">
-              Mithila{' '}
-              <span className="text-madhubani-yellow">Folk Art</span>
+              {t('hero.title')}{' '}
+              <span className="text-madhubani-yellow">{t('hero.titleHighlight')}</span>
             </h1>
             <motion.div
               initial={{ scaleX: 0 }}
@@ -219,7 +221,7 @@ const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
             transition={{ delay: 1, duration: 0.8 }}
             className="font-playfair text-cream/90 text-base md:text-xl italic mb-2 md:mb-3"
           >
-            by <span className="text-madhubani-yellow font-semibold not-italic">Shivangi Singh</span>
+            {t('hero.byPrefix')} <span className="text-madhubani-yellow font-semibold not-italic">{t('hero.byName')}</span>
           </motion.p>
 
           <motion.p
@@ -228,8 +230,7 @@ const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
             transition={{ delay: 1.3, duration: 1 }}
             className="font-cormorant text-sm md:text-xl text-cream/80 max-w-2xl mx-auto mb-3 md:mb-6 leading-relaxed bg-madhubani-black/80 rounded-lg px-4 py-3 md:px-6 md:py-4"
           >
-            Shivangi Singh reimagines Mithila's 2,500 year old visual language 
-            for a world in motion. Line by line, motif by motif
+            {t('hero.description')}
           </motion.p>
 
           <motion.div
@@ -243,7 +244,7 @@ const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
               onClick={(e) => { e.preventDefault(); document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' }); }}
               className="group relative px-5 py-2.5 md:px-8 md:py-3 min-h-[34px] md:min-h-[42px] min-w-[150px] md:min-w-[180px] bg-madhubani-red text-cream font-playfair tracking-wider text-xs md:text-sm uppercase border-2 border-madhubani-yellow/50 hover:bg-madhubani-crimson transition-all duration-300 overflow-hidden"
             >
-              <span className="relative z-10">Explore Gallery</span>
+              <span className="relative z-10">{t('hero.exploreGallery')}</span>
               <div className="absolute inset-0 bg-gradient-to-r from-madhubani-magenta to-madhubani-red opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </a>
             <a
@@ -251,7 +252,7 @@ const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
               onClick={(e) => { e.preventDefault(); document.getElementById('commission')?.scrollIntoView({ behavior: 'smooth' }); }}
               className="px-5 py-2.5 md:px-8 md:py-3 min-h-[34px] md:min-h-[42px] min-w-[150px] md:min-w-[180px] bg-transparent text-cream font-playfair tracking-wider text-xs md:text-sm uppercase border-2 border-cream/40 hover:border-madhubani-yellow hover:text-madhubani-yellow transition-all duration-300"
             >
-              Commission Art
+              {t('hero.commissionArt')}
             </a>
           </motion.div>
         </div>
@@ -268,7 +269,7 @@ const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
             transition={{ duration: 2, repeat: Infinity }}
             className="flex flex-col items-center gap-2"
           >
-            <span className="text-cream/50 text-xs font-cormorant tracking-widest uppercase">Scroll</span>
+            <span className="text-cream/50 text-xs font-cormorant tracking-widest uppercase">{t('hero.scroll')}</span>
             <svg width="20" height="30" viewBox="0 0 20 30">
               <rect x="6" y="0" width="8" height="16" rx="4" fill="none" stroke="#E8A317" strokeWidth="1.5" opacity="0.5"/>
               <circle cx="10" cy="6" r="2" fill="#E8A317" opacity="0.5"/>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { SectionDivider } from './MadhubaniBorder';
 
@@ -16,6 +17,7 @@ const cvEntries = [
 ];
 
 const Exhibitions: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <section id="exhibitions" className="relative py-28 md:py-44 bg-cream overflow-hidden">
       {/* Decorative side elements */}
@@ -40,9 +42,9 @@ const Exhibitions: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <span className="text-madhubani-orange font-cormorant text-lg tracking-[0.4em] uppercase">Recognition</span>
+          <span className="text-madhubani-orange font-cormorant text-lg tracking-[0.4em] uppercase">{t('exhibitions.sectionLabel')}</span>
           <h2 className="font-cinzel text-3xl md:text-5xl text-madhubani-black mt-3 mb-4">
-            Exhibitions & <span className="text-madhubani-red">Achievements</span>
+            {t('exhibitions.headingPrefix')}<span className="text-madhubani-red">{t('exhibitions.headingHighlight')}</span>
           </h2>
           <SectionDivider variant="lotus" />
         </motion.div>
@@ -71,8 +73,8 @@ const Exhibitions: React.FC = () => {
                 </div>
                 {/* Content */}
                 <div className="pb-8 md:pb-10 flex-1 border-b border-madhubani-red/10 group-last:border-b-0">
-                  <h3 className="font-cinzel text-lg md:text-xl text-madhubani-black">{entry.title}</h3>
-                  <p className="font-cormorant text-base text-madhubani-black/60 mt-1">{entry.subtitle}</p>
+                  <h3 className="font-cinzel text-lg md:text-xl text-madhubani-black">{t('exhibitions.cv' + (i + 1) + 'Title')}</h3>
+                  <p className="font-cormorant text-base text-madhubani-black/60 mt-1">{t('exhibitions.cv' + (i + 1) + 'Sub')}</p>
                 </div>
               </motion.div>
             ))}

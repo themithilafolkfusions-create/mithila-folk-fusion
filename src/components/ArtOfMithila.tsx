@@ -5,6 +5,7 @@ import { ArrowLeft } from 'lucide-react';
 import { CameraShy } from 'camerashy';
 import { SectionDivider } from './MadhubaniBorder';
 import Footer from './Footer';
+import { useTranslation } from 'react-i18next';
 
 const motifs = [
   {
@@ -118,6 +119,7 @@ const motifs = [
 ];
 
 const ArtOfMithila: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <>
       <div className="min-h-screen bg-gradient-to-b from-cream to-cream-dark">
@@ -128,7 +130,7 @@ const ArtOfMithila: React.FC = () => {
             className="inline-flex items-center gap-2 font-playfair text-sm tracking-wider text-madhubani-red hover:text-madhubani-crimson transition-colors group"
           >
             <ArrowLeft size={18} className="transition-transform group-hover:-translate-x-1" />
-            Back to Home
+            {t('artOfMithila.backToHome')}
           </Link>
         </div>
 
@@ -144,9 +146,9 @@ const ArtOfMithila: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
             >
-              <span className="text-madhubani-teal font-cormorant text-lg tracking-[0.4em] uppercase">Heritage</span>
+              <span className="text-madhubani-teal font-cormorant text-lg tracking-[0.4em] uppercase">{t('artOfMithila.heroLabel')}</span>
               <h1 className="font-cinzel text-4xl md:text-6xl lg:text-7xl text-cream mt-4 mb-6">
-                The Art of <span className="text-madhubani-yellow">Mithila</span>
+                {t('artOfMithila.heroTitle')} <span className="text-madhubani-yellow">{t('artOfMithila.heroHighlight')}</span>
               </h1>
               <div className="flex items-center justify-center gap-4 mb-6">
                 <div className="w-12 md:w-20 h-px bg-madhubani-red" />
@@ -157,8 +159,7 @@ const ArtOfMithila: React.FC = () => {
                 <div className="w-12 md:w-20 h-px bg-madhubani-red" />
               </div>
               <p className="font-cormorant text-xl md:text-2xl text-cream/60 max-w-3xl mx-auto leading-relaxed">
-                A 2,500 year old women's art form from the Mithila region of Bihar and Nepal's Tarai. 
-                A living tradition of storytelling through line, pattern, and symbol.
+                {t('artOfMithila.heroDesc')}
               </p>
             </motion.div>
           </div>
@@ -174,28 +175,20 @@ const ArtOfMithila: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <span className="text-madhubani-teal font-cormorant text-sm tracking-[0.3em] uppercase">Origins</span>
+                <span className="text-madhubani-teal font-cormorant text-sm tracking-[0.3em] uppercase">{t('artOfMithila.originsLabel')}</span>
                 <h2 className="font-cinzel text-3xl md:text-4xl text-madhubani-black mt-2 mb-6">
-                  A Tradition <span className="text-madhubani-red">2,500 Years</span> in the Making
+                  {t('artOfMithila.originsTitle1')} <span className="text-madhubani-red">{t('artOfMithila.originsHighlight1')}</span>{t('artOfMithila.originsTitle2')}
                 </h2>
                 <div className="w-16 h-0.5 bg-madhubani-red mb-6" />
                 <div className="font-cormorant text-lg text-madhubani-black/70 leading-relaxed space-y-4">
                   <p>
-                    Mithila painting, also known as Madhubani art, traces its origins to the ancient kingdom of Mithila, 
-                    the birthplace of Sita from the Ramayana. Dating back over 2,500 years, this art form was traditionally 
-                    created by women on the mud walls and floors of their homes. The paintings served both as decoration 
-                    and as a means of recording myths, rituals, and daily life.
+                    {t('artOfMithila.originsP1')}
                   </p>
                   <p>
-                    Passed down through generations of women, the art was a closely guarded practice. Each region, 
-                    each family developed its own style, its own set of patterns and symbols. A daughter learned by 
-                    watching her mother, by tracing lines in the mud with her fingers before graduating to bamboo nibs 
-                    and natural pigments.
+                    {t('artOfMithila.originsP2')}
                   </p>
                   <p>
-                    The earliest references to Mithila painting appear in the Ramayana, where King Janak's palace 
-                    walls are described as being adorned with paintings. For centuries, the tradition remained 
-                    confined to the interior walls of village homes, invisible to the outside world.
+                    {t('artOfMithila.originsP3')}
                   </p>
                 </div>
               </motion.div>
@@ -213,7 +206,7 @@ const ArtOfMithila: React.FC = () => {
                 </div>
                 <div className="absolute -bottom-4 -right-4 w-24 h-24 border-2 border-madhubani-yellow/30 -z-10" />
                 <p className="font-playfair text-xs text-madhubani-black/40 mt-3 text-center italic">
-                  Echoes of Exile &mdash; A Mithila interpretation of the Ramayana
+                  {t('artOfMithila.originsCaption')}
                 </p>
               </motion.div>
             </div>
@@ -249,7 +242,7 @@ const ArtOfMithila: React.FC = () => {
                   </CameraShy>
                 </div>
                 <p className="font-playfair text-xs text-cream/40 mt-3 text-center italic">
-                  One Earth, Many Voices &mdash; Unity across borders
+                  {t('artOfMithila.geocaption')}
                 </p>
               </motion.div>
               <motion.div
@@ -259,28 +252,20 @@ const ArtOfMithila: React.FC = () => {
                 transition={{ duration: 0.8 }}
                 className="order-1 md:order-2"
               >
-                <span className="text-madhubani-teal font-cormorant text-sm tracking-[0.3em] uppercase">Geography</span>
+                <span className="text-madhubani-teal font-cormorant text-sm tracking-[0.3em] uppercase">{t('artOfMithila.geoLabel')}</span>
                 <h2 className="font-cinzel text-3xl md:text-4xl text-cream mt-2 mb-6">
-                  Across Borders, One <span className="text-madhubani-yellow">Culture</span>
+                  {t('artOfMithila.geoTitle1')} <span className="text-madhubani-yellow">{t('artOfMithila.geoHighlight1')}</span>
                 </h2>
                 <div className="w-16 h-0.5 bg-madhubani-yellow mb-6" />
                 <div className="font-cormorant text-lg text-cream/60 leading-relaxed space-y-4">
                   <p>
-                    The Mithila region spans both sides of the India-Nepal border. In India, it covers parts of 
-                    Bihar; in Nepal, it extends into the Tarai region including Janakpur, believed to be the 
-                    birthplace of Sita. This shared cultural heritage means Mithila art is practiced and cherished 
-                    by communities in both countries.
+                    {t('artOfMithila.geoP1')}
                   </p>
                   <p>
-                    For the Nepali diaspora, particularly in the United States, Mithila painting holds deep cultural 
-                    significance. Janakpur's temples and courtyards have long been centers of Mithila artistic 
-                    tradition, and the art form is recognized across the Nepali community as a symbol of identity, 
-                    spirituality, and continuity.
+                    {t('artOfMithila.geoP2')}
                   </p>
                   <p>
-                    Today, Mithila artists from both sides of the border showcase their work on international 
-                    stages, demonstrating that this ancient art form transcends political boundaries and speaks 
-                    a universal visual language.
+                    {t('artOfMithila.geoP3')}
                   </p>
                 </div>
               </motion.div>
@@ -298,28 +283,20 @@ const ArtOfMithila: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <span className="text-madhubani-teal font-cormorant text-sm tracking-[0.3em] uppercase">Tradition</span>
+                <span className="text-madhubani-teal font-cormorant text-sm tracking-[0.3em] uppercase">{t('artOfMithila.tradLabel')}</span>
                 <h2 className="font-cinzel text-3xl md:text-4xl text-madhubani-black mt-2 mb-6">
-                  Women, Walls, and <span className="text-madhubani-red">Natural Colors</span>
+                  {t('artOfMithila.tradTitle1')} <span className="text-madhubani-red">{t('artOfMithila.tradHighlight1')}</span>
                 </h2>
                 <div className="w-16 h-0.5 bg-madhubani-red mb-6" />
                 <div className="font-cormorant text-lg text-madhubani-black/70 leading-relaxed space-y-4">
                   <p>
-                    For centuries, Mithila painting was an exclusively female art form, practiced by women of all 
-                    castes and communities. The knowledge was passed from mother to daughter, with each generation 
-                    adding its own interpretations while preserving the core visual vocabulary.
+                    {t('artOfMithila.tradP1')}
                   </p>
                   <p>
-                    The paintings were created on freshly plastered mud walls using natural materials. Black was 
-                    derived from soot or burnt cow dung. White from rice powder. Red from the Kusum flower or 
-                    red clay. Yellow from turmeric or pollen. Green from leaf extracts. Blue from indigo. 
-                    The brushes were simple bamboo sticks with cotton wrapped at the tip.
+                    {t('artOfMithila.tradP2')}
                   </p>
                   <p>
-                    The most elaborate paintings were created during weddings, festivals, and religious ceremonies. 
-                    The Kohbar, or wedding painting, was the most important, adorning the walls of the nuptial 
-                    chamber with symbols of fertility, love, and prosperity &mdash; fish, lotus, bamboo, and the 
-                    sun &mdash; each carrying specific blessings for the new couple.
+                    {t('artOfMithila.tradP3')}
                   </p>
                 </div>
               </motion.div>
@@ -337,7 +314,7 @@ const ArtOfMithila: React.FC = () => {
                 </div>
                 <div className="absolute -bottom-4 -left-4 w-24 h-24 border-2 border-madhubani-teal/30 -z-10" />
                 <p className="font-playfair text-xs text-madhubani-black/40 mt-3 text-center italic">
-                  Resonance &mdash; A contemporary Mithila work in natural and symbolic colors
+                  {t('artOfMithila.tradCaption')}
                 </p>
               </motion.div>
             </div>
@@ -353,9 +330,9 @@ const ArtOfMithila: React.FC = () => {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <span className="text-madhubani-teal font-cormorant text-sm tracking-[0.3em] uppercase">Evolution</span>
+              <span className="text-madhubani-teal font-cormorant text-sm tracking-[0.3em] uppercase">{t('artOfMithila.evolLabel')}</span>
               <h2 className="font-cinzel text-3xl md:text-4xl text-madhubani-black mt-2 mb-4">
-                From Village Walls to <span className="text-madhubani-red">World Stage</span>
+                {t('artOfMithila.evolTitle1')} <span className="text-madhubani-red">{t('artOfMithila.evolHighlight1')}</span>
               </h2>
               <div className="w-16 h-0.5 bg-madhubani-red mx-auto mb-6" />
             </motion.div>
@@ -363,18 +340,18 @@ const ArtOfMithila: React.FC = () => {
               {[
                 {
                   year: '1934',
-                  title: 'The Discovery',
-                  desc: 'A devastating earthquake in Bihar exposed the interior wall paintings of Mithila homes to the outside world for the first time. British colonial officer W. G. Archer photographed and documented the art, bringing it to international attention.',
+                  title: t('artOfMithila.evolMilestone1Title'),
+                  desc: t('artOfMithila.evolMilestone1Desc'),
                 },
                 {
                   year: '1960s-70s',
-                  title: 'Government Patronage',
-                  desc: 'The Indian government, facing a severe drought, encouraged women to transfer their wall paintings to handmade paper as a means of income. This shift from mud walls to paper marked a turning point in the art form\'s history.',
+                  title: t('artOfMithila.evolMilestone2Title'),
+                  desc: t('artOfMithila.evolMilestone2Desc'),
                 },
                 {
                   year: 'Present Day',
-                  title: 'Global Recognition',
-                  desc: 'Mithila art is now exhibited at the United Nations, the European Union, and major galleries worldwide. Artists use acrylics and fine nib pens on canvas paper, exploring contemporary themes while preserving traditional techniques.',
+                  title: t('artOfMithila.evolMilestone3Title'),
+                  desc: t('artOfMithila.evolMilestone3Desc'),
                 },
               ].map((item, i) => (
                 <motion.div
@@ -404,49 +381,49 @@ const ArtOfMithila: React.FC = () => {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <span className="text-madhubani-teal font-cormorant text-sm tracking-[0.3em] uppercase">Styles</span>
+              <span className="text-madhubani-teal font-cormorant text-sm tracking-[0.3em] uppercase">{t('artOfMithila.stylesLabel')}</span>
               <h2 className="font-cinzel text-3xl md:text-4xl text-madhubani-black mt-2 mb-4">
-                Five <span className="text-madhubani-red">Classical</span> Traditions
+                {t('artOfMithila.stylesTitle1')} <span className="text-madhubani-red">{t('artOfMithila.stylesHighlight1')}</span>{t('artOfMithila.stylesTitle2')}
               </h2>
               <div className="w-16 h-0.5 bg-madhubani-red mx-auto mb-6" />
               <p className="font-cormorant text-lg text-madhubani-black/60 max-w-2xl mx-auto">
-                Mithila art has five distinct styles, each with its own visual language, techniques, and regional roots
+                {t('artOfMithila.stylesDesc')}
               </p>
             </motion.div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
                 {
                   name: 'Kachni',
-                  subtitle: 'The Line',
-                  desc: 'Kachni is the most intricate style, characterized by fine black lines and delicate cross hatching. No colors are used only monochromatic linework that creates texture, depth, and movement through pattern alone. Artists use bamboo nibs dipped in soot-based ink, and a single painting can take weeks to complete.',
+                  subtitle: t('artOfMithila.styleKachniSub'),
+                  desc: t('artOfMithila.styleKachniDesc'),
                   color: 'border-madhubani-red/30',
                   textColor: 'text-madhubani-red',
                 },
                 {
                   name: 'Bharni',
-                  subtitle: 'The Color',
-                  desc: 'Bharni, meaning "filling," is the most widely recognized Mithila style. Bold black outlines define forms that are then filled with vibrant colors &mdash; deep reds, yellows, oranges, blues, and greens. The contrast between the dark outline and the bright fills creates the dramatic visual impact that Madhubani is famous for.',
+                  subtitle: t('artOfMithila.styleBharniSub'),
+                  desc: t('artOfMithila.styleBharniDesc'),
                   color: 'border-madhubani-magenta/30',
                   textColor: 'text-madhubani-magenta',
                 },
                 {
                   name: 'Godna',
-                  subtitle: 'The Tattoo',
-                  desc: 'Godna takes its inspiration from traditional tattoo art practiced by the Godna community. The style features repetitive geometric patterns, dots, and stylized animal forms. The lines are bolder than Kachni, and the compositions often have a rhythmic, meditative quality. Turtles, fish, and birds are common subjects.',
+                  subtitle: t('artOfMithila.styleGodnaSub'),
+                  desc: t('artOfMithila.styleGodnaDesc'),
                   color: 'border-madhubani-teal/30',
                   textColor: 'text-madhubani-teal',
                 },
                 {
                   name: 'Tantrik',
-                  subtitle: 'The Sacred',
-                  desc: 'Tantrik style draws on Tantric iconography and esoteric symbolism. It features geometric yantras, concentric circles, and simplified deity forms. The compositions are highly structured and symmetrical, used primarily for ritual and devotional purposes. The focus is on spiritual energy and cosmic order.',
+                  subtitle: t('artOfMithila.styleTantrikSub'),
+                  desc: t('artOfMithila.styleTantrikDesc'),
                   color: 'border-madhubani-yellow/40',
                   textColor: 'text-madhubani-yellow',
                 },
                 {
                   name: 'Kohbar',
-                  subtitle: 'The Wedding',
-                  desc: 'Kohbar is the wedding art of Mithila, created on the walls of the nuptial chamber. It is the most symbolic style, filled with images of bamboo groves (symbolizing longevity), banana plants (fertility), fish (prosperity), lotus (purity), and the sun and moon (everlasting union). Every element carries a specific blessing for the couple.',
+                  subtitle: t('artOfMithila.styleKohbarSub'),
+                  desc: t('artOfMithila.styleKohbarDesc'),
                   color: 'border-madhubani-red/30',
                   textColor: 'text-madhubani-red',
                 },
@@ -521,8 +498,8 @@ const ArtOfMithila: React.FC = () => {
                   <div className="flex justify-center mb-3 group-hover:scale-110 transition-transform duration-300">
                     {motif.svg}
                   </div>
-                  <h4 className="font-cinzel text-sm text-madhubani-yellow mb-1">{motif.name}</h4>
-                  <p className="font-cormorant text-xs text-cream/40 leading-relaxed">{motif.description}</p>
+                  <h4 className="font-cinzel text-sm text-madhubani-yellow mb-1">{t(`artOfMithila.motif${motif.name.replace(/[^a-zA-Z]/g, '')}Name`)}</h4>
+                  <p className="font-cormorant text-xs text-cream/40 leading-relaxed">{t(`artOfMithila.motif${motif.name.replace(/[^a-zA-Z]/g, '')}Desc`)}</p>
                 </motion.div>
               ))}
             </div>
@@ -539,28 +516,20 @@ const ArtOfMithila: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <span className="text-madhubani-teal font-cormorant text-sm tracking-[0.3em] uppercase">Today</span>
+                <span className="text-madhubani-teal font-cormorant text-sm tracking-[0.3em] uppercase">{t('artOfMithila.modernLabel')}</span>
                 <h2 className="font-cinzel text-3xl md:text-4xl text-madhubani-black mt-2 mb-6">
-                  A Living <span className="text-madhubani-red">Tradition</span>
+                  {t('artOfMithila.modernTitle1')} <span className="text-madhubani-red">{t('artOfMithila.modernHighlight1')}</span>
                 </h2>
                 <div className="w-16 h-0.5 bg-madhubani-red mb-6" />
                 <div className="font-cormorant text-lg text-madhubani-black/70 leading-relaxed space-y-4">
                   <p>
-                    Mithila art has traveled far from the mud walls of Bihar. Today, it is practiced by thousands 
-                    of artists across India, Nepal, and the global diaspora. The art has been recognized with 
-                    India's highest civilian honors, including the Padma Shri, awarded to master artists like 
-                    Sita Devi, Mahasundari Devi, and Godawari Dutta for their contributions.
+                    {t('artOfMithila.modernP1')}
                   </p>
                   <p>
-                    Contemporary Mithila artists explore themes far beyond traditional mythology &mdash; climate 
-                    change, gender equality, migration, and social justice are now part of the visual vocabulary. 
-                    The art has been exhibited at the United Nations, the European Union, the White House, and 
-                    museums worldwide, proving that a 2,500 year old women's tradition remains urgently relevant.
+                    {t('artOfMithila.modernP2')}
                   </p>
                   <p>
-                    For the diaspora, Mithila art is a bridge between worlds. It carries the visual memory of 
-                    home, the stories of ancestors, and the pride of a culture that refuses to be forgotten. 
-                    Every line drawn is an act of preservation and reinvention.
+                    {t('artOfMithila.modernP3')}
                   </p>
                 </div>
               </motion.div>
@@ -606,18 +575,17 @@ const ArtOfMithila: React.FC = () => {
               viewport={{ once: true }}
             >
               <h2 className="font-cinzel text-3xl md:text-5xl text-cream mb-6">
-                Experience the <span className="text-madhubani-yellow">Art</span>
+                {t('artOfMithila.ctaTitle1')} <span className="text-madhubani-yellow">{t('artOfMithila.ctaHighlight1')}</span>
               </h2>
               <p className="font-cormorant text-xl text-cream/60 max-w-2xl mx-auto mb-10">
-                Explore the full collection of original Mithila paintings, or commission a piece that carries 
-                your own story into this ancient tradition.
+                {t('artOfMithila.ctaDesc')}
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
                   to="/portfolio"
                   className="px-8 py-3 bg-madhubani-red text-cream font-playfair text-sm tracking-wider hover:bg-madhubani-crimson transition-colors border-2 border-madhubani-red"
                 >
-                  View the Collection
+                  {t('artOfMithila.ctaCollection')}
                 </Link>
                 <Link
                   to="/#commission"
@@ -628,7 +596,7 @@ const ArtOfMithila: React.FC = () => {
                   }}
                   className="px-8 py-3 border-2 border-madhubani-yellow/50 text-madhubani-yellow font-playfair text-sm tracking-wider hover:bg-madhubani-yellow hover:text-madhubani-black transition-all"
                 >
-                  Commission a Piece
+                  {t('artOfMithila.ctaCommission')}
                 </Link>
               </div>
             </motion.div>

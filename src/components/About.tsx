@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { CameraShy } from 'camerashy';
 import { Globe, Landmark, Building2, MapPin, Building, Paintbrush, Users, Award } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { SectionDivider } from './MadhubaniBorder';
 
 const slides = [
@@ -26,6 +27,7 @@ const slides = [
 const SLIDE_INTERVAL = 4000;
 
 const About: React.FC = () => {
+  const { t } = useTranslation();
   const [current, setCurrent] = useState(0);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
@@ -66,9 +68,9 @@ const About: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-center mx-auto max-w-3xl mb-16"
         >
-          <span className="text-madhubani-magenta font-cormorant text-lg tracking-[0.4em] uppercase">The Artist</span>
+          <span className="text-madhubani-magenta font-cormorant text-lg tracking-[0.4em] uppercase">{t('about.sectionLabel')}</span>
           <h2 className="font-cinzel text-3xl md:text-5xl text-madhubani-black mt-3 mb-4">
-            About <span className="text-madhubani-red">Shivangi</span>
+            {t('about.headingPrefix')} <span className="text-madhubani-red">{t('about.headingHighlight')}</span>
           </h2>
           <SectionDivider variant="lotus" />
         </motion.div>
@@ -113,7 +115,7 @@ const About: React.FC = () => {
                 <button
                   onClick={prev}
                   className="absolute left-1 md:left-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center bg-cream/20 backdrop-blur-sm text-cream/70 hover:bg-cream/40 hover:text-cream transition-all rounded-full"
-                  aria-label="Previous slide"
+                  aria-label={t('about.ariaPrev')}
                 >
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M15 18l-6-6 6-6" />
@@ -123,7 +125,7 @@ const About: React.FC = () => {
                 <button
                   onClick={next}
                   className="absolute right-1 md:right-2 top-1/2 -translate-y-1/2 z-20 w-8 h-8 md:w-10 md:h-10 flex items-center justify-center bg-cream/20 backdrop-blur-sm text-cream/70 hover:bg-cream/40 hover:text-cream transition-all rounded-full"
-                  aria-label="Next slide"
+                  aria-label={t('about.ariaNext')}
                 >
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M9 18l6-6-6-6" />
@@ -164,8 +166,8 @@ const About: React.FC = () => {
                 <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-madhubani-black/40 to-transparent" />
                 
                 <div className="absolute bottom-4 left-4 right-4 bg-cream/90 backdrop-blur-sm p-4 border border-madhubani-red/30 text-center">
-                  <p className="font-cinzel text-madhubani-red text-base tracking-wider">Shivangi Vatsya Singh</p>
-                  <p className="font-cormorant text-madhubani-teal text-sm tracking-widest uppercase">Mithila Folk Artist</p>
+                  <p className="font-cinzel text-madhubani-red text-base tracking-wider">{t('about.name')}</p>
+                  <p className="font-cormorant text-madhubani-teal text-sm tracking-widest uppercase">{t('about.title')}</p>
                 </div>
 
                 <div className="absolute bottom-24 left-1/2 -translate-x-1/2 flex gap-2 z-10">
@@ -176,7 +178,7 @@ const About: React.FC = () => {
                       className={`w-2 h-2 rounded-full transition-all duration-300 ${
                         i === current ? 'bg-madhubani-yellow w-5' : 'bg-cream/60 hover:bg-cream'
                       }`}
-                      aria-label={`Slide ${i + 1}`}
+                      aria-label={`${t('about.slideLabel')} ${i + 1}`}
                     />
                   ))}
                 </div>
@@ -192,11 +194,11 @@ const About: React.FC = () => {
               className="md:col-span-7 text-left space-y-8 md:space-y-10 max-w-3xl"
             >
               <p className="font-cormorant text-2xl md:text-3xl text-madhubani-black/80 leading-relaxed">
-                Shivangi Singh is an Indian American contemporary Mithila (Madhubani) folk artist based in New Jersey with ancestral roots in the Mithila region of Bihar (India). She trained under Padma Shri awardees and national awardees, mastering the classical styles. Kachni, Bharni, Godna. And experimental compositions on handmade paper, using fine nib work and acrylics to explore identity, migration, women's narratives, and ecology.
+                {t('about.bio1')}
               </p>
 
               <p className="font-cormorant text-xl md:text-2xl text-madhubani-black/70 leading-relaxed">
-                For Shivangi, Mithila art is not a relic. It is a living language. She sees her role as carrying the tradition forward for a generation that may have left Bihar but still carries its visual memory. Her work speaks to the diaspora's need for symbols that hold meaning across borders: the fish that means fertility, the lotus that means resilience, the sun that means the same thing in any language. Every painting is an assertion that a 2,500 year old women's art form belongs not just in museums, but in living rooms, office lobbies, and public squares. Anywhere people need to remember where they come from.
+                {t('about.bio2')}
               </p>
             </motion.div>
           </div>
@@ -206,19 +208,19 @@ const About: React.FC = () => {
             <div className="text-center">
               <SectionDivider variant="lotus" />
               <h3 className="font-cinzel text-xl md:text-2xl text-madhubani-black mt-4">
-                Achievements & <span className="text-madhubani-red">Recognition</span>
+                {t('about.achievements')} <span className="text-madhubani-red">{t('about.achievementsHighlight')}</span>
               </h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6">
               {[
-                { icon: Globe, label: 'United Nations', detail: 'Exhibition, New York', desc: 'Exhibited Mithila folk art at the United Nations Headquarters, New York', quote: '"Standing at the UN with Mithila art. I never imagined this is where the tradition would take me."' },
-                { icon: Landmark, label: 'EU Headquarters', detail: 'Brussels, 2026', desc: 'Featured artist at the European Union Headquarters, Brussels', quote: '"Brussels was a reminder that Mithila\'s visual language translates anywhere."' },
-                { icon: Building2, label: 'Gracie Mansion', detail: 'Cultural Showcase, NYC', desc: 'Cultural showcase at the official residence of the Mayor of New York City', quote: '"Being invited to Gracie Mansion felt like the city was embracing my work."' },
-                { icon: MapPin, label: 'Times Square & Madison Ave', detail: 'Public Art, NYC', desc: 'Public art installation in Times Square and Madison Avenue', quote: '"Seeing a Mithila motif on a billboard in Times Square. That was a surreal moment."' },
-                { icon: Building, label: 'FDNY Headquarters', detail: 'Exhibition, NYC', desc: 'Exhibition at FDNY Headquarters, New York City', quote: '"The FDNY exhibition was special because art met a space built for service."' },
-                { icon: Paintbrush, label: 'Watchung Art Center', detail: '"Magnetism" Exhibition, NJ', desc: '"Magnetism" group exhibition at Watchung Art Center, New Jersey', quote: '"Every exhibition is a chance for someone to see Mithila art for the first time."' },
-                { icon: Award, label: 'Manville Art Council', detail: 'Curated Exhibition, NJ', desc: 'Curated exhibition at Manville Art Council, New Jersey', quote: '"Community spaces are where folk art feels most at home."' },
-                { icon: Users, label: 'UCNJ Teen Arts Festival', detail: '1,000+ Students', desc: 'Mithila folk art workshop for over 1,000 students at UCNJ', quote: '"Over a thousand students tried Mithila painting in one day. That stayed with me."' },
+                { icon: Globe, label: t('about.ach1Label'), detail: t('about.ach1Detail'), desc: t('about.ach1Desc'), quote: t('about.ach1Quote') },
+                { icon: Landmark, label: t('about.ach2Label'), detail: t('about.ach2Detail'), desc: t('about.ach2Desc'), quote: t('about.ach2Quote') },
+                { icon: Building2, label: t('about.ach3Label'), detail: t('about.ach3Detail'), desc: t('about.ach3Desc'), quote: t('about.ach3Quote') },
+                { icon: MapPin, label: t('about.ach4Label'), detail: t('about.ach4Detail'), desc: t('about.ach4Desc'), quote: t('about.ach4Quote') },
+                { icon: Building, label: t('about.ach5Label'), detail: t('about.ach5Detail'), desc: t('about.ach5Desc'), quote: t('about.ach5Quote') },
+                { icon: Paintbrush, label: t('about.ach6Label'), detail: t('about.ach6Detail'), desc: t('about.ach6Desc'), quote: t('about.ach6Quote') },
+                { icon: Award, label: t('about.ach7Label'), detail: t('about.ach7Detail'), desc: t('about.ach7Desc'), quote: t('about.ach7Quote') },
+                { icon: Users, label: t('about.ach8Label'), detail: t('about.ach8Detail'), desc: t('about.ach8Desc'), quote: t('about.ach8Quote') },
               ].map((item, i) => {
                 const isBig = i < 2;
                 const Icon = item.icon;
@@ -338,14 +340,14 @@ const About: React.FC = () => {
           {/* Closing + Stats */}
           <div className="text-center space-y-10 max-w-3xl mx-auto">
             <p className="font-cormorant text-lg text-madhubani-black/70 leading-relaxed">
-              Through MithilaFolkFusions, Shivangi brings the ritual precision of Mithila painting into contemporary spaces. Working with galleries, interior designers, and institutions to keep the tradition vital.
+              {t('about.closing')}
             </p>
 
             <div className="grid grid-cols-3 gap-6 pt-10">
               {[
-                { number: '1,000+', label: 'Artworks Created' },
-                { number: '15+', label: 'Exhibitions' },
-                { number: '500+', label: 'Happy Collectors' },
+                { number: '1,000+', label: t('about.stat1Label') },
+                { number: '15+', label: t('about.stat2Label') },
+                { number: '500+', label: t('about.stat3Label') },
               ].map((stat) => (
                 <div key={stat.label} className="text-center border border-madhubani-red/20 p-6 bg-cream-light">
                   <p className="font-cinzel text-2xl md:text-3xl text-madhubani-red">{stat.number}</p>

@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { MadhubaniBorderBottom } from './MadhubaniBorder';
+import { useTranslation } from 'react-i18next';
 
 const Footer: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <footer className="relative bg-madhubani-black text-cream overflow-hidden">
       <MadhubaniBorderBottom />
@@ -14,29 +16,28 @@ const Footer: React.FC = () => {
             <div className="flex items-center gap-3 justify-center md:justify-start">
               <img src="/images/mithila-folk-fusion-logo.png" alt="Mithila Folk Art" className="w-10 h-10" />
               <div>
-                <h3 className="font-cinzel text-lg text-madhubani-yellow tracking-wider">Mithila Folk Art</h3>
-                <p className="font-cormorant text-xs text-cream/50 tracking-widest uppercase">by Shivangi Singh</p>
+                <h3 className="font-cinzel text-lg text-madhubani-yellow tracking-wider">{t('footer.brandTitle')}</h3>
+                <p className="font-cormorant text-xs text-cream/50 tracking-widest uppercase">{t('footer.brandSub')}</p>
               </div>
             </div>
             <p className="font-cormorant text-cream/50 leading-relaxed">
-              Mithila folk art from the village walls of Bihar to the halls of the 
-              United Nations. Hand painted, one line at a time.
+              {t('footer.description')}
             </p>
           </div>
 
           {/* Quick Links */}
           <div className="text-center md:text-left">
-            <h4 className="font-cinzel text-sm text-madhubani-yellow tracking-wider mb-4 uppercase">Explore</h4>
+            <h4 className="font-cinzel text-sm text-madhubani-yellow tracking-wider mb-4 uppercase">{t('footer.exploreTitle')}</h4>
             <div className="grid grid-cols-2 gap-2">
               {[
-                { label: 'Home', target: 'home' },
-                { label: 'About', target: 'about' },
-                { label: 'Gallery', target: 'gallery' },
-                { label: 'Art Form', target: 'art-form' },
-                { label: 'Art of Mithila', target: '/art-of-mithila', isRoute: true },
-                { label: 'Exhibitions', target: 'exhibitions' },
-                { label: 'Commission', target: 'commission' },
-                { label: 'Contact', target: 'contact' },
+                { label: t('footer.home'), target: 'home' },
+                { label: t('footer.about'), target: 'about' },
+                { label: t('footer.gallery'), target: 'gallery' },
+                { label: t('footer.artForm'), target: 'art-form' },
+                { label: t('footer.artOfMithila'), target: '/art-of-mithila', isRoute: true },
+                { label: t('footer.exhibitions'), target: 'exhibitions' },
+                { label: t('footer.commission'), target: 'commission' },
+                { label: t('footer.contact'), target: 'contact' },
               ].map((link) => (
                 link.isRoute ? (
                   <Link
@@ -61,9 +62,9 @@ const Footer: React.FC = () => {
 
           {/* Newsletter-style CTA */}
           <div className="text-center md:text-left">
-            <h4 className="font-cinzel text-sm text-madhubani-yellow tracking-wider mb-4 uppercase">Stay Connected</h4>
+            <h4 className="font-cinzel text-sm text-madhubani-yellow tracking-wider mb-4 uppercase">{t('footer.stayConnected')}</h4>
             <p className="font-cormorant text-cream/50 mb-4">
-              Follow the journey of Mithilafolkfusions and be the first to know about new artworks and exhibitions.
+              {t('footer.stayConnectedDesc')}
             </p>
             <div className="flex gap-3 justify-center md:justify-start">
               <a
@@ -110,24 +111,24 @@ const Footer: React.FC = () => {
         {/* Bottom bar */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-center">
           <p className="font-cormorant text-cream/30 text-sm">
-            © 2024 Mithilafolkfusions by Shivangi Singh. All rights reserved.
+            {t('footer.copyright')}
           </p>
           <p className="font-cormorant text-cream/20 text-xs italic">
-            "Every stroke carries the soul of Mithila" ✿
+            {t('footer.quote')}
           </p>
           <p className="font-cormorant text-cream/20 text-sm">
-            Built with{' '}
+            {t('footer.builtBy')}{' '}
             <svg className="inline w-3 h-3 fill-madhubani-red text-madhubani-red -mt-0.5" viewBox="0 0 24 24">
               <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
             </svg>
-            {' '}by{' '}
+            {' '}{t('footer.by')}{' '}
             <a
               href="https://chiti.tech"
               target="_blank"
               rel="noopener noreferrer"
               className="text-cream/30 hover:text-madhubani-yellow transition-colors"
             >
-              Chiti Technologies
+              {t('footer.chitiTech')}
             </a>
           </p>
         </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { CameraShy } from 'camerashy';
 
 interface PortfolioWork {
@@ -22,6 +23,7 @@ interface Props {
 
 const PortfolioLightbox: React.FC<Props> = ({ works, selectedIndex, onClose }) => {
   const [currentIndex, setCurrentIndex] = React.useState<number | null>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     setCurrentIndex(selectedIndex);
@@ -127,7 +129,7 @@ const PortfolioLightbox: React.FC<Props> = ({ works, selectedIndex, onClose }) =
           </div>
           <div className="space-y-3 pt-5 border-t border-cream/10">
             <p className="font-playfair text-base md:text-lg text-cream/50">
-              <span className="text-madhubani-teal">Medium:</span> {work.medium}
+              <span className="text-madhubani-teal">{t('portfolioLightbox.medium')}:</span> {work.medium}
             </p>
           </div>
 
@@ -136,7 +138,7 @@ const PortfolioLightbox: React.FC<Props> = ({ works, selectedIndex, onClose }) =
             onClick={onClose}
             className="inline-block mt-6 px-6 py-3 border border-madhubani-red text-madhubani-red font-playfair text-sm tracking-wider hover:bg-madhubani-red hover:text-cream transition-all duration-300 text-center"
           >
-            Inquire About This Piece
+            {t('portfolioLightbox.inquireAbout')}
           </Link>
         </div>
 

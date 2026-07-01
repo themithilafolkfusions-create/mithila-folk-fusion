@@ -1,31 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
-const quotes = [
-  {
-    text: "The Tree of Life painting arrived in a way that made the whole room stop. Every dinner guest asks about it. People don't just glance. They stand and look.",
-    author: "Homeowner",
-    location: "Princeton, NJ",
-  },
-  {
-    text: "Shivangi's workshop brought the kind of focus I'd never seen in a classroom. Over a thousand teenagers went quiet for Mithila art. That's the power of what she does.",
-    author: "Festival Director",
-    location: "Union County, NJ",
-  },
-  {
-    text: "I needed a piece for our office lobby that said something about heritage. She listened for thirty minutes, then sent sketches the next day. The final painting is precise and vivid in person.",
-    author: "Interior Designer",
-    location: "New York, NY",
-  },
-  {
-    text: "People took photos for ten full minutes after she finished her presentation at the UN. The motifs speak a language you don't need to translate.",
-    author: "Exhibition Visitor",
-    location: "New York, NY",
-  },
-];
+const quotes = [{}, {}, {}, {}];
 
 const Testimonials: React.FC = () => {
   const [current, setCurrent] = useState(0);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -75,16 +56,16 @@ const Testimonials: React.FC = () => {
               className="absolute inset-0"
             >
               <p className="font-playfair text-xl md:text-2xl text-madhubani-black/80 italic leading-relaxed mb-6">
-                "{quotes[current].text}"
+                "{t('testimonials.q' + (current + 1) + 'Text')}"
               </p>
               <div className="flex items-center justify-center gap-3">
                 <div className="w-8 h-px bg-madhubani-red" />
                 <p className="font-cormorant text-madhubani-red">
-                  {quotes[current].author}
+                  {t('testimonials.q' + (current + 1) + 'Author')}
                 </p>
                 <span className="text-madhubani-black/30">·</span>
                 <p className="font-cormorant text-madhubani-teal text-sm">
-                  {quotes[current].location}
+                  {t('testimonials.q' + (current + 1) + 'Loc')}
                 </p>
                 <div className="w-8 h-px bg-madhubani-red" />
               </div>

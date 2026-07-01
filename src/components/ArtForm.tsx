@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { SectionDivider } from './MadhubaniBorder';
@@ -140,6 +141,7 @@ const motifs = [
 ];
 
 const ArtForm: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <section id="art-form" className="relative py-28 md:py-44 bg-madhubani-black overflow-hidden">
       {/* Background decorative pattern */}
@@ -166,29 +168,26 @@ const ArtForm: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <span className="text-madhubani-yellow font-cormorant text-lg tracking-[0.4em] uppercase">Heritage</span>
+          <span className="text-madhubani-yellow font-cormorant text-lg tracking-[0.4em] uppercase">{t('artForm.sectionLabel')}</span>
           <h2 className="font-cinzel text-3xl md:text-5xl text-cream mt-3 mb-4">
-            The Art of <span className="text-madhubani-yellow">Mithila</span>
+            {t('artForm.headingPrefix')} <span className="text-madhubani-yellow">{t('artForm.headingHighlight')}</span>
           </h2>
           <SectionDivider variant="fish" />
 
           {/* Intro summary */}
           <p className="font-cormorant text-lg text-cream/60 max-w-3xl mx-auto mt-4 leading-relaxed">
-            Mithila painting is an ancient folk art form originating in the Mithila region of Bihar, India, 
-            and extending into Nepal's Tarai region including Janakpur. Traditionally created by women on 
-            mud walls using natural pigments, this 2,500 year old tradition is a living language of storytelling 
-            through intricate linework, sacred motifs, and vibrant colors.
+            {t('artForm.intro')}
           </p>
         </motion.div>
 
         {/* Quick highlights */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-12">
           {[
-            { label: '2,500+ Years', sub: 'Of continuous tradition' },
-            { label: '5 Classical Styles', sub: 'Kachni, Bharni, Godna, Tantrik, Kohbar' },
-            { label: 'Women Led', sub: 'Passed mother to daughter' },
-            { label: 'Natural Colors', sub: 'Turmeric, indigo, soot, clay' },
-            { label: 'India & Nepal', sub: 'Shared Mithila heritage' },
+            { label: t('artForm.hl1Label'), sub: t('artForm.hl1Sub') },
+            { label: t('artForm.hl2Label'), sub: t('artForm.hl2Sub') },
+            { label: t('artForm.hl3Label'), sub: t('artForm.hl3Sub') },
+            { label: t('artForm.hl4Label'), sub: t('artForm.hl4Sub') },
+            { label: t('artForm.hl5Label'), sub: t('artForm.hl5Sub') },
           ].map((item, i) => (
             <motion.div
               key={item.label}
@@ -212,9 +211,9 @@ const ArtForm: React.FC = () => {
           className="text-center mb-12"
         >
           <h3 className="font-cinzel text-2xl md:text-3xl text-cream mb-2">
-            Sacred <span className="text-madhubani-magenta">Motifs</span>
+            {t('artForm.motifsTitle')} <span className="text-madhubani-magenta">{t('artForm.motifsHighlight')}</span>
           </h3>
-          <p className="font-cormorant text-cream/50">The symbols that carry centuries of meaning</p>
+          <p className="font-cormorant text-cream/50">{t('artForm.motifsSub')}</p>
         </motion.div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8 justify-items-center">
@@ -230,9 +229,11 @@ const ArtForm: React.FC = () => {
               <div className="flex justify-center mb-3 group-hover:scale-110 transition-transform duration-300">
                 {motif.svg}
               </div>
-              <h4 className="font-cinzel text-sm text-madhubani-yellow mb-1">{motif.name}</h4>
+              <h4 className="font-cinzel text-sm text-madhubani-yellow mb-1">
+                {i === 0 ? t('artForm.motifPeacock') : i === 1 ? t('artForm.motifLotus') : i === 2 ? t('artForm.motifFish') : i === 3 ? t('artForm.motifSunMoon') : i === 4 ? t('artForm.motifTree') : t('artForm.motifMandala')}
+              </h4>
               <p className="font-cormorant text-xs text-cream/40 leading-relaxed hidden md:block">
-                {motif.description.split('.')[0]}
+                {i === 0 ? t('artForm.motifPeacockDesc') : i === 1 ? t('artForm.motifLotusDesc') : i === 2 ? t('artForm.motifFishDesc') : i === 3 ? t('artForm.motifSunMoonDesc') : i === 4 ? t('artForm.motifTreeDesc') : t('artForm.motifMandalaDesc')}
               </p>
             </motion.div>
           ))}
@@ -249,7 +250,7 @@ const ArtForm: React.FC = () => {
             to="/art-of-mithila"
             className="inline-flex items-center gap-2 font-playfair text-sm tracking-wider text-madhubani-yellow border-b border-madhubani-yellow/40 pb-1 hover:border-madhubani-yellow transition-colors"
           >
-            Learn more about the art of Mithila
+            {t('artForm.learnMore')}
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
               <path d="M6 3l5 5-5 5" />
             </svg>
