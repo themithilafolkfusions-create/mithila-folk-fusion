@@ -349,6 +349,7 @@ const Gallery: React.FC = () => {
               { src: '/images/sold-out/sold-out-1.jpeg', title: 'Sold' },
               { src: '/images/sold-out/sold-out-2.jpeg', title: 'Sold' },
               { src: '/images/sold-out/sold-out-3.jpeg', title: 'Sold' },
+              { src: '/images/sold-out/sold-out-4.jpeg', title: 'Sold' },
             ].map((item, i) => (
               <motion.div
                 key={i}

@@ -167,7 +167,7 @@ const ArtForm: React.FC = () => {
         >
           <span className="text-madhubani-yellow font-cormorant text-lg tracking-[0.4em] uppercase">Heritage</span>
           <h2 className="font-cinzel text-3xl md:text-5xl text-cream mt-3 mb-4">
-            The Art of <span className="text-madhubani-yellow">Madhubani</span>
+            The Art of <span className="text-madhubani-yellow">Mithila</span>
           </h2>
           <SectionDivider variant="fish" />
           <p className="font-cormorant text-lg text-cream/60 max-w-3xl mx-auto mt-4 leading-relaxed">

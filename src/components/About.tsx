@@ -158,7 +158,7 @@ const About: React.FC = () => {
               className="md:col-span-7 text-left space-y-8 md:space-y-10 max-w-3xl"
             >
               <p className="font-cormorant text-2xl md:text-3xl text-madhubani-black/80 leading-relaxed">
-                Shivangi Singh is an Indian American contemporary Mithila (Madhubani) folk artist based in New Jersey with ancestral roots in the Mithila region of Bihar (India). She works across classical styles. Kachni, Bharni, Godna. And experimental compositions on handmade paper, using fine nib work and acrylics to explore identity, migration, women's narratives, and ecology.
+                Shivangi Singh is an Indian American contemporary Mithila (Madhubani) folk artist based in New Jersey with ancestral roots in the Mithila region of Bihar (India). She trained under Padma Shri awardees and national awardees, mastering the classical styles. Kachni, Bharni, Godna. And experimental compositions on handmade paper, using fine nib work and acrylics to explore identity, migration, women's narratives, and ecology.
               </p>
 
               <p className="font-cormorant text-xl md:text-2xl text-madhubani-black/70 leading-relaxed">
