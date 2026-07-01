@@ -32,8 +32,20 @@ const Navbar: React.FC<NavbarProps> = ({ isPlaying, togglePlay }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [visible, setVisible] = useState(true);
+  const [langOpen, setLangOpen] = useState(false);
   const prevScrollY = useRef(0);
+  const langRef = useRef<HTMLDivElement>(null);
   const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (langRef.current && !langRef.current.contains(e.target as Node)) {
+        setLangOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -89,25 +101,38 @@ const Navbar: React.FC<NavbarProps> = ({ isPlaying, togglePlay }) => {
 
             {/* Language Toggle + Menu - right side */}
             <div className="absolute right-0 flex items-center gap-2">
-              {/* Language buttons */}
-              <div className="hidden md:flex gap-1">
-                {LANGUAGES.map((lang) => (
-                  <button
-                    key={lang.code}
-                    onClick={() => i18n.changeLanguage(lang.code)}
-                    className={`text-[10px] font-bold tracking-wider px-1.5 py-0.5 border transition-all ${
-                      i18n.language === lang.code
-                        ? isScrolled
-                          ? 'border-madhubani-red bg-madhubani-red text-cream'
-                          : 'border-cream bg-cream text-madhubani-black'
-                        : isScrolled
-                          ? 'border-madhubani-red/30 text-madhubani-red/60 hover:border-madhubani-red hover:text-madhubani-red'
-                          : 'border-cream/30 text-cream/60 hover:border-cream hover:text-cream'
-                    }`}
-                  >
-                    {lang.label}
-                  </button>
-                ))}
+              {/* Language dropdown */}
+              <div className="hidden md:block relative" ref={langRef}>
+                <button
+                  onClick={() => setLangOpen(!langOpen)}
+                  className={`text-[10px] font-bold tracking-wider px-2 py-1 border transition-all flex items-center gap-1 ${
+                    isScrolled
+                      ? 'border-madhubani-red/30 text-madhubani-red/60 hover:border-madhubani-red hover:text-madhubani-red'
+                      : 'border-cream/30 text-cream/60 hover:border-cream hover:text-cream'
+                  }`}
+                >
+                  {i18n.language.toUpperCase()}
+                  <svg className={`w-2.5 h-2.5 transition-transform ${langOpen ? 'rotate-180' : ''}`} viewBox="0 0 10 6" fill="none">
+                    <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+                {langOpen && (
+                  <div className="absolute right-0 top-full mt-1 bg-cream border border-madhubani-red/20 shadow-lg py-1 min-w-[80px]">
+                    {LANGUAGES.map((lang) => (
+                      <button
+                        key={lang.code}
+                        onClick={() => { i18n.changeLanguage(lang.code); setLangOpen(false); }}
+                        className={`block w-full text-left text-[11px] font-bold tracking-wider px-3 py-1.5 transition-colors ${
+                          i18n.language === lang.code
+                            ? 'bg-madhubani-red/10 text-madhubani-red'
+                            : 'text-madhubani-black/70 hover:bg-madhubani-red/5 hover:text-madhubani-red'
+                        }`}
+                      >
+                        {lang.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
               <button
                 onClick={() => setIsMobileOpen(!isMobileOpen)}
