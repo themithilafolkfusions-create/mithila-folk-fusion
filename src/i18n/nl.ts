@@ -27,7 +27,7 @@ const nl: Record<string, any> = {
     sectionLabel: 'De Kunstenaar',
     headingPrefix: 'Over ',
     headingHighlight: 'Shivangi',
-    name: 'Shivangi Vatsya Singh',
+    name: 'Shivangi Singh',
     title: 'Mithila Volkskunstenaar',
     ariaPrev: 'Vorige dia',
     ariaNext: 'Volgende dia',

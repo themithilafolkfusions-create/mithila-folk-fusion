@@ -27,7 +27,7 @@ const de: Record<string, any> = {
     sectionLabel: 'Die Künstlerin',
     headingPrefix: 'Über ',
     headingHighlight: 'Shivangi',
-    name: 'Shivangi Vatsya Singh',
+    name: 'Shivangi Singh',
     title: 'Mithila-Volkskünstlerin',
     ariaPrev: 'Vorherige Folie',
     ariaNext: 'Nächste Folie',

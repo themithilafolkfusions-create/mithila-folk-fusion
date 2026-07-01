@@ -32,7 +32,7 @@ const en = {
     sectionLabel: 'The Artist',
     headingPrefix: 'About ',
     headingHighlight: 'Shivangi',
-    name: 'Shivangi Vatsya Singh',
+    name: 'Shivangi Singh',
     title: 'Mithila Folk Artist',
     ariaPrev: 'Previous slide',
     ariaNext: 'Next slide',
