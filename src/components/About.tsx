@@ -158,11 +158,11 @@ const About: React.FC = () => {
               className="md:col-span-7 text-left space-y-8 md:space-y-10 max-w-3xl"
             >
               <p className="font-cormorant text-2xl md:text-3xl text-madhubani-black/80 leading-relaxed">
-                Shivangi Singh is an Indian American contemporary Mithila (Madhubani) folk artist based in New Jersey. Born in Bihar and raised in Jharkhand, she works across classical styles — Kachni, Bharni, Godna — and experimental compositions on handmade paper, using fine-nib work and acrylics to explore identity, migration, women's narratives, and ecology.
+                Shivangi Singh is an Indian American contemporary Mithila (Madhubani) folk artist based in New Jersey. Born in Bihar and raised in Jharkhand, she works across classical styles. Kachni, Bharni, Godna. And experimental compositions on handmade paper, using fine nib work and acrylics to explore identity, migration, women's narratives, and ecology.
               </p>
 
               <p className="font-cormorant text-xl md:text-2xl text-madhubani-black/70 leading-relaxed">
-                For Shivangi, Mithila art is not a relic — it is a living language. She sees her role as carrying the tradition forward for a generation that may have left Bihar but still carries its visual memory. Her work speaks to the diaspora's need for symbols that hold meaning across borders: the fish that means fertility, the lotus that means resilience, the sun that means the same thing in any language. Every painting is an assertion that a 2,500-year-old women's art form belongs not just in museums, but in living rooms, office lobbies, and public squares — anywhere people need to remember where they come from.
+                For Shivangi, Mithila art is not a relic. It is a living language. She sees her role as carrying the tradition forward for a generation that may have left Bihar but still carries its visual memory. Her work speaks to the diaspora's need for symbols that hold meaning across borders: the fish that means fertility, the lotus that means resilience, the sun that means the same thing in any language. Every painting is an assertion that a 2,500 year old women's art form belongs not just in museums, but in living rooms, office lobbies, and public squares. Anywhere people need to remember where they come from.
               </p>
             </motion.div>
           </div>
@@ -177,10 +177,10 @@ const About: React.FC = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6">
               {[
-                { icon: Globe, label: 'United Nations', detail: 'Exhibition, New York', desc: 'Exhibited Mithila folk art at the United Nations Headquarters, New York', quote: '"Standing at the UN with Mithila art — I never imagined this is where the tradition would take me."' },
+                { icon: Globe, label: 'United Nations', detail: 'Exhibition, New York', desc: 'Exhibited Mithila folk art at the United Nations Headquarters, New York', quote: '"Standing at the UN with Mithila art. I never imagined this is where the tradition would take me."' },
                 { icon: Landmark, label: 'EU Headquarters', detail: 'Brussels, 2026', desc: 'Featured artist at the European Union Headquarters, Brussels', quote: '"Brussels was a reminder that Mithila\'s visual language translates anywhere."' },
                 { icon: Building2, label: 'Gracie Mansion', detail: 'Cultural Showcase, NYC', desc: 'Cultural showcase at the official residence of the Mayor of New York City', quote: '"Being invited to Gracie Mansion felt like the city was embracing my work."' },
-                { icon: MapPin, label: 'Times Square & Madison Ave', detail: 'Public Art, NYC', desc: 'Public art installation in Times Square and Madison Avenue', quote: '"Seeing a Mithila motif on a billboard in Times Square — that was a surreal moment."' },
+                { icon: MapPin, label: 'Times Square & Madison Ave', detail: 'Public Art, NYC', desc: 'Public art installation in Times Square and Madison Avenue', quote: '"Seeing a Mithila motif on a billboard in Times Square. That was a surreal moment."' },
                 { icon: Building, label: 'FDNY Headquarters', detail: 'Exhibition, NYC', desc: 'Exhibition at FDNY Headquarters, New York City', quote: '"The FDNY exhibition was special because art met a space built for service."' },
                 { icon: Paintbrush, label: 'Watchung Art Center', detail: '"Magnetism" Exhibition, NJ', desc: '"Magnetism" group exhibition at Watchung Art Center, New Jersey', quote: '"Every exhibition is a chance for someone to see Mithila art for the first time."' },
                 { icon: Award, label: 'Manville Art Council', detail: 'Curated Exhibition, NJ', desc: 'Curated exhibition at Manville Art Council, New Jersey', quote: '"Community spaces are where folk art feels most at home."' },
@@ -304,7 +304,7 @@ const About: React.FC = () => {
           {/* Closing + Stats */}
           <div className="text-center space-y-10 max-w-3xl mx-auto">
             <p className="font-cormorant text-lg text-madhubani-black/70 leading-relaxed">
-              Through MithilaFolkFusions, Shivangi brings the ritual precision of Mithila painting into contemporary spaces — working with galleries, interior designers, and institutions to keep the tradition vital.
+              Through MithilaFolkFusions, Shivangi brings the ritual precision of Mithila painting into contemporary spaces. Working with galleries, interior designers, and institutions to keep the tradition vital.
             </p>
 
             <div className="grid grid-cols-3 gap-6 pt-10">

@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
             </div>
             <p className="font-cormorant text-cream/50 leading-relaxed">
               Mithila folk art from the village walls of Bihar to the halls of the 
-              United Nations — hand-painted, one line at a time.
+              United Nations. Hand painted, one line at a time.
             </p>
           </div>
 

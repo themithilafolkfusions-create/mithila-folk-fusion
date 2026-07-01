@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const quotes = [
   {
-    text: "The Tree of Life painting arrived in a way that made the whole room stop. Every dinner guest asks about it. People don't just glance — they stand and look.",
+    text: "The Tree of Life painting arrived in a way that made the whole room stop. Every dinner guest asks about it. People don't just glance. They stand and look.",
     author: "Homeowner",
     location: "Princeton, NJ",
   },

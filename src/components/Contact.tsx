@@ -54,7 +54,7 @@ const Contact: React.FC = () => {
               </h3>
               <p className="font-cormorant text-lg text-madhubani-black/60 leading-relaxed">
                 Whether you're looking to commission a custom Madhubani painting, inquire about available works, 
-                or explore workshop opportunities — I'd love to hear from you. Every conversation begins a new artistic story.
+                or explore workshop opportunities. I'd love to hear from you. Every conversation begins a new artistic story.
               </p>
             </div>
 

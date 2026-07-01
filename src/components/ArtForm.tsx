@@ -171,8 +171,8 @@ const ArtForm: React.FC = () => {
           </h2>
           <SectionDivider variant="fish" />
           <p className="font-cormorant text-lg text-cream/60 max-w-3xl mx-auto mt-4 leading-relaxed">
-            Mithila painting begins with a line — bold, unbroken, alive. For 2,500 years, 
-            the women of Bihar have drawn these lines on mud walls, on floors, on paper — 
+Mithila painting begins with a line. Bold, unbroken, alive. For 2,500 years, 
+the women of Bihar have drawn these lines on mud walls, on floors, on paper. 
             filling every inch with fish, lotus, peacock, sun. There is no empty space in Madhubani, 
             only story after story waiting to be read.
           </p>
@@ -188,10 +188,10 @@ const ArtForm: React.FC = () => {
           {[
             { title: 'Bold Outlines', desc: 'Distinctive black outlines define every form, creating dramatic contrast and visual clarity' },
             { title: 'Natural Pigments', desc: 'Traditional colors derived from turmeric, indigo, soot, and flower extracts' },
-            { title: 'No Empty Space', desc: 'Every inch is filled with intricate patterns — a hallmark of the "horror vacui" aesthetic' },
+            { title: 'No Empty Space', desc: 'Every inch is filled with intricate patterns, a hallmark of the "horror vacui" aesthetic' },
             { title: 'Sacred Geometry', desc: 'Mathematical precision in mandalas and borders reflecting cosmic harmony' },
             { title: 'Storytelling', desc: 'Each painting narrates tales from mythology, nature, and daily life' },
-            { title: 'Double-Line Technique', desc: 'Borders drawn with parallel lines filled with cross-hatching and dots' },
+            { title: 'Double Line Technique', desc: 'Borders drawn with parallel lines filled with cross hatching and dots' },
           ].map((item, i) => (
             <motion.div
               key={item.title}

@@ -228,8 +228,8 @@ const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
             transition={{ delay: 1.3, duration: 1 }}
             className="font-cormorant text-sm md:text-xl text-cream/80 max-w-2xl mx-auto mb-3 md:mb-6 leading-relaxed bg-madhubani-black/80 rounded-lg px-4 py-3 md:px-6 md:py-4"
           >
-            Shivangi Singh reimagines Mithila's 2,500-year-old visual language 
-            for a world in motion — line by line, motif by motif
+            Shivangi Singh reimagines Mithila's 2,500 year old visual language 
+            for a world in motion. Line by line, motif by motif
           </motion.p>
 
           <motion.div

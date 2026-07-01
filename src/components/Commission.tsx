@@ -7,37 +7,37 @@ const services = [
   {
     icon: <Palette className="w-8 h-8" />,
     title: 'Custom Paintings',
-    description: `A single conversation shapes the brief; fine-nib work on handmade paper translates your story into Mithila's 2,500-year-old visual language.`,
+    description: `A single conversation shapes the brief; fine nib work on handmade paper translates your story into Mithila's 2,500 year old visual language.`,
     color: 'madhubani-red',
   },
   {
     icon: <Frame className="w-8 h-8" />,
     title: 'Wall Murals',
-    description: 'Painted on-site or on mounted panels — large-format Madhubani compositions for lobbies, galleries, restaurants, and residential walls.',
+    description: 'Painted on site or on mounted panels. Large format Madhubani compositions for lobbies, galleries, restaurants, and residential walls.',
     color: 'madhubani-teal',
   },
   {
     icon: <Gift className="w-8 h-8" />,
     title: 'Commissions as Gifts',
-    description: 'A commissioned Madhubani piece for weddings, anniversaries, or milestones — framed and shipped, with a note that carries the artist\'s voice.',
+    description: 'A commissioned Madhubani piece for weddings, anniversaries, or milestones. Framed and shipped, with a note that carries the artist\'s voice.',
     color: 'madhubani-magenta',
   },
   {
     icon: <Brush className="w-8 h-8" />,
     title: 'Workshops',
-    description: 'Two-hour to full-day sessions covering Kachni, Bharni, and Godna techniques. All materials provided. Suitable for schools, museums, and corporate teams.',
+    description: 'Two hour to full day sessions covering Kachni, Bharni, and Godna techniques. All materials provided. Suitable for schools, museums, and corporate teams.',
     color: 'madhubani-green',
   },
   {
     icon: <Heart className="w-8 h-8" />,
     title: 'Live Demonstrations',
-    description: 'The artist paints live at your venue — a festival, conference, or gallery opening — while guests observe the discipline of Mithila linework up close.',
+    description: 'The artist paints live at your venue. A festival, conference, or gallery opening. While guests observe the discipline of Mithila linework up close.',
     color: 'madhubani-orange',
   },
   {
     icon: <Star className="w-8 h-8" />,
     title: 'Giclée Prints',
-    description: 'Archival-quality fine-art prints of original works, signed and numbered. Custom sizing available for residential and commercial framing.',
+    description: 'Archival quality fine art prints of original works, signed and numbered. Custom sizing available for residential and commercial framing.',
     color: 'madhubani-blue',
   },
 ];
@@ -87,8 +87,8 @@ const Commission: React.FC = () => {
             </svg>
           </div>
           <p className="font-cormorant text-lg text-cream/70 max-w-2xl mx-auto mt-4">
-            A commissioned Mithila piece begins with a conversation — your vision, translated 
-            into line and pigment, on handmade paper that carries a 2,500-year-old tradition
+            A commissioned Mithila piece begins with a conversation. Your vision, translated 
+            into line and pigment, on handmade paper that carries a 2,500 year old tradition
           </p>
         </motion.div>
 

@@ -4,11 +4,10 @@ import { CameraShy } from 'camerashy';
 import { SectionDivider } from './MadhubaniBorder';
 
 const galleryImages = [
-  { src: '/images/eu-podium.jpg', caption: 'Shivangi Singh speaking at EU External Action Service, Brussels — Mithila folk art cultural diplomacy' },
-  { src: '/images/un-outdoor.jpg', caption: 'Mithila artist Shivangi Singh at United Nations Headquarters, New York — Art for SDGs exhibition' },
-  { src: '/images/eu-flags.jpg', caption: 'Shivangi Singh with EU and Ukrainian flags at European Union headquarters, Brussels' },
-  { src: '/images/eu-backdrop.jpg', caption: 'Madhubani artist at EU External Action venue, Brussels — MithilaFolkFusions exhibition' },
-  { src: '/images/un-exhibition.jpg', caption: 'Art for SDGs Exhibition at United Nations — Shivangi Singh presenting Mithila folk art' },
+  { src: '/images/eu-podium.jpg', caption: 'Shivangi Singh speaking at EU External Action Service, Brussels. Mithila folk art cultural diplomacy' },
+  { src: '/images/un-outdoor.jpg', caption: 'Mithila artist Shivangi Singh at United Nations Headquarters, New York. Art for SDGs exhibition' },
+  { src: '/images/eu-backdrop.jpg', caption: 'Madhubani artist at EU External Action venue, Brussels. MithilaFolkFusions exhibition' },
+  { src: '/images/un-exhibition.jpg', caption: 'Art for SDGs Exhibition at United Nations. Shivangi Singh presenting Mithila folk art' },
   { src: '/images/eu-group.jpg', caption: 'Shivangi Singh with international delegates at EU Headquarters, Brussels cultural showcase' },
   { src: '/images/un-discussing.jpg', caption: 'Shivangi Singh discussing Mithila art techniques with visitors at UN exhibition, New York' },
   { src: '/images/eu-viewing.jpg', caption: 'Shivangi Singh guiding visitors through Madhubani exhibition at European Union, Brussels' },
