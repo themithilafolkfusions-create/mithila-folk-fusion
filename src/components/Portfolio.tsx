@@ -166,16 +166,16 @@ const Portfolio: React.FC = () => {
                   <CornerOrnament className="bottom-2 left-2 -scale-y-100" />
                   <CornerOrnament className="bottom-2 right-2 scale-[-1]" />
 
-                  {/* Decorative inset border around the painting area */}
-                  <div className="relative -inset-4 border-2 border-madhubani-red/10 p-1 mb-10">
-                    <div className="border border-madhubani-red/20 flex items-center justify-center">
+                  {/* Decorative frame around the painting */}
+                  <div className="border-2 border-madhubani-red/10 p-[10px] mb-10">
+                    <div className="border border-madhubani-red/20 flex items-center justify-center overflow-hidden">
                       <CameraShy mode="blur" blur="20px" sensitivity="balanced">
                         <img
                           src={work.src}
                           alt={work.title}
                           draggable="false"
                           onDragStart={(e) => e.preventDefault()}
-                          className="w-auto mx-auto h-auto max-h-[100dvh] max-w-full select-none transition-all duration-700 grayscale hover:grayscale-0 group-hover:scale-[1.02]"
+                          className="block max-w-full max-h-[80vh] w-auto h-auto select-none transition-all duration-700 grayscale hover:grayscale-0"
                         />
                       </CameraShy>
                     </div>
