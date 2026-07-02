@@ -167,7 +167,7 @@ const Portfolio: React.FC = () => {
                   <CornerOrnament className="bottom-2 right-2 scale-[-1]" />
 
                   {/* Decorative frame around the painting */}
-                  <div className="border-2 border-madhubani-red/10 p-[10px] mb-10">
+                  <div className="relative -inset-4 border-2 border-madhubani-red/10 p-[10px] mb-10">
                     <div className="border border-madhubani-red/20 flex items-center justify-center overflow-hidden">
                       <CameraShy mode="blur" blur="20px" sensitivity="balanced">
                         <img
