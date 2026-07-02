@@ -30,8 +30,10 @@ const Navbar: React.FC = () => {
   const [visible, setVisible] = useState(true);
   const [langOpen, setLangOpen] = useState(false);
   const [toast, setToast] = useState(false);
+  const [showVolume, setShowVolume] = useState(false);
   const prevScrollY = useRef(0);
   const langRef = useRef<HTMLDivElement>(null);
+  const volRef = useRef<HTMLDivElement>(null);
   const { t, i18n } = useTranslation();
   const {
     isPlaying,
@@ -58,6 +60,9 @@ const Navbar: React.FC = () => {
     const handleClickOutside = (e: MouseEvent) => {
       if (langRef.current && !langRef.current.contains(e.target as Node)) {
         setLangOpen(false);
+      }
+      if (volRef.current && !volRef.current.contains(e.target as Node)) {
+        setShowVolume(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -145,13 +150,45 @@ const Navbar: React.FC = () => {
                     <SkipForward size={14} />
                   </button>
 
-                  <button
-                    onClick={toggleMute}
-                    className="p-1 hover:opacity-80 transition-opacity"
-                    aria-label={isMuted ? t('navbar.ariaUnmute') : t('navbar.ariaMute')}
-                  >
-                    {isMuted ? <VolumeX size={14} /> : <Volume2 size={14} />}
-                  </button>
+                  {/* Volume control with dropdown */}
+                  <div className="relative" ref={volRef}>
+                    <button
+                      onClick={() => setShowVolume(!showVolume)}
+                      className="p-1 hover:opacity-80 transition-opacity"
+                      aria-label="Volume"
+                    >
+                      {isMuted || volume === 0 ? <VolumeX size={14} /> : <Volume2 size={14} />}
+                    </button>
+                    <AnimatePresence>
+                      {showVolume && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -4 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -4 }}
+                          transition={{ duration: 0.15 }}
+                          className="absolute left-1/2 -translate-x-1/2 top-full mt-2 py-2 px-3 rounded-lg shadow-lg border bg-cream/95 backdrop-blur-sm border-madhubani-red/20 flex items-center gap-2"
+                        >
+                          <button
+                            onClick={toggleMute}
+                            className="text-madhubani-red/60 hover:text-madhubani-red transition-colors"
+                            aria-label={isMuted ? 'Unmute' : 'Mute'}
+                          >
+                            {isMuted ? <VolumeX size={12} /> : <Volume2 size={12} />}
+                          </button>
+                          <input
+                            type="range"
+                            min="0"
+                            max="1"
+                            step="0.05"
+                            value={volume}
+                            onChange={(e) => setVolume(parseFloat(e.target.value))}
+                            className="w-16 h-1 bg-madhubani-red/10 rounded-full appearance-none cursor-pointer accent-madhubani-red"
+                            aria-label="Volume"
+                          />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
                 </>
               ) : (
                 <button
