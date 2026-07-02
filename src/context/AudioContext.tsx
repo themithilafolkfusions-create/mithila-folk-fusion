@@ -53,33 +53,32 @@ export const AudioProvider: React.FC<{ children: ReactNode }> = ({ children }) =
 
   const loadTrack = useCallback((index: number) => {
     if (!audioRef.current) return;
+    const audio = audioRef.current;
     const wasPlaying = isPlayingRef.current;
-    audioRef.current.src = tracks[index].src;
-    audioRef.current.load();
+    audio.src = tracks[index].src;
+    audio.load();
     setCurrentTrackIndex(index);
     setTrackProgress(0);
     setCurrentTime(0);
     setDuration(0);
     if (wasPlaying) {
-      audioRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
+      const onCanPlay = () => {
+        audio.removeEventListener('canplaythrough', onCanPlay);
+        audio.play().then(() => setIsPlaying(true)).catch(() => {});
+      };
+      audio.addEventListener('canplaythrough', onCanPlay);
     }
   }, []);
 
   const playNext = useCallback(() => {
-    setCurrentTrackIndex((prev) => {
-      const nextIndex = (prev + 1) % tracks.length;
-      loadTrackRef.current(nextIndex);
-      return prev;
-    });
-  }, []);
+    const nextIndex = (currentTrackIndex + 1) % tracks.length;
+    loadTrackRef.current(nextIndex);
+  }, [currentTrackIndex]);
 
   const playPrevious = useCallback(() => {
-    setCurrentTrackIndex((prev) => {
-      const prevIndex = (prev - 1 + tracks.length) % tracks.length;
-      loadTrackRef.current(prevIndex);
-      return prev;
-    });
-  }, []);
+    const prevIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
+    loadTrackRef.current(prevIndex);
+  }, [currentTrackIndex]);
 
   // Keep refs in sync with latest functions
   useEffect(() => { playNextRef.current = playNext; }, [playNext]);
