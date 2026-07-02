@@ -167,16 +167,18 @@ const Portfolio: React.FC = () => {
                   <CornerOrnament className="bottom-2 right-2 scale-[-1]" />
 
                   {/* Decorative frame around the painting */}
-                  <div className="-m-4 md:-m-8 lg:-m-12 border border-madhubani-red/10 overflow-hidden mb-10">
-                    <CameraShy mode="blur" blur="20px" sensitivity="balanced">
-                      <img
-                        src={work.src}
-                        alt={work.title}
-                        draggable="false"
-                        onDragStart={(e) => e.preventDefault()}
-                        className="w-full max-h-[80vh] object-contain select-none transition-all duration-700 grayscale hover:grayscale-0"
-                      />
-                    </CameraShy>
+                  <div className="-m-4 md:-m-8 lg:-m-12 mb-10">
+                    <div className="border border-madhubani-red/10 overflow-hidden flex items-center justify-center">
+                      <CameraShy mode="blur" blur="20px" sensitivity="balanced">
+                        <img
+                          src={work.src}
+                          alt={work.title}
+                          draggable="false"
+                          onDragStart={(e) => e.preventDefault()}
+                          className="w-full max-h-[80vh] object-contain block select-none transition-all duration-700 grayscale hover:grayscale-0"
+                        />
+                      </CameraShy>
+                    </div>
                   </div>
 
                   {/* Decorative divider */}
