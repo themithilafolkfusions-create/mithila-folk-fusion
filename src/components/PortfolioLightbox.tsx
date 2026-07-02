@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { CameraShy } from 'camerashy';
@@ -24,6 +24,7 @@ interface Props {
 const PortfolioLightbox: React.FC<Props> = ({ works, selectedIndex, onClose }) => {
   const [currentIndex, setCurrentIndex] = React.useState<number | null>(null);
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setCurrentIndex(selectedIndex);
@@ -133,13 +134,15 @@ const PortfolioLightbox: React.FC<Props> = ({ works, selectedIndex, onClose }) =
             </p>
           </div>
 
-          <Link
-            to="/#commission"
-            onClick={onClose}
-            className="inline-block mt-6 px-6 py-3 border border-madhubani-red text-madhubani-red font-playfair text-sm tracking-wider hover:bg-madhubani-red hover:text-cream transition-all duration-300 text-center"
+          <button
+            onClick={() => {
+              navigate('/?painting=' + encodeURIComponent(work.title));
+              onClose();
+            }}
+            className="inline-block mt-6 w-full px-6 py-3 border border-madhubani-red text-madhubani-red font-playfair text-sm tracking-wider hover:bg-madhubani-red hover:text-cream transition-all duration-300 text-center"
           >
             {t('portfolioLightbox.inquireAbout')}
-          </Link>
+          </button>
         </div>
 
         {/* Navigation arrows */}

@@ -2,16 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { MadhubaniBorderTop } from './MadhubaniBorder';
 import { useTranslation } from 'react-i18next';
-
-interface HeroProps {
-  isPlaying: boolean;
-  togglePlay: () => void;
-}
+import { useAudio } from '../context/AudioContext';
 
 const heroVideos = ['/videos/hero-1.mp4', '/videos/hero-2.mp4', '/videos/hero-3.mp4'];
 
-const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
+const Hero: React.FC = () => {
   const { t } = useTranslation();
+  const { isPlaying } = useAudio();
   const { scrollY } = useScroll();
   const heroLogoScale = useTransform(scrollY, [0, 300], [1, 0.3]);
   const heroLogoOpacity = useTransform(scrollY, [0, 200], [1, 0]);

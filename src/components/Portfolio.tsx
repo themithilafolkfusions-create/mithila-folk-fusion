@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { CameraShy } from 'camerashy';
 import { SectionDivider } from './MadhubaniBorder';
@@ -116,15 +115,13 @@ const Portfolio: React.FC = () => {
   return (
     <>
       <div className="min-h-screen bg-gradient-to-b from-cream to-cream-dark">
-        {/* Back to home */}
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 font-playfair text-sm tracking-wider text-madhubani-red hover:text-madhubani-crimson transition-colors group"
-          >
-            <ArrowLeft size={18} className="transition-transform group-hover:-translate-x-1" />
-            {t('portfolio.backToHome')}
-          </Link>
+        {/* Breadcrumb */}
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 md:pt-24">
+          <nav className="flex items-center gap-2 text-xs font-playfair tracking-wider">
+            <Link to="/" className="text-madhubani-black/40 hover:text-madhubani-red transition-colors">{t('navbar.home')}</Link>
+            <span className="text-madhubani-black/20">/</span>
+            <span className="text-madhubani-red">{t('navbar.portfolio')}</span>
+          </nav>
         </div>
 
         {/* Header */}

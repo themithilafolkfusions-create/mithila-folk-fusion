@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
@@ -12,7 +13,22 @@ const Contact: React.FC = () => {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [searchParams] = useSearchParams();
   const { t } = useTranslation();
+
+  useEffect(() => {
+    const painting = searchParams.get('painting');
+    if (painting) {
+      setFormData(prev => ({
+        ...prev,
+        subject: 'purchase',
+        message: 'I\'m interested in: ' + painting + '\n\n',
+      }));
+      setTimeout(() => {
+        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+      }, 300);
+    }
+  }, [searchParams]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

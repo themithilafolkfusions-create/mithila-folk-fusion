@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Menu, X, Play, Pause } from 'lucide-react';
+import { Menu, X, SkipBack, SkipForward, Volume2, VolumeX } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useAudio } from '../context/AudioContext';
 
 const LANGUAGES = [
   { code: 'en', label: 'EN' },
@@ -23,19 +24,35 @@ const navLinks = [
   { label: 'contact', href: '#contact', scrollTo: 'contact' },
 ];
 
-interface NavbarProps {
-  isPlaying: boolean;
-  togglePlay: () => void;
-}
-
-const Navbar: React.FC<NavbarProps> = ({ isPlaying, togglePlay }) => {
+const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [visible, setVisible] = useState(true);
   const [langOpen, setLangOpen] = useState(false);
+  const [toast, setToast] = useState(false);
   const prevScrollY = useRef(0);
   const langRef = useRef<HTMLDivElement>(null);
   const { t, i18n } = useTranslation();
+  const {
+    isPlaying,
+    currentTrack,
+    trackProgress,
+    togglePlay,
+    playNext,
+    playPrevious,
+    toggleMute,
+    isMuted,
+    volume,
+    setVolume,
+  } = useAudio();
+
+  useEffect(() => {
+    if (currentTrack) {
+      setToast(true);
+      const timer = setTimeout(() => setToast(false), 2500);
+      return () => clearTimeout(timer);
+    }
+  }, [currentTrack?.title]);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -78,17 +95,77 @@ const Navbar: React.FC<NavbarProps> = ({ isPlaying, togglePlay }) => {
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative flex items-center justify-center h-16 md:h-20">
-            {/* Play/Pause button - left side */}
-            <button
-              onClick={togglePlay}
-              className={`absolute left-0 flex flex-col items-center gap-0.5 transition-colors ${
-                isScrolled ? 'text-madhubani-red hover:text-madhubani-crimson' : 'text-cream hover:text-madhubani-yellow'
-              }`}
-              aria-label={isPlaying ? t('navbar.ariaPause') : t('navbar.ariaPlay')}
-            >
-              {isPlaying ? <Pause size={22} /> : <Play size={22} />}
-              <span className="text-[9px] tracking-wider font-medium leading-none">{t('navbar.playLabel')}</span>
-            </button>
+            {/* Music controls - left side */}
+            <div className={`absolute left-0 flex items-center gap-1.5 transition-colors ${
+              isScrolled ? 'text-madhubani-red' : 'text-cream'
+            }`}>
+              {isPlaying ? (
+                <>
+                  <button
+                    onClick={playPrevious}
+                    className="p-1 hover:opacity-80 transition-opacity"
+                    aria-label="Previous track"
+                  >
+                    <SkipBack size={14} />
+                  </button>
+
+                  <button
+                    onClick={togglePlay}
+                    className="relative w-[22px] h-[22px]"
+                    aria-label={t('navbar.ariaPause')}
+                  >
+                    <motion.svg
+                      viewBox="0 0 100 100"
+                      className="w-full h-full"
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+                    >
+                      <circle cx="50" cy="50" r="48" fill="#1a1a1a" stroke="#333" strokeWidth="1" />
+                      <circle cx="50" cy="50" r="16" fill="#8B1A1A" />
+                      <circle cx="50" cy="50" r="12" fill="#C41E3A" />
+                      <circle cx="50" cy="50" r="4" fill="#1a1a1a" />
+                    </motion.svg>
+                    <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 100 100">
+                      <circle
+                        cx="50" cy="50" r="47"
+                        fill="none"
+                        stroke="rgba(232, 163, 23, 0.6)"
+                        strokeWidth="2"
+                        strokeDasharray={`${trackProgress * 295.3} 295.3`}
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  </button>
+
+                  <button
+                    onClick={playNext}
+                    className="p-1 hover:opacity-80 transition-opacity"
+                    aria-label="Next track"
+                  >
+                    <SkipForward size={14} />
+                  </button>
+
+                  <button
+                    onClick={toggleMute}
+                    className="p-1 hover:opacity-80 transition-opacity"
+                    aria-label={isMuted ? t('navbar.ariaUnmute') : t('navbar.ariaMute')}
+                  >
+                    {isMuted ? <VolumeX size={14} /> : <Volume2 size={14} />}
+                  </button>
+                </>
+              ) : (
+                <button
+                  onClick={togglePlay}
+                  className="flex flex-col items-center gap-0.5 hover:opacity-80 transition-opacity"
+                  aria-label={t('navbar.ariaPlay')}
+                >
+                  <svg width="22" height="22" viewBox="0 0 100 100" className="pointer-events-none">
+                    <polygon points="35,20 80,50 35,80" fill="currentColor" />
+                  </svg>
+                  <span className="text-[9px] tracking-wider font-medium leading-none">{t('navbar.playLabel')}</span>
+                </button>
+              )}
+            </div>
 
             {/* Centered Logo - visible only on scroll */}
             <a href="#home" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className={`flex items-center group transition-all duration-500 ${isScrolled ? 'opacity-100' : 'opacity-0'}`}>
@@ -101,7 +178,6 @@ const Navbar: React.FC<NavbarProps> = ({ isPlaying, togglePlay }) => {
 
             {/* Language Toggle + Menu - right side */}
             <div className="absolute right-0 flex items-center gap-2">
-              {/* Language dropdown */}
               <div className="hidden md:block relative" ref={langRef}>
                 <button
                   onClick={() => setLangOpen(!langOpen)}
@@ -145,6 +221,21 @@ const Navbar: React.FC<NavbarProps> = ({ isPlaying, togglePlay }) => {
         </div>
       </motion.nav>
 
+      {/* Track title toast - below navbar */}
+      <AnimatePresence>
+        {toast && isPlaying && currentTrack && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="fixed top-20 left-4 z-40 bg-cream/95 backdrop-blur-sm border border-madhubani-red/20 rounded-lg px-3 py-2 shadow-lg max-w-[200px]"
+          >
+            <p className="text-[9px] text-madhubani-black/40 font-mono uppercase tracking-wider">Now Playing</p>
+            <p className="text-xs font-playfair text-madhubani-red truncate">{currentTrack.title}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Mobile menu */}
       <AnimatePresence>
         {isMobileOpen && (
@@ -161,7 +252,6 @@ const Navbar: React.FC<NavbarProps> = ({ isPlaying, togglePlay }) => {
                 <circle cx="30" cy="30" r="5" fill="#E8A317"/>
               </svg>
 
-              {/* Language toggle in mobile */}
               <div className="flex gap-2 mb-2">
                 {LANGUAGES.map((lang) => (
                   <button

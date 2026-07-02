@@ -1,5 +1,4 @@
-import React, { useRef, useState } from 'react';
-import Navbar from './Navbar';
+import React from 'react';
 import Hero from './Hero';
 import About from './About';
 import Gallery from './Gallery';
@@ -12,27 +11,9 @@ import Contact from './Contact';
 import Footer from './Footer';
 
 const Home: React.FC = () => {
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  const togglePlay = () => {
-    if (!audioRef.current) return;
-    if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      audioRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
-    }
-  };
-
   return (
     <>
-      <audio ref={audioRef} loop preload="auto">
-        <source src="/audio/bg-music.mp3" type="audio/mpeg" />
-      </audio>
-
-      <Navbar isPlaying={isPlaying} togglePlay={togglePlay} />
-      <Hero isPlaying={isPlaying} togglePlay={togglePlay} />
+      <Hero />
       <About />
       <Gallery />
       <ArtForm />
@@ -62,7 +43,7 @@ const BackToTop: React.FC = () => {
   return (
     <button
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      className="fixed bottom-24 right-6 z-40 w-12 h-12 bg-madhubani-red text-cream flex items-center justify-center hover:bg-madhubani-crimson transition-colors shadow-lg border border-madhubani-yellow/30"
+      className="fixed bottom-20 right-6 z-40 w-12 h-12 bg-madhubani-red text-cream flex items-center justify-center hover:bg-madhubani-crimson transition-colors shadow-lg border border-madhubani-yellow/30"
       aria-label="Back to top"
     >
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2">
