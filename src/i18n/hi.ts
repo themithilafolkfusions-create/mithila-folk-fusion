@@ -93,6 +93,7 @@ const hi: Record<string, any> = {
     soldLabel: 'बिक चुकी',
     inquireAbout: 'इस कृति के बारे में पूछताछ करें',
     medium: 'माध्यम:',
+    backToArt: '← कलाकृति पर वापस जाएँ',
     catEnvironment: 'पर्यावरण और पहचान',
     catSpirituality: 'आध्यात्मिकता',
     catMythology: 'पौराणिक कथाएँ और लोककथाएँ',

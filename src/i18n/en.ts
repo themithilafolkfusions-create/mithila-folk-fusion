@@ -102,6 +102,7 @@ const en = {
     soldLabel: 'Sold',
     inquireAbout: 'Inquire About This Piece',
     medium: 'Medium:',
+    backToArt: '← Back to Artwork',
     // Category names
     catEnvironment: 'Environment & Identity',
     catSpirituality: 'Spirituality',

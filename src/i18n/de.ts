@@ -93,6 +93,7 @@ const de: Record<string, any> = {
     soldLabel: 'Verkauft',
     inquireAbout: 'Anfrage zu diesem Stück',
     medium: 'Medium:',
+    backToArt: '← Zurück zum Kunstwerk',
     catEnvironment: 'Umwelt & Identität',
     catSpirituality: 'Spiritualität',
     catMythology: 'Mythologie & Folklore',

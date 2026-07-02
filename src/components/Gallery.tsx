@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { X, ZoomIn } from 'lucide-react';
+import { X, ZoomIn, Send, ArrowLeft as ArrowLeftIcon } from 'lucide-react';
 import { CameraShy } from 'camerashy';
 import { SectionDivider } from './MadhubaniBorder';
 
@@ -70,6 +70,9 @@ const CornerOrnament: React.FC<{ className: string }> = ({ className }) => (
 const Gallery: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedArt, setSelectedArt] = useState<typeof artworks[0] | null>(null);
+  const [showInquiryForm, setShowInquiryForm] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
+  const [submitted, setSubmitted] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -419,27 +422,147 @@ const Gallery: React.FC = () => {
                   className="w-full h-64 md:h-full object-cover"
                 />
                 </CameraShy>
-                <div className="p-6 md:p-8 flex flex-col justify-center">
-                  <span className="text-madhubani-magenta font-cormorant text-sm tracking-[0.3em] uppercase">
-                    {selectedArt.category}
-                  </span>
-                  <h3 className="font-cinzel text-2xl md:text-3xl text-madhubani-black mt-2 mb-4">
-                    {t(`gallery.art${selectedArt.id}Title`)}
-                  </h3>
-                  <div className="w-20 h-0.5 bg-madhubani-red mb-4" />
-                  <p className="font-cormorant text-lg text-madhubani-black/70 leading-relaxed mb-4">
-                    {t(`gallery.art${selectedArt.id}Desc`)}
-                  </p>
-                  <p className="font-playfair text-sm text-madhubani-teal">
-                    {t('gallery.medium')} {selectedArt.medium}
-                  </p>
-                  <a
-                    href="#commission"
-                    onClick={(e) => { e.preventDefault(); setSelectedArt(null); setTimeout(() => document.getElementById('commission')?.scrollIntoView({ behavior: 'smooth' }), 100); }}
-                    className="mt-6 inline-block px-6 py-2 bg-madhubani-red text-cream font-playfair text-sm tracking-wider text-center hover:bg-madhubani-crimson transition-colors"
-                  >
-                    {t('gallery.inquireAbout')}
-                  </a>
+                <div className="p-6 md:p-8 flex flex-col overflow-y-auto max-h-[60vh] md:max-h-[90vh]">
+                  {showInquiryForm ? (
+                    <>
+                      <button
+                        onClick={() => { setShowInquiryForm(false); setSubmitted(false); }}
+                        className="inline-flex items-center gap-1.5 text-madhubani-red/60 hover:text-madhubani-red transition-colors mb-4 font-playfair text-xs tracking-wider"
+                      >
+                        <ArrowLeftIcon size={14} />
+                        {t('gallery.backToArt')}
+                      </button>
+
+                      <h4 className="font-cinzel text-lg text-madhubani-black mb-4">
+                        {t('contact.title')} <span className="text-madhubani-magenta">{t('contact.titleHighlight')}</span>
+                      </h4>
+
+                      <div className="space-y-4">
+                        <div>
+                          <label className="font-playfair text-xs text-madhubani-black/60 uppercase tracking-wider block mb-1.5">
+                            {t('contact.formName')}
+                          </label>
+                          <input
+                            type="text"
+                            value={formData.name}
+                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                            required
+                            className="w-full px-3 py-3 bg-cream-light border border-madhubani-red/20 font-cormorant text-base text-madhubani-black focus:outline-none focus:border-madhubani-red transition-colors"
+                            placeholder={t('contact.formNamePlaceholder')}
+                          />
+                        </div>
+
+                        <div>
+                          <label className="font-playfair text-xs text-madhubani-black/60 uppercase tracking-wider block mb-1.5">
+                            {t('contact.formEmail')}
+                          </label>
+                          <input
+                            type="email"
+                            value={formData.email}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                            required
+                            className="w-full px-3 py-3 bg-cream-light border border-madhubani-red/20 font-cormorant text-base text-madhubani-black focus:outline-none focus:border-madhubani-red transition-colors"
+                            placeholder={t('contact.formEmailPlaceholder')}
+                          />
+                        </div>
+
+                        <div>
+                          <label className="font-playfair text-xs text-madhubani-black/60 uppercase tracking-wider block mb-1.5">
+                            {t('contact.formSubject')}
+                          </label>
+                          <select
+                            value={formData.subject}
+                            onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                            required
+                            className="w-full px-3 py-3 bg-cream-light border border-madhubani-red/20 font-cormorant text-base text-madhubani-black focus:outline-none focus:border-madhubani-red transition-colors"
+                          >
+                            <option value="">{t('contact.formSubjectPlaceholder')}</option>
+                            <option value="commission">{t('contact.subCommission')}</option>
+                            <option value="purchase">{t('contact.subPurchase')}</option>
+                            <option value="workshop">{t('contact.subWorkshop')}</option>
+                            <option value="exhibition">{t('contact.subExhibition')}</option>
+                            <option value="collaboration">{t('contact.subCollaboration')}</option>
+                            <option value="other">{t('contact.subOther')}</option>
+                          </select>
+                        </div>
+
+                        <div>
+                          <label className="font-playfair text-xs text-madhubani-black/60 uppercase tracking-wider block mb-1.5">
+                            {t('contact.formMessage')}
+                          </label>
+                          <textarea
+                            value={formData.message}
+                            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                            required
+                            rows={4}
+                            className="w-full px-3 py-3 bg-cream-light border border-madhubani-red/20 font-cormorant text-base text-madhubani-black focus:outline-none focus:border-madhubani-red transition-colors resize-none"
+                            placeholder={t('contact.formMessagePlaceholder')}
+                          />
+                        </div>
+
+                        {submitted ? (
+                          <motion.p
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="text-center font-cormorant text-madhubani-teal text-lg"
+                          >
+                            {t('contact.formThankYou')}
+                          </motion.p>
+                        ) : (
+                          <button
+                            onClick={(e) => {
+                              e.preventDefault();
+                              const subjectLine = 'Mithila Folk Fusions - ' + formData.subject;
+                              const body = 'Name: ' + formData.name + '\n' +
+                                'Email: ' + formData.email + '\n' +
+                                'Subject: ' + formData.subject + '\n' +
+                                'Artwork: ' + t(`gallery.art${selectedArt.id}Title`) + '\n\n' +
+                                formData.message + '\n\n---\nSent from Mithila Folk Fusions';
+                              window.location.href = 'mailto:Mithilafolkfusions@gmail.com?subject=' +
+                                encodeURIComponent(subjectLine) + '&body=' + encodeURIComponent(body);
+                              setSubmitted(true);
+                              setTimeout(() => { setShowInquiryForm(false); setSubmitted(false); }, 3000);
+                            }}
+                            className="w-full py-3 bg-madhubani-red text-cream font-playfair text-sm tracking-wider uppercase hover:bg-madhubani-crimson transition-colors flex items-center justify-center gap-2 group"
+                          >
+                            <span>{t('contact.formSubmit')}</span>
+                            <Send size={14} className="group-hover:translate-x-1 transition-transform" />
+                          </button>
+                        )}
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <span className="text-madhubani-magenta font-cormorant text-sm tracking-[0.3em] uppercase">
+                        {selectedArt.category}
+                      </span>
+                      <h3 className="font-cinzel text-2xl md:text-3xl text-madhubani-black mt-2 mb-4">
+                        {t(`gallery.art${selectedArt.id}Title`)}
+                      </h3>
+                      <div className="w-20 h-0.5 bg-madhubani-red mb-4" />
+                      <p className="font-cormorant text-lg text-madhubani-black/70 leading-relaxed mb-4">
+                        {t(`gallery.art${selectedArt.id}Desc`)}
+                      </p>
+                      <p className="font-playfair text-sm text-madhubani-teal">
+                        {t('gallery.medium')} {selectedArt.medium}
+                      </p>
+                      <button
+                        onClick={() => {
+                          setFormData({
+                            name: '',
+                            email: '',
+                            subject: 'purchase',
+                            message: 'I\'m interested in: ' + t(`gallery.art${selectedArt.id}Title`) + '\n\n',
+                          });
+                          setSubmitted(false);
+                          setShowInquiryForm(true);
+                        }}
+                        className="mt-6 w-full px-6 py-2 bg-madhubani-red text-cream font-playfair text-sm tracking-wider text-center hover:bg-madhubani-crimson transition-colors"
+                      >
+                        {t('gallery.inquireAbout')}
+                      </button>
+                    </>
+                  )}
                 </div>
               </div>
             </motion.div>

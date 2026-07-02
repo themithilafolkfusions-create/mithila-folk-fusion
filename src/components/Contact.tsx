@@ -32,6 +32,13 @@ const Contact: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const subjectLine = 'Mithila Folk Fusions - ' + formData.subject;
+    const body = 'Name: ' + formData.name + '\n' +
+      'Email: ' + formData.email + '\n' +
+      'Subject: ' + formData.subject + '\n\n' +
+      formData.message + '\n\n---\nSent from Mithila Folk Fusions';
+    window.location.href = 'mailto:Mithilafolkfusions@gmail.com?subject=' +
+      encodeURIComponent(subjectLine) + '&body=' + encodeURIComponent(body);
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);
     setFormData({ name: '', email: '', subject: '', message: '' });

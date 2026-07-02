@@ -93,6 +93,7 @@ const nl: Record<string, any> = {
     soldLabel: 'Verkocht',
     inquireAbout: 'Informeer Naar Dit Werk',
     medium: 'Medium:',
+    backToArt: '← Terug naar Kunstwerk',
     catEnvironment: 'Milieu & Identiteit',
     catSpirituality: 'Spiritualiteit',
     catMythology: 'Mythologie & Folklore',
