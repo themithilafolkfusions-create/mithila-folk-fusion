@@ -5,6 +5,11 @@ import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { SectionDivider } from './MadhubaniBorder';
 
+const sanitize = (str: string) =>
+  str.replace(/<[^>]*>/g, '').replace(/javascript:/gi, '').replace(/data:/gi, '').trim();
+
+const KNOWN_PAINTINGS = ['Resonance', 'Bodhi Udaya', 'Mythocircle', 'Echoes Beneath the Branches', 'One Earth Many Voices', 'Echoes of Exile', 'Prem Vatika', 'The Invisible Pull', 'Aarambh', 'Manthan'];
+
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -13,12 +18,14 @@ const Contact: React.FC = () => {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [debounced, setDebounced] = useState(false);
+  const [honeypot, setHoneypot] = useState('');
   const [searchParams] = useSearchParams();
   const { t } = useTranslation();
 
   useEffect(() => {
     const painting = searchParams.get('painting');
-    if (painting) {
+    if (painting && KNOWN_PAINTINGS.some(p => p.toLowerCase() === painting.toLowerCase())) {
       setFormData(prev => ({
         ...prev,
         subject: 'purchase',
@@ -32,18 +39,21 @@ const Contact: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const subjectLine = 'Mithila Folk Fusions - ' + formData.subject;
-    const body = 'Name: ' + formData.name + '\n' +
-      'Email: ' + formData.email + '\n' +
-      'Subject: ' + formData.subject + '\n\n' +
-      formData.message + '\n\n---\nSent from Mithila Folk Fusions';
+    if (debounced || honeypot) return;
+    setDebounced(true);
+    const subjectLine = 'Mithila Folk Fusions - ' + sanitize(formData.subject);
+    const body = 'Name: ' + sanitize(formData.name) + '\n' +
+      'Email: ' + sanitize(formData.email) + '\n' +
+      'Subject: ' + sanitize(formData.subject) + '\n\n' +
+      sanitize(formData.message) + '\n\n---\nSent from Mithila Folk Fusions';
     const gmailUrl = 'https://mail.google.com/mail/u/0/?tf=cm' +
       '&to=' + encodeURIComponent('Mithilafolkfusions@gmail.com') +
       '&su=' + encodeURIComponent(subjectLine) +
       '&body=' + encodeURIComponent(body);
-    window.open(gmailUrl, '_blank');
+    window.open(gmailUrl, '_blank', 'noopener,noreferrer');
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);
+    setTimeout(() => setDebounced(false), 5000);
     setFormData({ name: '', email: '', subject: '', message: '' });
   };
 
@@ -142,6 +152,19 @@ const Contact: React.FC = () => {
               <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-madhubani-red translate-x-0.5 translate-y-0.5" />
 
               <div className="space-y-5">
+                {/* Honeypot - hidden from humans, bots will fill it */}
+                <div className="absolute opacity-0 pointer-events-none" aria-hidden="true">
+                  <label htmlFor="website">Website</label>
+                  <input
+                    id="website"
+                    type="text"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </div>
+
                 <div>
                   <label className="font-playfair text-sm text-madhubani-black/60 uppercase tracking-wider block mb-2">
                     {t('contact.formName')}
@@ -151,6 +174,7 @@ const Contact: React.FC = () => {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
+                    maxLength={100}
                     className="w-full px-4 py-4 bg-cream-light border border-madhubani-red/20 font-cormorant text-lg text-madhubani-black focus:outline-none focus:border-madhubani-red transition-colors"
                     placeholder={t('contact.formNamePlaceholder')}
                   />
@@ -165,6 +189,7 @@ const Contact: React.FC = () => {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     required
+                    maxLength={254}
                     className="w-full px-4 py-4 bg-cream-light border border-madhubani-red/20 font-cormorant text-lg text-madhubani-black focus:outline-none focus:border-madhubani-red transition-colors"
                     placeholder={t('contact.formEmailPlaceholder')}
                   />
@@ -199,6 +224,7 @@ const Contact: React.FC = () => {
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     required
                     rows={5}
+                    maxLength={5000}
                     className="w-full px-4 py-4 bg-cream-light border border-madhubani-red/20 font-cormorant text-lg text-madhubani-black focus:outline-none focus:border-madhubani-red transition-colors resize-none"
                     placeholder={t('contact.formMessagePlaceholder')}
                   />

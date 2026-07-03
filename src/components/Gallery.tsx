@@ -6,6 +6,9 @@ import { X, ZoomIn, Send, ArrowLeft as ArrowLeftIcon } from 'lucide-react';
 import { CameraShy } from 'camerashy';
 import { SectionDivider } from './MadhubaniBorder';
 
+const sanitize = (str: string) =>
+  str.replace(/<[^>]*>/g, '').replace(/javascript:/gi, '').replace(/data:/gi, '').trim();
+
 const artworks = [
   {
     id: 1,
@@ -73,6 +76,8 @@ const Gallery: React.FC = () => {
   const [showInquiryForm, setShowInquiryForm] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [debounced, setDebounced] = useState(false);
+  const [honeypot, setHoneypot] = useState('');
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -438,6 +443,19 @@ const Gallery: React.FC = () => {
                       </h4>
 
                       <div className="space-y-4">
+                        {/* Honeypot */}
+                        <div className="absolute opacity-0 pointer-events-none" aria-hidden="true">
+                          <label htmlFor="gallery-website">Website</label>
+                          <input
+                            id="gallery-website"
+                            type="text"
+                            value={honeypot}
+                            onChange={(e) => setHoneypot(e.target.value)}
+                            tabIndex={-1}
+                            autoComplete="off"
+                          />
+                        </div>
+
                         <div>
                           <label className="font-playfair text-xs text-madhubani-black/60 uppercase tracking-wider block mb-1.5">
                             {t('contact.formName')}
@@ -447,6 +465,7 @@ const Gallery: React.FC = () => {
                             value={formData.name}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                             required
+                            maxLength={100}
                             className="w-full px-3 py-3 bg-cream-light border border-madhubani-red/20 font-cormorant text-base text-madhubani-black focus:outline-none focus:border-madhubani-red transition-colors"
                             placeholder={t('contact.formNamePlaceholder')}
                           />
@@ -461,6 +480,7 @@ const Gallery: React.FC = () => {
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                             required
+                            maxLength={254}
                             className="w-full px-3 py-3 bg-cream-light border border-madhubani-red/20 font-cormorant text-base text-madhubani-black focus:outline-none focus:border-madhubani-red transition-colors"
                             placeholder={t('contact.formEmailPlaceholder')}
                           />
@@ -495,6 +515,7 @@ const Gallery: React.FC = () => {
                             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                             required
                             rows={4}
+                            maxLength={5000}
                             className="w-full px-3 py-3 bg-cream-light border border-madhubani-red/20 font-cormorant text-base text-madhubani-black focus:outline-none focus:border-madhubani-red transition-colors resize-none"
                             placeholder={t('contact.formMessagePlaceholder')}
                           />
@@ -513,19 +534,22 @@ const Gallery: React.FC = () => {
                             <button
                               onClick={(e) => {
                                 e.preventDefault();
-                                const subjectLine = 'Mithila Folk Fusions - ' + formData.subject;
-                                const body = 'Name: ' + formData.name + '\n' +
-                                  'Email: ' + formData.email + '\n' +
-                                  'Subject: ' + formData.subject + '\n' +
+                                if (debounced || honeypot) return;
+                                setDebounced(true);
+                                const subjectLine = 'Mithila Folk Fusions - ' + sanitize(formData.subject);
+                                const body = 'Name: ' + sanitize(formData.name) + '\n' +
+                                  'Email: ' + sanitize(formData.email) + '\n' +
+                                  'Subject: ' + sanitize(formData.subject) + '\n' +
                                   'Artwork: ' + t(`gallery.art${selectedArt.id}Title`) + '\n\n' +
-                                  formData.message + '\n\n---\nSent from Mithila Folk Fusions';
+                                  sanitize(formData.message) + '\n\n---\nSent from Mithila Folk Fusions';
                                 const gmailUrl = 'https://mail.google.com/mail/u/0/?tf=cm' +
                                   '&to=' + encodeURIComponent('Mithilafolkfusions@gmail.com') +
                                   '&su=' + encodeURIComponent(subjectLine) +
                                   '&body=' + encodeURIComponent(body);
-                                window.open(gmailUrl, '_blank');
+                                window.open(gmailUrl, '_blank', 'noopener,noreferrer');
                                 setSubmitted(true);
                                 setTimeout(() => { setShowInquiryForm(false); setSubmitted(false); }, 3000);
+                                setTimeout(() => setDebounced(false), 5000);
                               }}
                               className="w-full py-3 bg-madhubani-red text-cream font-playfair text-sm tracking-wider uppercase hover:bg-madhubani-crimson transition-colors flex items-center justify-center gap-2 group"
                             >
