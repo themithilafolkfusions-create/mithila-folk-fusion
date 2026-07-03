@@ -37,7 +37,7 @@ const Contact: React.FC = () => {
       'Email: ' + formData.email + '\n' +
       'Subject: ' + formData.subject + '\n\n' +
       formData.message + '\n\n---\nSent from Mithila Folk Fusions';
-    const gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1' +
+    const gmailUrl = 'https://mail.google.com/mail/u/0/?tf=cm' +
       '&to=' + encodeURIComponent('Mithilafolkfusions@gmail.com') +
       '&su=' + encodeURIComponent(subjectLine) +
       '&body=' + encodeURIComponent(body);
@@ -220,6 +220,18 @@ const Contact: React.FC = () => {
                   >
                     {t('contact.formThankYou')}
                   </motion.p>
+                )}
+
+                {!submitted && (
+                  <p className="text-center font-cormorant text-sm text-madhubani-black/40">
+                    or email us directly at{' '}
+                    <a
+                      href={`mailto:Mithilafolkfusions@gmail.com?subject=${encodeURIComponent('Mithila Folk Fusions - ')}&body=${encodeURIComponent('Name: \nEmail: \nSubject: \n\nYour message here\n\n---\nSent from Mithila Folk Fusions')}`}
+                      className="text-madhubani-red underline hover:text-madhubani-crimson transition-colors"
+                    >
+                      Mithilafolkfusions@gmail.com
+                    </a>
+                  </p>
                 )}
               </div>
             </form>

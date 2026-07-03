@@ -509,28 +509,39 @@ const Gallery: React.FC = () => {
                             {t('contact.formThankYou')}
                           </motion.p>
                         ) : (
-                          <button
-                            onClick={(e) => {
-                              e.preventDefault();
-                              const subjectLine = 'Mithila Folk Fusions - ' + formData.subject;
-                              const body = 'Name: ' + formData.name + '\n' +
-                                'Email: ' + formData.email + '\n' +
-                                'Subject: ' + formData.subject + '\n' +
-                                'Artwork: ' + t(`gallery.art${selectedArt.id}Title`) + '\n\n' +
-                                formData.message + '\n\n---\nSent from Mithila Folk Fusions';
-                              const gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1' +
-                                '&to=' + encodeURIComponent('Mithilafolkfusions@gmail.com') +
-                                '&su=' + encodeURIComponent(subjectLine) +
-                                '&body=' + encodeURIComponent(body);
-                              window.open(gmailUrl, '_blank');
-                              setSubmitted(true);
-                              setTimeout(() => { setShowInquiryForm(false); setSubmitted(false); }, 3000);
-                            }}
-                            className="w-full py-3 bg-madhubani-red text-cream font-playfair text-sm tracking-wider uppercase hover:bg-madhubani-crimson transition-colors flex items-center justify-center gap-2 group"
-                          >
-                            <span>{t('contact.formSubmit')}</span>
-                            <Send size={14} className="group-hover:translate-x-1 transition-transform" />
-                          </button>
+                          <>
+                            <button
+                              onClick={(e) => {
+                                e.preventDefault();
+                                const subjectLine = 'Mithila Folk Fusions - ' + formData.subject;
+                                const body = 'Name: ' + formData.name + '\n' +
+                                  'Email: ' + formData.email + '\n' +
+                                  'Subject: ' + formData.subject + '\n' +
+                                  'Artwork: ' + t(`gallery.art${selectedArt.id}Title`) + '\n\n' +
+                                  formData.message + '\n\n---\nSent from Mithila Folk Fusions';
+                                const gmailUrl = 'https://mail.google.com/mail/u/0/?tf=cm' +
+                                  '&to=' + encodeURIComponent('Mithilafolkfusions@gmail.com') +
+                                  '&su=' + encodeURIComponent(subjectLine) +
+                                  '&body=' + encodeURIComponent(body);
+                                window.open(gmailUrl, '_blank');
+                                setSubmitted(true);
+                                setTimeout(() => { setShowInquiryForm(false); setSubmitted(false); }, 3000);
+                              }}
+                              className="w-full py-3 bg-madhubani-red text-cream font-playfair text-sm tracking-wider uppercase hover:bg-madhubani-crimson transition-colors flex items-center justify-center gap-2 group"
+                            >
+                              <span>{t('contact.formSubmit')}</span>
+                              <Send size={14} className="group-hover:translate-x-1 transition-transform" />
+                            </button>
+                            <p className="text-center font-cormorant text-xs text-madhubani-black/40 mt-2">
+                              or email directly at{' '}
+                              <a
+                                href={`mailto:Mithilafolkfusions@gmail.com?subject=${encodeURIComponent('Mithila Folk Fusions - ')}&body=${encodeURIComponent('Name: \nEmail: \nSubject: \nArtwork: ' + t(`gallery.art${selectedArt.id}Title`) + '\n\nYour message here\n\n---\nSent from Mithila Folk Fusions')}`}
+                                className="text-madhubani-red underline hover:text-madhubani-crimson transition-colors"
+                              >
+                                Mithilafolkfusions@gmail.com
+                              </a>
+                            </p>
+                          </>
                         )}
                       </div>
                     </>
