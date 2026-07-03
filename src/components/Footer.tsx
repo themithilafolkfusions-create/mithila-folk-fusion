@@ -1,10 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { MadhubaniBorderBottom } from './MadhubaniBorder';
 import { useTranslation } from 'react-i18next';
 
 const Footer: React.FC = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleSectionLink = (sectionId: string) => {
+    if (location.pathname === '/') {
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate('/');
+      setTimeout(() => {
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  };
+
   return (
     <footer className="relative bg-madhubani-black text-cream overflow-hidden">
       <MadhubaniBorderBottom />
@@ -50,7 +64,7 @@ const Footer: React.FC = () => {
                 ) : (
                   <button
                     key={link.label}
-                    onClick={() => document.getElementById(link.target)?.scrollIntoView({ behavior: 'smooth' })}
+                    onClick={() => handleSectionLink(link.target)}
                     className="font-cormorant text-cream/50 hover:text-madhubani-yellow transition-colors py-1 text-left"
                   >
                     {link.label}
@@ -96,6 +110,26 @@ const Footer: React.FC = () => {
               </a>
             </div>
           </div>
+        </div>
+
+        {/* Legal Links */}
+        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-cormorant text-cream/30 mt-8">
+          {[
+            { label: t('footer.privacy'), to: '/privacy' },
+            { label: t('footer.terms'), to: '/terms' },
+            { label: t('footer.accessibility'), to: '/accessibility' },
+            { label: t('footer.dmca'), to: '/dmca' },
+            { label: t('footer.refundPolicy'), to: '/refund-policy' },
+            { label: t('footer.shippingPolicy'), to: '/shipping' },
+          ].map((link) => (
+            <Link
+              key={link.label}
+              to={link.to}
+              className="hover:text-madhubani-yellow transition-colors"
+            >
+              {link.label}
+            </Link>
+          ))}
         </div>
 
         {/* Divider */}
