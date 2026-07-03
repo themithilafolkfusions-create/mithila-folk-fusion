@@ -9,7 +9,6 @@ import { useTranslation } from 'react-i18next';
 const motifs = [
   {
     name: 'Peacock',
-    description: 'Symbol of love, beauty, and divine grace. The peacock represents Lord Krishna and the cycle of time.',
     svg: (
       <svg viewBox="0 0 80 80" className="w-16 h-16">
         <circle cx="40" cy="40" r="35" fill="none" stroke="#006B6B" strokeWidth="1.5"/>
@@ -31,7 +30,6 @@ const motifs = [
   },
   {
     name: 'Lotus',
-    description: 'The sacred lotus symbolizes purity, enlightenment, and divine beauty rising from muddy waters.',
     svg: (
       <svg viewBox="0 0 80 80" className="w-16 h-16">
         <circle cx="40" cy="40" r="35" fill="none" stroke="#C41E7F" strokeWidth="1.5"/>
@@ -47,7 +45,6 @@ const motifs = [
   },
   {
     name: 'Fish',
-    description: 'Twin fish represent fertility, prosperity, and good fortune. They are essential motifs in wedding ceremonies.',
     svg: (
       <svg viewBox="0 0 80 80" className="w-16 h-16">
         <circle cx="40" cy="40" r="35" fill="none" stroke="#E8A317" strokeWidth="1.5"/>
@@ -62,7 +59,6 @@ const motifs = [
   },
   {
     name: 'Sun & Moon',
-    description: 'Celestial bodies represent the cosmic balance, divine energy, and the eternal rhythm of the universe.',
     svg: (
       <svg viewBox="0 0 80 80" className="w-16 h-16">
         <circle cx="40" cy="40" r="35" fill="none" stroke="#D2691E" strokeWidth="1.5"/>
@@ -78,7 +74,6 @@ const motifs = [
   },
   {
     name: 'Tree',
-    description: 'The Kohbar tree symbolizes the continuity of life, fertility, and the sacred bond of marriage.',
     svg: (
       <svg viewBox="0 0 80 80" className="w-16 h-16">
         <circle cx="40" cy="40" r="35" fill="none" stroke="#2E5A1C" strokeWidth="1.5"/>
@@ -100,7 +95,6 @@ const motifs = [
   },
   {
     name: 'Mandala',
-    description: 'Circular sacred geometry representing wholeness, harmony, and the infinite nature of the cosmos.',
     svg: (
       <svg viewBox="0 0 80 80" className="w-16 h-16">
         <circle cx="40" cy="40" r="35" fill="none" stroke="#8B1A1A" strokeWidth="1.5"/>
@@ -125,9 +119,9 @@ const ArtOfMithila: React.FC = () => {
         {/* Breadcrumb */}
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 md:pt-24">
           <nav className="flex items-center gap-2 text-xs font-playfair tracking-wider">
-            <Link to="/" className="text-cream/40 hover:text-madhubani-yellow transition-colors">{t('navbar.home')}</Link>
-            <span className="text-cream/20">/</span>
-            <span className="text-madhubani-yellow">{t('navbar.artOfMithila')}</span>
+            <Link to="/" className="text-madhubani-black/40 hover:text-madhubani-red transition-colors">{t('navbar.home')}</Link>
+            <span className="text-madhubani-black/20">/</span>
+            <span className="text-madhubani-red">{t('navbar.artOfMithila')}</span>
           </nav>
         </div>
 
@@ -466,9 +460,9 @@ const ArtOfMithila: React.FC = () => {
               viewport={{ once: true }}
               className="text-center mb-16"
             >
-              <span className="text-madhubani-teal font-cormorant text-sm tracking-[0.3em] uppercase">Symbolism</span>
+              <span className="text-madhubani-teal font-cormorant text-sm tracking-[0.3em] uppercase">{t('artOfMithila.motifsLabel')}</span>
               <h2 className="font-cinzel text-3xl md:text-4xl text-cream mt-2 mb-4">
-                Sacred <span className="text-madhubani-magenta">Motifs</span>
+                {t('artOfMithila.motifsTitle1')}<span className="text-madhubani-magenta">{t('artOfMithila.motifsHighlight')}</span>
               </h2>
               <div className="flex items-center justify-center gap-4 mb-4">
                 <div className="w-12 h-px bg-madhubani-red" />
@@ -479,10 +473,10 @@ const ArtOfMithila: React.FC = () => {
                 <div className="w-12 h-px bg-madhubani-red" />
               </div>
               <p className="font-cormorant text-lg text-cream/50 max-w-2xl mx-auto">
-                The symbols that carry centuries of meaning, passed down through generations of women artists
+                {t('artOfMithila.motifsDesc')}
               </p>
             </motion.div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8 justify-items-center">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8">
               {motifs.map((motif, i) => (
                 <motion.div
                   key={motif.name}
@@ -490,7 +484,7 @@ const ArtOfMithila: React.FC = () => {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="group text-center p-6 border border-cream/10 hover:border-madhubani-yellow/40 transition-all duration-300 cursor-default"
+                  className="group text-center p-6 border border-cream/10 hover:border-madhubani-yellow/40 transition-all duration-300 cursor-default overflow-hidden break-words"
                 >
                   <div className="flex justify-center mb-3 group-hover:scale-110 transition-transform duration-300">
                     {motif.svg}

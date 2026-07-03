@@ -187,9 +187,10 @@ const en = {
     hl5Label: 'India & Nepal',
     hl5Sub: 'Shared Mithila heritage',
     // Motifs section
-    motifsTitle: 'Sacred',
+    motifsLabel: 'Symbolism',
+    motifsTitle1: 'Sacred ',
     motifsHighlight: 'Motifs',
-    motifsSub: 'The symbols that carry centuries of meaning',
+    motifsDesc: 'The symbols that carry centuries of meaning, passed down through generations of women artists',
     // Motif names
     motifPeacock: 'Peacock',
     motifPeacockDesc: 'Symbol of love, beauty, and divine grace. The peacock represents Lord Krishna and the cycle of time.',
@@ -273,7 +274,23 @@ const en = {
     styleKohbar: 'Kohbar',
     styleKohbarSub: 'The Wedding',
     styleKohbarDesc: 'Kohbar is the wedding art of Mithila, created on the walls of the nuptial chamber. It is the most symbolic style, filled with images of bamboo groves (symbolizing longevity), banana plants (fertility), fish (prosperity), lotus (purity), and the sun and moon (everlasting union). Every element carries a specific blessing for the couple.',
-    // Motifs (reuse from artForm where possible)
+    // Motifs
+    motifsLabel: 'Symbolism',
+    motifsTitle1: 'Sacred ',
+    motifsHighlight: 'Motifs',
+    motifsDesc: 'The symbols that carry centuries of meaning, passed down through generations of women artists',
+    motifPeacock: 'Peacock',
+    motifPeacockDesc: 'Symbol of love, beauty, and divine grace. The peacock represents Lord Krishna and the cycle of time.',
+    motifLotus: 'Lotus',
+    motifLotusDesc: 'The sacred lotus symbolizes purity, enlightenment, and divine beauty rising from muddy waters.',
+    motifFish: 'Fish',
+    motifFishDesc: 'Twin fish represent fertility, prosperity, and good fortune. They are essential motifs in wedding ceremonies.',
+    motifSunMoon: 'Sun & Moon',
+    motifSunMoonDesc: 'Celestial bodies represent the cosmic balance, divine energy, and the eternal rhythm of the universe.',
+    motifTree: 'Tree of Life',
+    motifTreeDesc: 'The Kohbar tree symbolizes the continuity of life, fertility, and the sacred bond of marriage.',
+    motifMandala: 'Mandala',
+    motifMandalaDesc: 'Circular sacred geometry representing wholeness, harmony, and the infinite nature of the cosmos.',
     // Modern Relevance
     modernLabel: 'Today',
     modernTitle1: 'A Living ',
