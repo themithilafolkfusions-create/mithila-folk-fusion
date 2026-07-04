@@ -10,7 +10,7 @@ const cvEntries = [
   { year: '2025', title: 'Times Square & Madison Avenue', subtitle: 'Public art installation, New York' },
   { year: '2025', title: 'FDNY Headquarters', subtitle: 'Exhibition, New York City' },
   { year: '2025', title: 'Watchung Art Center', subtitle: '"Magnetism" group exhibition, New Jersey' },
-  { year: '2025', title: 'Manville Art Council', subtitle: 'Curated exhibition, New Jersey' },
+  { year: '2025', title: 'Manville Art Council', subtitle: 'Exhibition, New Jersey' },
   { year: '2025', title: 'UCNJ Teen Arts Festival', subtitle: 'Mithila art workshop, 1,000+ students' },
   { year: '2025', title: 'Greater NY Chamber of Commerce', subtitle: 'Women Entrepreneur in the Arts recognition' },
   { year: '2025', title: 'Feedspot', subtitle: 'Top 35 Indian American Art Influencers' },

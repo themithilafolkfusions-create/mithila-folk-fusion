@@ -3,9 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, ArrowLeft, Send } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { CameraShy } from 'camerashy';
-
-const sanitize = (str: string) =>
-  str.replace(/<[^>]*>/g, '').replace(/javascript:/gi, '').replace(/data:/gi, '').trim();
+import { submitLead, sanitize, getEmailUrl } from '../utils/api';
 
 interface PortfolioWork {
   id: number;
@@ -28,6 +26,7 @@ const PortfolioLightbox: React.FC<Props> = ({ works, selectedIndex, onClose }) =
   const [showInquiryForm, setShowInquiryForm] = React.useState(false);
   const [formData, setFormData] = React.useState({ name: '', email: '', subject: '', message: '' });
   const [submitted, setSubmitted] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
   const [debounced, setDebounced] = React.useState(false);
   const [honeypot, setHoneypot] = React.useState('');
   const { t } = useTranslation();
@@ -215,52 +214,69 @@ const PortfolioLightbox: React.FC<Props> = ({ works, selectedIndex, onClose }) =
                   />
                 </div>
 
-                {submitted ? (
-                  <motion.p
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-center font-cormorant text-madhubani-teal text-lg"
-                  >
-                    {t('contact.formThankYou')}
-                  </motion.p>
-                ) : (
-                  <>
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        if (debounced || honeypot) return;
-                        setDebounced(true);
-                        const subjectLine = 'Mithila Folk Fusions - ' + sanitize(formData.subject);
-                        const body = 'Name: ' + sanitize(formData.name) + '\n' +
-                          'Email: ' + sanitize(formData.email) + '\n' +
-                          'Subject: ' + sanitize(formData.subject) + '\n' +
-                          'Artwork: ' + t(`portfolio.art${work.id}Title`) + '\n\n' +
-                          sanitize(formData.message) + '\n\n---\nSent from Mithila Folk Fusions';
-                        const gmailUrl = 'https://mail.google.com/mail/u/0/?tf=cm' +
-                          '&to=' + encodeURIComponent('Mithilafolkfusions@gmail.com') +
-                          '&su=' + encodeURIComponent(subjectLine) +
-                          '&body=' + encodeURIComponent(body);
-                        window.open(gmailUrl, '_blank', 'noopener,noreferrer');
-                        setSubmitted(true);
-                        setTimeout(() => { setShowInquiryForm(false); setSubmitted(false); }, 3000);
-                        setTimeout(() => setDebounced(false), 5000);
-                      }}
-                      className="w-full py-3 bg-madhubani-red text-cream font-playfair text-sm tracking-wider uppercase hover:bg-madhubani-crimson transition-colors flex items-center justify-center gap-2 group"
+                  {submitted ? (
+                    <motion.p
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="text-center font-cormorant text-madhubani-teal text-lg"
                     >
-                      <span>{t('contact.formSubmit')}</span>
-                      <Send size={14} className="group-hover:translate-x-1 transition-transform" />
-                    </button>
-                    <p className="text-center font-cormorant text-xs text-cream/40 mt-2">
-                      or email directly at{' '}
-                      <a
-                        href={`mailto:Mithilafolkfusions@gmail.com?subject=${encodeURIComponent('Mithila Folk Fusions - ')}&body=${encodeURIComponent('Name: \nEmail: \nSubject: \nArtwork: ' + t(`portfolio.art${work.id}Title`) + '\n\nYour message here\n\n---\nSent from Mithila Folk Fusions')}`}
-                        className="text-madhubani-magenta underline hover:text-madhubani-pink transition-colors"
+                      {t('contact.formThankYou')}
+                    </motion.p>
+                  ) : (
+                    <>
+                      <button
+                        onClick={async (e) => {
+                          e.preventDefault();
+                          if (debounced || honeypot) return;
+                          setDebounced(true);
+                          setLoading(true);
+                          try {
+                            await submitLead({
+                              name: formData.name,
+                              email: formData.email,
+                              subject: formData.subject,
+                              message: formData.message,
+                              artworkTitle: t(`portfolio.art${work.id}Title`),
+                              source: 'portfolio',
+                            });
+                            setSubmitted(true);
+                            setTimeout(() => { setShowInquiryForm(false); setSubmitted(false); }, 3000);
+                          } catch {
+                            const gmailUrl = getEmailUrl({
+                              ...formData,
+                              artworkTitle: t(`portfolio.art${work.id}Title`),
+                            });
+                            window.open(gmailUrl, '_blank', 'noopener,noreferrer');
+                            setSubmitted(true);
+                            setTimeout(() => { setShowInquiryForm(false); setSubmitted(false); }, 3000);
+                          } finally {
+                            setLoading(false);
+                            setTimeout(() => setDebounced(false), 5000);
+                          }
+                        }}
+                        disabled={loading}
+                        className="w-full py-3 bg-madhubani-red text-cream font-playfair text-sm tracking-wider uppercase hover:bg-madhubani-crimson transition-colors flex items-center justify-center gap-2 group disabled:opacity-50"
                       >
-                        Mithilafolkfusions@gmail.com
-                      </a>
-                    </p>
-                  </>
-                )}
+                        {loading ? (
+                          <span className="inline-block w-4 h-4 border-2 border-cream border-t-transparent rounded-full animate-spin" />
+                        ) : (
+                          <>
+                            <span>{t('contact.formSubmit')}</span>
+                            <Send size={14} className="group-hover:translate-x-1 transition-transform" />
+                          </>
+                        )}
+                      </button>
+                      <p className="text-center font-cormorant text-xs text-cream/40 mt-2">
+                        or email directly at{' '}
+                        <a
+                          href={`mailto:Mithilafolkfusions@gmail.com?subject=${encodeURIComponent('Mithila Folk Fusions - ')}&body=${encodeURIComponent('Name: \nEmail: \nSubject: \nArtwork: ' + t(`portfolio.art${work.id}Title`) + '\n\nYour message here\n\n---\nSent from Mithila Folk Fusions')}`}
+                          className="text-madhubani-magenta underline hover:text-madhubani-pink transition-colors"
+                        >
+                          Mithilafolkfusions@gmail.com
+                        </a>
+                      </p>
+                    </>
+                  )}
               </div>
             </>
           ) : (

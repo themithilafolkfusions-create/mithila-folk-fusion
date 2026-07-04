@@ -4,9 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { SectionDivider } from './MadhubaniBorder';
-
-const sanitize = (str: string) =>
-  str.replace(/<[^>]*>/g, '').replace(/javascript:/gi, '').replace(/data:/gi, '').trim();
+import { submitLead, sanitize, getEmailUrl } from '../utils/api';
 
 const KNOWN_PAINTINGS = ['Resonance', 'Bodhi Udaya', 'Mythocircle', 'Echoes Beneath the Branches', 'One Earth Many Voices', 'Echoes of Exile', 'Prem Vatika', 'The Invisible Pull', 'Aarambh', 'Manthan'];
 
@@ -18,6 +16,8 @@ const Contact: React.FC = () => {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const [debounced, setDebounced] = useState(false);
   const [honeypot, setHoneypot] = useState('');
   const [searchParams] = useSearchParams();
@@ -37,24 +37,33 @@ const Contact: React.FC = () => {
     }
   }, [searchParams]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (debounced || honeypot) return;
     setDebounced(true);
-    const subjectLine = 'Mithila Folk Fusions - ' + sanitize(formData.subject);
-    const body = 'Name: ' + sanitize(formData.name) + '\n' +
-      'Email: ' + sanitize(formData.email) + '\n' +
-      'Subject: ' + sanitize(formData.subject) + '\n\n' +
-      sanitize(formData.message) + '\n\n---\nSent from Mithila Folk Fusions';
-    const gmailUrl = 'https://mail.google.com/mail/u/0/?tf=cm' +
-      '&to=' + encodeURIComponent('Mithilafolkfusions@gmail.com') +
-      '&su=' + encodeURIComponent(subjectLine) +
-      '&body=' + encodeURIComponent(body);
-    window.open(gmailUrl, '_blank', 'noopener,noreferrer');
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-    setTimeout(() => setDebounced(false), 5000);
-    setFormData({ name: '', email: '', subject: '', message: '' });
+    setError('');
+    setLoading(true);
+    try {
+      await submitLead({
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        source: 'contact',
+      });
+      setSubmitted(true);
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      setTimeout(() => setSubmitted(false), 3000);
+    } catch {
+      const gmailUrl = getEmailUrl(formData);
+      window.open(gmailUrl, '_blank', 'noopener,noreferrer');
+      setSubmitted(true);
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      setTimeout(() => setSubmitted(false), 3000);
+    } finally {
+      setLoading(false);
+      setTimeout(() => setDebounced(false), 5000);
+    }
   };
 
   return (
@@ -232,10 +241,17 @@ const Contact: React.FC = () => {
 
                 <button
                   type="submit"
-                  className="w-full py-4 bg-madhubani-red text-cream font-playfair tracking-wider text-sm uppercase hover:bg-madhubani-crimson transition-colors flex items-center justify-center gap-2 group"
+                  disabled={loading}
+                  className="w-full py-4 bg-madhubani-red text-cream font-playfair tracking-wider text-sm uppercase hover:bg-madhubani-crimson transition-colors flex items-center justify-center gap-2 group disabled:opacity-50"
                 >
-                  <span>{submitted ? t('contact.formSubmitted') : t('contact.formSubmit')}</span>
-                  <Send size={16} className="group-hover:translate-x-1 transition-transform" />
+                  {loading ? (
+                    <span className="inline-block w-5 h-5 border-2 border-cream border-t-transparent rounded-full animate-spin" />
+                  ) : (
+                    <>
+                      <span>{submitted ? t('contact.formSubmitted') : t('contact.formSubmit')}</span>
+                      <Send size={16} className="group-hover:translate-x-1 transition-transform" />
+                    </>
+                  )}
                 </button>
 
                 {submitted && (
